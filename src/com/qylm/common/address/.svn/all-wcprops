@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address
+END
+DistrictData.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/DistrictData.java
+END
+ProvinceData.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/ProvinceData.java
+END
+CityData.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/CityData.java
+END
+District.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/District.java
+END
+Province.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/Province.java
+END
+City.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/address/City.java
+END

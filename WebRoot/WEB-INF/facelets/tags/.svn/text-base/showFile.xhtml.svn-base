@@ -1,0 +1,32 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dataTable emptyMessage="暂无数据" value="#{fileControlList}" var="fileControl" id="fileControl" >
+		<f:facet name="header" >
+			文件信息
+		</f:facet>
+		<p:column headerText="文件"  styleClass="columnClass" style="width: 200px;">
+			<h:graphicImage value="#{fileControl.visitAddress}" alt="#{fileControl.originalName}" width="50" height="50" rendered="#{fileControl.type eq '1' and !fileControl.encryption}" />
+			<h:outputText value="#{fileControl.originalName}" rendered="#{fileControl.type eq '2' or fileControl.encryption}" />
+		</p:column>
+		<p:column headerText="上传日期"  styleClass="columnClass" >
+			<h:outputText value="#{fileControl.createDate}" >
+				<f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+			</h:outputText>
+		</p:column>
+		<p:column headerText="显示状态" style="width: 100px;" styleClass="columnClass" >
+			<h:outputText value="#{fileControl.defaultState ? '默认显示' : ''}" />
+		</p:column>
+		<p:column headerText="基本操作" styleClass="columnClass" style="width: 140px;">
+			<p:commandLink value="默认显示" action="#{bean.defaultFielControl(fileControl)}" 
+				process="@this" update="fileControl @(.ui-growl)" immediate="true"/>
+			&#160;
+			<p:commandLink value="删除文件" action="#{bean.deleteFileControl(fileControl)}" 
+				process="@this" update="fileControl @(.ui-growl)" immediate="true"/>
+		</p:column>
+	</p:dataTable>
+</div>

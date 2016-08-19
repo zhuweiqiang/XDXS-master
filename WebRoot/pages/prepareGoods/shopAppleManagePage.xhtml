@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="店铺申请配货管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{shopAppleManageBean.shopAppleManageDto}" />
+		<t:saveState value="#{shopAppleManageBean.shopAppleList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{shopAppleManageBean.newShopApple}" ajax="false" styleClass="createBtn" accesskey="c"/>
+			<p:commandButton value="批量删除" actionListener="#{shopAppleManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="number" />
+			<h:panelGrid id="manageGrid" columns="9">
+				<h:outputLabel for="number" value="编号" />
+				<p:inputText styleClass="inputText" id="number" size="10" maxlength="10"
+					value="#{shopAppleManageBean.shopAppleManageDto.number}" />
+				<h:outputLabel for="beginAppleDate" value="申请日期（开始）" />
+				<p:calendar navigator="true" id="beginAppleDate" size="10" maxlength="10"
+					locale="tr" value="#{shopAppleManageBean.shopAppleManageDto.beginAppleDate}"
+					pattern="yyyy-MM-dd"/>
+				~
+				<p:calendar navigator="true" id="endAppleDate" size="10" maxlength="10"
+					locale="tr" value="#{shopAppleManageBean.shopAppleManageDto.endAppleDate}"
+					pattern="yyyy-MM-dd"/>
+				<h:outputLabel for="appleState" value="申请状态" />
+				<p:selectOneMenu id="appleState" value="#{shopAppleManageBean.shopAppleManageDto.appleState}">
+					<f:selectItems value="#{genericCodeBean.c0107}" />
+				</p:selectOneMenu>
+				<p:commandButton id="searchBtn" style="margin-left:40px;" value="搜索" action="#{shopAppleManageBean.selectShopApple}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{shopAppleManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{shopAppleManageBean.shopAppleList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{shopAppleManageBean.selectedModels}">
+				<f:facet name="header" >
+					店铺申请配货信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="编号" sortBy="#{model.number}" width="80">
+					<h:outputText value="#{model.number}" />
+				</p:column>
+				<p:column headerText="配货仓库" sortBy="#{model.depotInfo.name}">
+					<h:outputText value="#{model.depotInfo.name}" />
+				</p:column>
+				<p:column headerText="申请日期" sortBy="#{model.appleDate}" width="120">
+					<h:outputText value="#{model.appleDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="申请人" sortBy="#{model.creater.userName}" width="100">
+					<h:outputText value="#{model.creater.userName}" />
+				</p:column>
+				<p:column headerText="入库人" sortBy="#{model.user.userName}" width="100">
+					<h:outputText value="#{model.user.userName}" />
+				</p:column>
+				<p:column headerText="申请状态" sortBy="#{model.appleState}" width="100">
+					<h:outputText value="#{rw:label(genericCodeBean.c0107, model.appleState)}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 160px;">
+					<p:commandButton value="入库" action="#{shopAppleManageBean.storage(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						rendered="#{model.showRk}"
+						disabled="#{model.user.id ne userBean.user.id}"
+						onstart="return queryConfirm();" styleClass="singleDelBtn"/>
+					<p:commandButton value="提交申请" action="#{shopAppleManageBean.submitShopApple(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						disabled="#{model.appleState ne '1'}"
+						onstart="return queryConfirm();" styleClass="singleDelBtn"/>
+					<p:commandButton value="#{model.appleState ne '1' ? '详细':'修改'}" action="#{shopAppleManageBean.updateShopApple(model)}"
+						ajax="false" styleClass="modifyBtn"/>
+					<p:commandButton value="删除" action="#{shopAppleManageBean.deleteShopApple(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<util:viewDialog id="viewDialog" modelId="#{shopAppleManageBean.modelId}" actionMethod="#{shopAppleManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

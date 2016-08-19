@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="店铺配货审核信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{shopAuditingCreateBean.shopAuditingCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{shopAuditingCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="审核通过" action="#{shopAuditingCreateBean.auditingPass}" ajax="false" styleClass="saveBtn" />
+			<p:commandButton value="审核不通过" action="#{shopAuditingCreateBean.auditingNoPass}" ajax="false" styleClass="saveBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:focus for="remark" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="审核时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai"/>
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="审核备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="200" 
+							value="#{shopAuditingCreateBean.shopAuditingCreateDto.remark}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="编号" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.number}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="仓库" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.depotInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="申请日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.appleDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai"/>
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.remark}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="入库人" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.user.userName}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" id="shopAppleDetail" 
+				value="#{shopAuditingCreateBean.shopAuditingCreateDto.shopApple.shopAppleDetailList}">
+				<f:facet name="header" >
+					店铺申请配货详细信息列表
+				</f:facet>
+				<p:column headerText="产品名称" width="220">
+					<h:outputText value="#{model.productStock.name}" />
+				</p:column>
+				<p:column headerText="产品介绍">
+					<h:outputText value="#{model.productStock.introduce}" />
+				</p:column>
+				<p:column headerText="申请数量" width="120">
+					<h:outputText value="#{model.number}" />
+				</p:column>
+				<p:column headerText="审批数量" width="120">
+					<pe:inputNumber maxlength="10" size="10" value="#{model.realityNumber}" 
+						minValue="0" emptyValue="0" decimalPlaces="0" required="true" label="审批数量必须填写">
+					</pe:inputNumber>
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

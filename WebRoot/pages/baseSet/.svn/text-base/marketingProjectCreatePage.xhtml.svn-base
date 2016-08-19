@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="服务管理信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{marketingProjectCreateBean.marketingProjectCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{marketingProjectCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{marketingProjectCreateBean.newMarketingProject}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '添加')}"/>
+			<p:commandButton value="保存" action="#{marketingProjectCreateBean.saveMarketingProject}" 
+				disabled="#{marketingProjectCreateBean.marketingProjectCreateDto.state}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '添加') or userBean.isCheckPermission('baseSet_marketingProject', '修改')}"/>
+			<!--  
+			<p:commandButton value="确认生效" action="#{marketingProjectCreateBean.queryMarketingProject}" 
+				disabled="#{marketingProjectCreateBean.marketingProjectCreateDto.state}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '添加') or userBean.isCheckPermission('baseSet_marketingProject', '修改')}"/>
+			-->
+		</div>
+		<div class="tableCenter">
+			<p:focus for="project" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="project" value="服务管理" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="project" size="20" maxlength="20"
+							value="#{marketingProjectCreateBean.marketingProjectCreateDto.project}" label="服务管理级别必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="type" value="类型" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectOneMenu id="type" value="#{marketingProjectCreateBean.marketingProjectCreateDto.type}">
+							<f:selectItems value="#{genericCodeBean.c0701}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="项目费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{marketingProjectCreateBean.marketingProjectCreateDto.money}" 
+							minValue="0.00" emptyValue="0" decimalPlaces="2" label="项目费用必须输入" required="true"/>
+						￥
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="备注" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputTextarea value="#{marketingProjectCreateBean.marketingProjectCreateDto.remark}" 
+							id="remark" cols="80" rows="5" maxlength="200"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

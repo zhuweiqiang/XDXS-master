@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/XDXS/!svn/ver/28/src/com/qylm/bean/myDesk
+END
+ConsumeBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/11/src/com/qylm/bean/myDesk/ConsumeBean.java
+END
+GiveLargessRecordBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/13/src/com/qylm/bean/myDesk/GiveLargessRecordBean.java
+END
+LearnCardBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/8/src/com/qylm/bean/myDesk/LearnCardBean.java
+END
+GiveExperienceCardBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/11/src/com/qylm/bean/myDesk/GiveExperienceCardBean.java
+END
+ServiceConsumptionBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/14/src/com/qylm/bean/myDesk/ServiceConsumptionBean.java
+END
+CustomLeaguerOperationBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/XDXS/!svn/ver/11/src/com/qylm/bean/myDesk/CustomLeaguerOperationBean.java
+END
+GiveBodyVolumeBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/8/src/com/qylm/bean/myDesk/GiveBodyVolumeBean.java
+END
+GiveCashVolumeBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/8/src/com/qylm/bean/myDesk/GiveCashVolumeBean.java
+END
+ShopCardBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/28/src/com/qylm/bean/myDesk/ShopCardBean.java
+END
+RepaymentBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/myDesk/RepaymentBean.java
+END

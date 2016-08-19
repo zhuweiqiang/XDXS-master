@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/XDXS/!svn/ver/8/src/com/qylm/exception
+END
+ExcelUpfileRowNumOverSizeException.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/ExcelUpfileRowNumOverSizeException.java
+END
+ProductDepotAllotException.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/ProductDepotAllotException.java
+END
+FittingLibraryException.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/FittingLibraryException.java
+END
+CheckException.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/CheckException.java
+END
+ConsumptionException.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/8/src/com/qylm/exception/ConsumptionException.java
+END
+FileControlLogicException.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/FileControlLogicException.java
+END
+FileExportLogicException.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/exception/FileExportLogicException.java
+END

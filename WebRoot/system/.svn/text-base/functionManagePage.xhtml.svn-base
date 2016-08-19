@@ -1,0 +1,108 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="功能管理" />
+	<ui:define name="customcss">
+		<h:outputScript library="js/dtree" name="dtree.js" />
+	</ui:define>
+	<ui:define name="tableCenter">
+		<t:saveState value="#{functionManageBean.functionManageDto}" />
+		<t:saveState value="#{functionManageBean.posts}" />
+		<div class="right_mian">
+			<table width="98%" border="0"
+				cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+				<tr>
+					<td width="200" align="left" valign="top">
+						<script type="text/javascript">
+							#{functionManageBean.posts}
+							function openMeun(str) {
+								var strs= new Array();
+								strs = str.split("=");
+								document.getElementById("form:treeItemId").value = strs[0];
+								document.getElementById("form:treeItemName").innerText = strs[1];
+								document.getElementById("form:functionId").value = "";
+								document.getElementById("form:tabel").value = "";
+								document.getElementById("form:rank").value = "";
+								document.getElementById("form:treeItemNames").value = strs[1];
+								document.getElementById("form:createFunction").disabled = false;
+								document.getElementById("form:deleteFunction").disabled = true;
+							}
+							function openCreatePage(str) {
+								var strs= new Array();
+								strs = str.split("=");
+								document.getElementById("form:functionId").value = strs[0];
+								document.getElementById("form:tabel").value = strs[1];
+								if (strs[2] == "true") {
+									document.getElementById("form:enable").checked = true;
+								} else {
+									document.getElementById("form:enable").checked = false;
+								}
+								document.getElementById("form:rank").value = strs[3];
+								document.getElementById("form:treeItemName").innerText = strs[4];
+								document.getElementById("form:createFunction").disabled = true;
+								document.getElementById("form:deleteFunction").disabled = false;
+							}
+						</script>
+					</td>
+					<td align="center" valign="top">
+						<div class="headButton" style="text-align: left;">
+							<p:commandButton value="添加" action="#{functionManageBean.createFunction}" 
+								rendered="#{userBean.isCheckPermission('system_function', '添加')}" ajax="false" styleClass="createBtn" accesskey="c"/>
+							<p:commandButton value="保存" action="#{functionManageBean.saveFunction}" 
+								rendered="#{userBean.isCheckPermission('system_function', '添加')}" ajax="false" styleClass="createBtn"/>
+							<p:commandButton value="删除" action="#{functionManageBean.deleteFunction}" 
+								rendered="#{userBean.isCheckPermission('system_function', '删除')}" ajax="false" styleClass="createBtn" accesskey="c"/>
+							<h:inputHidden id="treeItemId" value="#{functionManageBean.functionManageDto.treeItemId}" />
+							<h:inputHidden id="functionId" value="#{functionManageBean.functionManageDto.functionId}" />
+							<h:inputHidden id="treeItemNames" value="#{functionManageBean.functionManageDto.treeItemName}" />
+						</div>
+						<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="所属菜单：" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:outputText id="treeItemName" value="#{functionManageBean.functionManageDto.treeItemName}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="功能名称：" for="tabel" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{functionManageBean.functionManageDto.label}" maxlength="20"
+										id="tabel" styleClass="input3" size="20"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="功能顺序：" for="rank" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{functionManageBean.functionManageDto.rank}" maxlength="20"
+										id="rank" styleClass="input3" size="20"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="是否启用：" for="enable" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:selectBooleanCheckbox id="enable" value="#{functionManageBean.functionManageDto.enable}" styleClass="input3"/>
+									<h:outputLabel value="打钩为不启用" for="enable" styleClass="red"/>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>

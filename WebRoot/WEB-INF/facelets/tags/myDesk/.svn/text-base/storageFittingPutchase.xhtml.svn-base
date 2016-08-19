@@ -1,0 +1,127 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:panel id="storageFittingPutchase" header="待入库的配件采购单" toggleable="true"
+		closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="storageFittingPutchase"
+		style="margin-bottom:20px">
+		<p:ajax event="close" update="messages" />
+		<p:ajax event="toggle" update="messages" />
+		<h:panelGrid columns="1" cellpadding="10">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{myDeskBean.myDeskDto.storageFittingPutchaseList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true" id="storageFittingPutchaseTable">
+				<f:facet name="header" >
+					待入库的配件采购信息列表
+				</f:facet>
+				<p:column headerText="采购编号" width="100px;">
+					<h:outputText value="#{model.serialNumber}" />
+				</p:column>
+				<p:column headerText="申请日期" width="100px;">
+					<h:outputText value="#{model.applyDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="金额状况" width="220px;">
+					<div style="text-align: left;">
+						<h:outputText value="申请金额：#{model.applyPrice}" />
+						<br />
+						<h:outputText value="审批金额：#{model.budgetPrice}" />
+						<br />
+						<h:outputText value="采购金额：#{model.purchasePrice}" /><h:outputText style="margin-left: 10px;" value="运费：#{model.freight}" />
+					</div>
+				</p:column>
+				<p:column headerText="采购内容">
+					<h:outputText value="#{model.title}" />
+				</p:column>
+				<p:column headerText="采购单状态" width="120px;">
+					<h:outputText value="#{rw:label(genericCodeBean.c0106,model.state)}" style="color:#{model.typeColor};"/>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 60px;">
+					<p:commandButton value="入库申请" action="#{myDeskBean.storageApply(model)}" partialSubmit="true" process="@this"
+						oncomplete="PF('dlgstorage').show();" 
+						update="storageFittingPutchaseTable :form:dlgstorage" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+			<p:dialog id="dlgstorage" header="配件入库" widgetVar="dlgstorage" resizable="false" modal="true" position="center" width="1000">
+				<div class="buttonNorth">
+					<p:commandButton value="入库" action="#{myDeskBean.storage}"
+						oncomplete="PF('dlgstorage').hide();"
+						update=":form:storageFittingPutchaseTable :form:messages" styleClass="singleDelBtn"/>
+				</div>
+				<p:focus for="fittingStorageRemark" />
+				<p:panelGrid id="manageGrid" styleClass="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="采购编号" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingStorage.number}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="fittingStorageRemark" value="备注" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<p:inputTextarea id="fittingStorageRemark" maxlength="500" cols="80" rows="3" 
+								value="#{myDeskBean.myDeskDto.fittingStorage.remark}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="入库日期" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<p:calendar navigator="true" size="10" maxlength="10" locale="tr"
+								value="#{myDeskBean.myDeskDto.fittingStorage.storageDate}"
+								pattern="yyyy-MM-dd"/>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<p:dataTable var="model" value="#{myDeskBean.myDeskDto.fittingStorage.fittingStorageDetailList}" id="fittingStorageDetail">
+					<f:facet name="header" >
+						采购配件列表信息
+					</f:facet>
+					<p:column headerText="车辆名称">
+						<h:outputText value="#{model.carName}" />
+					</p:column>
+					<p:column headerText="配件品牌" width="120px;">
+						<h:outputText value="#{model.fittingBrand}" />
+					</p:column>
+					<p:column headerText="配件名称">
+						<h:outputText value="#{model.fittingName}" />
+					</p:column>
+					<p:column headerText="型号" width="120px;">
+						<h:outputText value="#{model.model}" />
+					</p:column>
+					<p:column headerText="最新单价" width="120px;">
+						<h:outputText value="#{model.price}" />
+					</p:column>
+					<p:column headerText="保养天数" width="80px;">
+						<h:outputText value="#{model.maintenanceDay}" />
+					</p:column>
+					<p:column headerText="保养立方" width="80px;">
+						<h:outputText value="#{model.maintenanceCubic}" />
+					</p:column>
+					<p:column headerText="入库数量" width="80px;">
+						<h:outputText value="#{model.quantity}" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</h:panelGrid>
+		<f:facet name="options">
+			<p:menu>
+				<p:submenu label="Settings">
+					<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+						onclick="PF('storageFittingPutchase').toggle()" />
+					<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+						onclick="PF('storageFittingPutchase').close()" />
+				</p:submenu>
+			</p:menu>
+		</f:facet>
+	</p:panel>
+</div>

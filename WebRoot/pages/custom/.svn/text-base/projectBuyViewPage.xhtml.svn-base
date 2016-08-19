@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="项目购买信息详细" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{projectBuyViewBean.projectBuyViewDto}" />
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{projectBuyViewBean.projectBuyViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{projectBuyViewBean.projectBuyViewDto.personnelInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{projectBuyViewBean.projectBuyViewDto.adviser.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="购买时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{projectBuyViewBean.projectBuyViewDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="套餐费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="￥ #{projectBuyViewBean.projectBuyViewDto.money}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:dataTable emptyMessage="暂无数据" var="model" 
+							value="#{projectBuyViewBean.projectBuyViewDto.projectBuyDetailList}"
+							widgetVar="viewTable" id="viewTable">
+							<f:facet name="header" >
+								参加活动的项目列表
+							</f:facet>
+							<p:column headerText="项目名称">
+								<h:outputText value="服务管理：#{model.marketingProject.project}" />
+								&#160;&#160;
+								<h:outputText value="单价：#{model.marketingProject.money}" style="margin-left: 50px;" />
+							</p:column>
+							<p:column headerText="次数" width="120">
+								<h:outputText value="#{model.number}" />
+							</p:column>
+							<p:column headerText="剩余次数" width="120">
+								<h:outputText value="#{model.surplusNumber}" />
+							</p:column>
+							<p:column headerText="价值" width="120">
+								<h:outputText value="￥ #{model.money}" />
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

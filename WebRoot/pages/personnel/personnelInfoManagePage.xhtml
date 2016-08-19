@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="人事信息管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{personnelInfoManageBean.personnelInfoManageDto}" />
+		<t:saveState value="#{personnelInfoManageBean.personnelInfoList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{personnelInfoManageBean.newPersonnelInfo}" ajax="false" styleClass="createBtn" accesskey="c"
+				rendered="#{userBean.isCheckPermission('personnel_personnelInfo', '添加')}"/>
+			<p:commandButton value="批量删除" actionListener="#{personnelInfoManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"
+				rendered="#{userBean.isCheckPermission('personnel_personnelInfo', '删除')}"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="workNumber" />
+			<h:panelGrid id="manageGrid" columns="11">
+				<h:outputLabel for="workNumber" value="工号" />
+				<p:inputText styleClass="inputText" id="workNumber" size="10" maxlength="10"
+					value="#{personnelInfoManageBean.personnelInfoManageDto.workNumber}" />
+				<h:outputLabel for="name" value="姓名" />
+				<p:inputText styleClass="inputText" id="name" size="20" maxlength="20"
+					value="#{personnelInfoManageBean.personnelInfoManageDto.name}" />
+				<h:outputLabel for="identification" value="身份证号" />
+				<p:inputText styleClass="inputText" id="identification" size="18" maxlength="18"
+					value="#{personnelInfoManageBean.personnelInfoManageDto.identification}" />
+				<h:outputLabel for="workState" value="在职状态" />
+				<p:selectOneMenu id="workState" value="#{personnelInfoManageBean.personnelInfoManageDto.workState}">
+					<f:selectItems value="#{genericCodeBean.c0301}" />
+				</p:selectOneMenu>
+				<h:outputLabel for="type" value="员工类型" />
+				<p:selectOneMenu id="type" value="#{personnelInfoManageBean.personnelInfoManageDto.type}">
+					<f:selectItems value="#{genericCodeBean.c0302}" />
+				</p:selectOneMenu>
+				<p:commandButton id="searchBtn" value="搜索" action="#{personnelInfoManageBean.selectPersonnelInfo}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{personnelInfoManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{personnelInfoManageBean.personnelInfoList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{personnelInfoManageBean.selectedModels}">
+				<f:facet name="header" >
+					人事信息信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="工号" sortBy="#{model.workNumber}" width="100">
+					<h:outputText value="#{model.workNumber}" />
+				</p:column>
+				<p:column headerText="姓名" sortBy="#{model.name}" width="100">
+					<h:outputText value="#{model.name}" />
+				</p:column>
+				<p:column headerText="身份证" sortBy="#{model.identification}">
+					<h:outputText value="#{model.identification}" />
+				</p:column>
+				<p:column headerText="在职状态" sortBy="#{model.workState}" width="120">
+					<h:outputText value="#{rw:label(genericCodeBean.c0301, model.workState)}" />
+				</p:column>
+				<p:column headerText="员工类型" sortBy="#{model.type}" width="120">
+					<h:outputText value="#{rw:label(genericCodeBean.c0302, model.type)}" />
+				</p:column>
+				<p:column headerText="性别" sortBy="#{model.workState}" width="80">
+					<h:outputText value="#{rw:label(genericCodeBean.c0102, model.sex)}" />
+				</p:column>
+				<p:column headerText="出身日期" sortBy="#{model.birthDate}" width="120">
+					<h:outputText value="#{model.birthDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 120px;">
+					<p:commandButton value="#{model.workState eq '1' ? '离职' : ' 复职'}" action="#{personnelInfoManageBean.operatePersonnelInfo(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('personnel_personnelInfo', '修改')}"/>
+					<p:commandButton value="修改" action="#{personnelInfoManageBean.updatePersonnelInfo(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('personnel_personnelInfo', '修改')}"/>
+					<p:commandButton value="删除" action="#{personnelInfoManageBean.deletePersonnelInfo(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('personnel_personnelInfo', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<util:viewDialog id="viewDialog" modelId="#{personnelInfoManageBean.modelId}" actionMethod="#{personnelInfoManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

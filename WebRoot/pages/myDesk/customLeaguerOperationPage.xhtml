@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="退卡登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{customLeaguerOperationBean.customLeaguerOperationDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{customLeaguerOperationBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续退卡" action="#{customLeaguerOperationBean.newCustomLeaguerOperation}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{customLeaguerOperationBean.customLeaguerOperationDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{customLeaguerOperationBean.clearLeaguer}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{customLeaguerOperationBean.customLeaguerOperationDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{customLeaguerOperationBean.customLeaguerOperationDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="退卡日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{customLeaguerOperationBean.customLeaguerOperationDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="type" value="退卡类型" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectOneMenu id="type" value="#{customLeaguerOperationBean.customLeaguerOperationDto.type}">
+							<f:selectItems value="#{genericCodeBean.c0704}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customLeaguerDetailId" value="选择退卡卡项" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectOneMenu id="customLeaguerDetailId" value="#{customLeaguerOperationBean.customLeaguerOperationDto.customLeaguerDetailId}">
+							<p:ajax update=":form:money" listener="#{customLeaguerOperationBean.clear}"/>
+							<f:selectItems value="#{customLeaguerOperationBean.customLeaguerOperationDto.customLeaguerDetailItems}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="卡项余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText id="money" value="#{customLeaguerOperationBean.customLeaguerOperationDto.customLeaguerDetail.money}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="实际可退余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber maxlength="10" size="12" value="#{customLeaguerOperationBean.customLeaguerOperationDto.money}" 
+							minValue="0.00" maxValue="#{customLeaguerOperationBean.customLeaguerOperationDto.customLeaguerDetail.money}" emptyValue="0" symbol="￥ " decimalPlaces="2">
+						</pe:inputNumber>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="退款原因" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="2000" value="#{customLeaguerOperationBean.customLeaguerOperationDto.remark}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="4" style="text-align: center;">
+						<p:commandButton value="确认退卡" action="#{customLeaguerOperationBean.queryTK}"
+							update="@form" styleClass="singleDelBtn" ajax="false"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,151 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="疗程转换信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{conversionTreatmentCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续转换" action="#{conversionTreatmentCreateBean.newConversionTreatment}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{conversionTreatmentCreateBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="转换日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择转换疗程" action="#{conversionTreatmentCreateBean.findMarketingProject}"
+							 update=":form:marketingProjects" oncomplete="PF('marketingProjects').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.conversionTreatmentDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					用于转换的服务明细列表
+				</f:facet>
+				<p:column headerText="服务来源" width="120">
+					<h:outputText value="#{model.typeLabel}" />
+				</p:column>
+				<p:column headerText="服务名称">
+					<h:outputText value="#{model.marketingProject.project}" />
+				</p:column>
+				<p:column headerText="拥有次数" width="120">
+					<h:outputText value="#{model.surplusNumber} 次" />
+				</p:column>
+				<p:column headerText="扣除次数" width="120">
+					<p:inputText value="#{model.number}" size="10" maxlength="10" label="数量必须输入" required="true">
+						<p:ajax event="keyup" listener="#{conversionTreatmentCreateBean.getSumMoney}" update="@form" />
+						<f:validator validatorId="numberValidator" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="疗程价值" width="120">
+					<h:outputText value="#{model.sumMoney} ￥" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{conversionTreatmentCreateBean.deleteConversionTreatment(model)}"
+						partialSubmit="true" process="@this"  update="@form"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						disabled="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.state}"/>
+				</p:column>
+				<f:facet name="footer">
+					<h:outputText id="sumFindMoney" value="已选择转换金额： #{conversionTreatmentCreateBean.conversionTreatmentCreateDto.sumFindMoney}￥" />
+				</f:facet>
+			</p:dataTable>
+			<div class="buttonNorth" style="text-align: center;">
+				<p:commandButton value="确认转换" action="#{conversionTreatmentCreateBean.saveConversionTreatment}"
+					styleClass="singleDelBtn" ajax="false"/>
+			</div>
+			<p:dialog id="marketingProjects" header="产品信息" width="700" height="600"
+				widgetVar="marketingProjects" modal="true" position="center">
+				<div>
+					<p:commandButton value="确认选择并关闭" styleClass="saveBtn"
+						action="#{conversionTreatmentCreateBean.queryClose}"
+						update="@form" oncomplete="PF('marketingProjects').hide();"/>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="dto" 
+					value="#{conversionTreatmentCreateBean.conversionTreatmentCreateDto.consumptionRegisterProjectDtoList}"
+					widgetVar="viewTable" id="consumptionRegisterProjectDto">
+					<f:facet name="header" >
+						当前客户已拥有的项目
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{conversionTreatmentCreateBean.find(dto)}"
+							update="consumptionRegisterProjectDto"/>
+					</p:column>
+					<p:column headerText="项目类型" width="100">
+						<h:outputText value="#{dto.typeLabel}" />
+					</p:column>
+					<p:column headerText="项目名称">
+						<h:outputText value="#{dto.marketingProject.project}" />
+					</p:column>
+					<p:column headerText="剩余次数" width="100">
+						<h:outputText value="#{dto.number}" />
+					</p:column>
+					<p:column headerText="项目价值" width="100">
+						<h:outputText value="#{dto.money}" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

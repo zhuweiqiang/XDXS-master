@@ -1,0 +1,85 @@
+<html jsfc="f:view" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rw="http://www.qylm.com">
+	<jsp:directive.page pageEncoding="UTF-8" jsfc="ui:remove"/>
+	<ui:composition>
+		<ui:fragment rendered="#{pageBean.pageCount!=1}">
+			<t:panelGrid style="margin-top: 6px;"
+				columns="1"
+				align="center">
+				<h:panelGroup>
+					<h:commandLink value="最前页" disabled="#{pageBean.currentPage==1}"
+						action="#{pageBean.numberPaging}" immediate="true">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{1}" />
+					</h:commandLink>
+					<h:commandLink value="上页" action="#{pageBean.previousPage}" style="margin-left: 5px;"
+						disabled="#{pageBean.currentPage==1}" immediate="true" />
+					<h:commandLink value="#{pageBean.index1}" style="margin-left: 5px;"
+						disabled="#{pageBean.currentPage==1}" immediate="true"
+						action="#{pageBean.numberPaging}">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{pageBean.index1}" />
+					</h:commandLink>
+					<h:commandLink value="#{pageBean.index2}" style="margin-left: 5px;"
+						disabled="#{pageBean.currentPage==2}" immediate="true"
+						action="#{pageBean.numberPaging}">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{pageBean.index2}" />
+					</h:commandLink>
+					<h:commandLink value="#{pageBean.index3}" style="margin-left: 5px;"
+						disabled="#{pageBean.currentPage==pageBean.index3}"
+						immediate="true" action="#{pageBean.numberPaging}"
+						rendered="#{pageBean.pageCount>=3}">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{pageBean.index3}" />
+					</h:commandLink>
+					<h:commandLink value="#{pageBean.index4}" style="margin-left: 5px;"
+						rendered="#{pageBean.pageCount>=4}"
+						disabled="#{pageBean.currentPage==pageBean.index4}"
+						immediate="true" action="#{pageBean.numberPaging}">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{pageBean.index4}" />
+					</h:commandLink>
+					<h:commandLink value="#{pageBean.index5}" style="margin-left: 5px;"
+						rendered="#{pageBean.pageCount>=5}"
+						disabled="#{pageBean.currentPage==pageBean.index5}"
+						immediate="true" action="#{pageBean.numberPaging}">
+						<f:setPropertyActionListener target="#{pageBean.currentPage}"
+							value="#{pageBean.index5}" />
+					</h:commandLink>
+					<h:commandLink value="下页" action="#{pageBean.nextPage}"
+						disabled="#{pageBean.currentPage==pageBean.pageCount}"
+						immediate="true"  style="margin-left: 5px;"/>
+					<h:commandLink value="最后页" style="margin-left: 5px;"
+						disabled="#{pageBean.currentPage==pageBean.pageCount}"
+						action="#{pageBean.lastPage}" immediate="true" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputFormat value="　　检索到 {0} 条数据。页 {1} / {2}">
+						<f:param value="#{pageBean.dataCount}" />
+						<f:param value="#{pageBean.currentPage}" />
+						<f:param value="#{pageBean.pageCount}" />
+					</h:outputFormat>
+				</h:panelGroup>
+			</t:panelGrid>
+		</ui:fragment>
+		<ui:fragment rendered="#{pageBean.pageCount==1}">
+			<div style="text-align: center; width: 100%; margin-top: 6px;">
+				<h:outputFormat value="检索到 {0} 条数据。页 {1} / {2}">
+					<f:param value="#{pageBean.dataCount}" />
+					<f:param value="#{pageBean.currentPage}" />
+					<f:param value="#{pageBean.pageCount}" />
+				</h:outputFormat>
+			</div>
+		</ui:fragment>
+		<t:saveState value="#{pageBean.currentPage}" />
+		<t:saveState value="#{pageBean.pageCount}" />
+		<t:saveState value="#{pageBean.dataCount}" />
+	</ui:composition>
+</html>

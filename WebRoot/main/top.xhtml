@@ -1,0 +1,78 @@
+<table xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	width="100%" height="100%" border="0" cellpadding="0"
+	cellspacing="0" class="admin_topbg">
+	<tr>
+		<td width="476" height="35" background="#{resource['images/back:top-13.gif']}">
+			&#160;
+		</td>
+		<td height="35" background="#{resource['images/back:top-14.gif']}">
+			&#160;
+		</td>
+		<td width="47" height="35" background="#{resource['images/back:top-2.gif']}">
+			&#160;
+		</td>
+		<td width="293" background="#{resource['images/back:top-11.gif']}" bgcolor="#0E4F7A">
+			<div class="headPageButton">
+				<script type="text/javascript">
+					window.onload = function() {
+						document.getElementById("form:myDesk").click();
+					}
+				</script>
+				<h:commandLink id="myDesk" target="mainFrame"
+					action="#{myDeskBean.getAllMyDesk}" immediate="true"
+					style="width:93px;height:19px;">
+					<h:graphicImage url="#{resource['images/back:top-7.gif']}" style="border: 0px"
+						onmouseover="this.src = '#{resource['images/back:top-7-1.gif']}'"
+						onmouseout="this.src = '#{resource['images/back:top-7.gif']}'" />
+				</h:commandLink>
+				<p:commandLink id="updatePassWord" oncomplete="PF('passwordDialog').show();" 
+					partialSubmit="true" process="@this" immediate="true" update="form:passwordDialog"
+					actionListener="#{updatePassWordBean.viewUserPassword}"
+					style="width:93px;height:19px;">
+					<h:graphicImage url="#{resource['images/back:top-8.gif']}" style="border: 0px"
+						alt="" onmouseover="this.src = '#{resource['images/back:top-8-1.gif']}'"
+						onmouseout="this.src = '#{resource['images/back:top-8.gif']}'" />
+				</p:commandLink>
+				<h:commandLink id="loginOut"
+					actionListener="#{userBean.loginOut}" style="width:93px;height:19px;"
+					onclick="return confirm('确认要退出吗？');" immediate="true">
+					<h:graphicImage url="#{resource['images/back:top-9.gif']}" style="border: 0px"
+						alt="" onmouseover="this.src = '#{resource['images/back:top-9-1.gif']}'"
+						onmouseout="this.src = '#{resource['images/back:top-9.gif']}'" />
+				</h:commandLink>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td width="476" height="25" align="left" valign="top"
+			background="#{resource['images/back:top-4.gif']}">
+			&#160;
+		</td>
+		<td height="25" align="left"
+			background="#{resource['images/back:top-5.gif']}">
+		</td>
+		<td height="25" colspan="2" background="#{resource['images/back:top-6.gif']}">
+			<div align="center">
+				<img src="#{resource['images/back:top-3.gif']}" alt="" width="15" height="15"
+					align="middle" />
+				<span class="today">现在时间：</span>
+				<span class="today" id="localtime">
+					<p:clock pattern="yyyy年MM月dd日 HH:mm:ss EEEE" mode="client"/>
+					<style type="text/css">
+						.ui-clock{
+							background:url("");
+							color:#000000;
+							border: 0;
+							!important;
+						}
+					</style>
+				</span>
+			</div>
+		</td>
+	</tr>
+</table>

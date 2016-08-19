@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>立盛会员消费智能管理系统1.0用户手册</title>
+		<link rel="stylesheet" type="text/css" href="../css/css.css"/>
+	</head>
+	<body>
+		<div class="mainDiv" style="text-align:center;">
+			<table class="table" align="center">
+				<tr>
+					<td style="text-align:center;">
+						<h1>疗程转换信息登录</h1>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:center;">
+						<img src="../files/lczh.jpg" width="1000"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="divText" align="left">
+							<li>
+								<span style="font-weight:bold;">功能说明：</span>用于根据客户进行服务消费。
+							</li>
+							<li>
+								<span style="font-weight:bold;">服务消费操作步骤：</span>
+								<li>A：下拉选择或者输入客户卡号、客户姓名获取客户当前信息，如图
+                               		<br />
+									<img src="../files/lczh1.jpg" width="587" />
+                                </li>
+								<li>B：下拉或者输入美容师和顾问的姓名
+                                	<br />
+									<img src="../files/lczh2.jpg" width="587" />
+                                </li>
+                                <li>C：单击“选择转换疗程”按钮，就会弹出疗程选择窗体，并显示出当前客户下的所以疗程信息列表
+                                	<br />
+									<img src="../files/lczh3.jpg" width="587" />
+                                </li>
+                                <li>D：单击左侧的“选择”按钮时，选中的这列会消失，选择完毕后单击“确认选择并关闭”按钮后就会关闭窗体，并将选中的疗程显示在列表中，如图
+                                	<br />
+									<img src="../files/lczh4.jpg" width="587" />
+                                    <br />
+									<img src="../files/lczh5.jpg" width="1000" />
+                                </li>
+                                <li>E：查看信息无误后，单击“确认转换”按钮，就会将疗程金额转换至对应客户的充值卡中，如果提示“疗程转换成功”字样，表示操作成功，然后可继续操作，操作时重复以上流程就可以了
+                                	<br />
+									<img src="../files/lczh6.jpg"/>
+                                </li>
+							</li>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

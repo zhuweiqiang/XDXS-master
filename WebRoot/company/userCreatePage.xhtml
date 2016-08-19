@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="用户登录" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{userCreateBean.userCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{userCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{userCreateBean.newUser}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('company_user', '添加')}"/>
+			<p:commandButton value="保存" actionListener="#{userCreateBean.saveUser}" update="@form" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('company_user', '添加') or userBean.isCheckPermission('company_user', '修改')}"
+				/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="userName" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="userName" value="用户姓名" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="userName" size="12" maxlength="12"
+							value="#{userCreateBean.userCreateDto.userName}" label="用户姓名必须输入" required="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="loginName" value="用户名" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="loginName" size="12" maxlength="12"
+							value="#{userCreateBean.userCreateDto.loginName}" label="用户姓名必须输入" required="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="password1" value="用户密码" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:password id="password1" styleClass="inputText" size="20" maxlength="20"
+							value="#{userCreateBean.userCreateDto.password1}" />
+						<h:inputHidden value="#{userCreateBean.userCreateDto.password}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="userTel" value="电话" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText id="userTel" value="#{userCreateBean.userCreateDto.userTel}" maxlength="15" size="20" >
+							<f:validator validatorId="numberValidator" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="userMobile1" value="手机" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText id="userMobile1" value="#{userCreateBean.userCreateDto.userMobile1}" maxlength="15" size="20" >
+							<f:validator validatorId="numberValidator" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+				<p:row rendered="#{userCreateBean.userCreateDto.userlevel != userBean.user.userlevel}">
+					<p:column styleClass="column1">
+						<p:outputLabel for="userlevel" value="用户级别" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectOneMenu id="userlevel" value="#{userCreateBean.userCreateDto.userlevel}">
+							<f:selectItems value="#{userCreateBean.userCreateDto.userlevelItems}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="stop" value="是否禁用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:selectBooleanCheckbox id="stop" value="#{userCreateBean.userCreateDto.stop}" />
+						<p:outputLabel for="stop" value="选择为禁用" styleClass="red" />
+					</p:column>
+				</p:row>
+				<p:row rendered="#{userCreateBean.showState}">
+					<p:column styleClass="column1">
+						<h:outputText value="选择角色权限"/>
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectManyCheckbox value="#{userCreateBean.userCreateDto.roleList}" 
+							styleClass="input1">
+							<f:selectItems value="#{userCreateBean.userCreateDto.roleItems}" />
+						</p:selectManyCheckbox>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

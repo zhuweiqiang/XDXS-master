@@ -1,0 +1,40 @@
+html,body,form {
+	margin: 0;
+	width: 100%;
+	height: 99%;
+	background-color: #E5F4FD;
+}
+/*自定义按钮输入区域*/
+.menuDiv {
+	border: 1px solid #CCCCCC;
+	background-color: #E5F4FD;
+	font-size:12px;
+	padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-top: 1px;
+	width: 97%;
+	height: 100%;
+}
+.table {
+	width: 1000px;
+	border: 0;
+}
+.mainDiv {
+	float:right;
+	background-color: #E5F4FD;
+	font-size:12px;
+	padding-left: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-top: 1px;
+	width: 100%;
+	height: 100%;
+}
+.divText {
+	width: 100%;
+}
+.divText li {
+	list-style-type:none;
+	line-height: 30px;
+}

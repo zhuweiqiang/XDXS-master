@@ -1,0 +1,278 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="产品销售信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{marketingRecordCreateBean.marketingRecordCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{marketingRecordCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="保存" action="#{marketingRecordCreateBean.saveMarketingRecord}" ajax="false" styleClass="saveBtn" 
+				disabled="#{marketingRecordCreateBean.marketingRecordCreateDto.state}"
+				rendered="#{userBean.isCheckPermission('custom_marketingRecord', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{marketingRecordCreateBean.marketingRecordCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{marketingRecordCreateBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{marketingRecordCreateBean.marketingRecordCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{marketingRecordCreateBean.marketingRecordCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="销售日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{marketingRecordCreateBean.marketingRecordCreateDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="卡项余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="充值卡余额：#{marketingRecordCreateBean.marketingRecordCreateDto.customInfo.money} ￥" />
+						<ui:repeat var="customLeaguerDetail" value="#{marketingRecordCreateBean.marketingRecordCreateDto.customLeaguerDetailList}">
+							<ui:fragment rendered="#{customLeaguerDetail.leaguer != null}">
+								<h:outputText value="#{customLeaguerDetail.leaguer.level}：" style="margin-left: 30px;"/>
+								<h:outputText value="#{customLeaguerDetail.money} ￥" />
+							</ui:fragment>
+							<ui:fragment rendered="#{customLeaguerDetail.giveInfo != null}">
+								<h:outputText value="#{customLeaguerDetail.giveInfo.title}：" style="margin-left: 30px;"/>
+								<h:outputText value="#{customLeaguerDetail.money} ￥" />
+							</ui:fragment>
+						</ui:repeat>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{marketingRecordCreateBean.marketingRecordCreateDto.customInfo.arrearage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="购买费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{marketingRecordCreateBean.marketingRecordCreateDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择产品" action="#{marketingRecordCreateBean.findProductStock}"
+							 update=":form:productStock" oncomplete="PF('productStock').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{marketingRecordCreateBean.marketingRecordCreateDto.marketingRecordDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					产品或者疗程明细列表
+				</f:facet>
+				<p:column headerText="品牌名称" width="120">
+					<h:outputText value="#{model.productStock.brand.name}" />
+				</p:column>
+				<p:column headerText="系列" width="220">
+					<h:outputText value="#{model.productStock.series.name}" />
+				</p:column>
+				<p:column headerText="产品名称">
+					<h:outputText value="#{model.productStock.name}" />
+				</p:column>
+				<p:column headerText="产品单价" width="120">
+					<h:outputText value="#{model.money} ￥" />
+				</p:column>
+				<p:column headerText="数量" width="120">
+					<p:inputText value="#{model.number}" size="10" maxlength="10" label="数量必须输入" required="true">
+						<p:ajax event="keyup" listener="#{marketingRecordCreateBean.getSumMoney}" update=":form:money" />
+						<f:validator validatorId="numberValidator" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{marketingRecordCreateBean.deleteMarketingRecord(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						disabled="#{marketingRecordCreateBean.marketingRecordCreateDto.state}"/>
+				</p:column>
+			</p:dataTable>
+			<div class="buttonNorth" style="text-align: center;">
+				<p:commandButton value="选择付款" action="#{marketingRecordCreateBean.findPay}"
+					update=":form:payType" styleClass="singleDelBtn" oncomplete="PF('payType').show();"
+					disabled="#{marketingRecordCreateBean.marketingRecordCreateDto.state}"/>
+			</div>
+			<p:dialog id="productStock" header="产品信息" width="700"
+				widgetVar="productStock" modal="true" position="center">
+				<div>
+					<p:commandButton value="确认选择并关闭" styleClass="saveBtn"
+						action="#{marketingRecordCreateBean.queryCloce}"
+						update=":form:viewTable :form:money" oncomplete="PF('productStock').hide();"/>
+				</div>
+				<div class="searchRequirementNorth">
+					<h:panelGrid id="manageGrids" columns="7">
+						<h:outputLabel value="品牌" />
+						<p:autoComplete value="#{marketingRecordCreateBean.marketingRecordCreateDto.brand}"
+							completeMethod="#{selectBean.selectBrand}" size="10" maxlength="20"
+							var="brand" itemLabel="#{brand.name}" dropdown="true"
+							itemValue="#{brand}" converter="brandConverter" forceSelection="true">
+							<p:ajax event="itemSelect" listener="#{marketingRecordCreateBean.selectSeriesItems}" update=":form:seriesId" />
+							<h:outputText value="#{brand.name}" />
+						</p:autoComplete>
+						<h:outputLabel value="系列" for="seriesId" style="margin-left:40px;"/>
+						<p:selectOneMenu id="seriesId" value="#{marketingRecordCreateBean.marketingRecordCreateDto.seriesId}">
+							<f:selectItems value="#{marketingRecordCreateBean.marketingRecordCreateDto.seriesItems}"/>
+						</p:selectOneMenu>
+						<h:outputLabel for="name" value="产品名" />
+						<p:inputText styleClass="inputText" id="name" size="10" maxlength="50"
+							value="#{marketingRecordCreateBean.marketingRecordCreateDto.productStockName}" />
+						<p:commandButton id="searchBtn" style="margin-left:40px;" value="搜索" action="#{marketingRecordCreateBean.selectProductStock}" process=":form:manageGrids" 
+							update=":form:productStockDetail" styleClass="searchBtn" accesskey="s" />
+					</h:panelGrid>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" id="productStockDetail" 
+					value="#{marketingRecordCreateBean.marketingRecordCreateDto.productStockList}">
+					<f:facet name="header" >
+						产品库存详细信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{marketingRecordCreateBean.findProductStocks(model)}"
+							update="productStockDetail"/>
+					</p:column>
+					<p:column headerText="品牌" width="120">
+						<h:outputText value="#{model.brand.name}" />
+					</p:column>
+					<p:column headerText="系列" width="200">
+						<h:outputText value="#{model.series.name}" />
+					</p:column>
+					<p:column headerText="产品名称">
+						<h:outputText value="#{model.name}" />
+					</p:column>
+					<p:column headerText="销售价格" width="100">
+						<h:outputText value="#{model.money}" />
+					</p:column>
+				</p:dataTable>	
+			</p:dialog>
+			<p:dialog id="payType" header="付款方式" width="600" height="500"
+				widgetVar="payType" modal="true" position="center">
+				<p:panelGrid styleClass="dataTable" id="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="实收金额" />
+						</p:column>
+						<p:column styleClass="column4">
+							#{marketingRecordCreateBean.marketingRecordCreateDto.money}￥
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="充值卡付款" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText value="充值卡余额：#{marketingRecordCreateBean.marketingRecordCreateDto.customInfo.money}" />
+							<pe:inputNumber maxlength="10" size="12" value="#{marketingRecordCreateBean.marketingRecordCreateDto.balance}" 
+								minValue="0.00" maxValue="#{marketingRecordCreateBean.marketingRecordCreateDto.customInfo.money}" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{marketingRecordCreateBean.getSurplusMoney}" update=":form:sumReadyMoney :form:surplusMoney" />
+							</pe:inputNumber>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:selectOneMenu value="#{marketingRecordCreateBean.marketingRecordCreateDto.customLeaguerDetailId}">
+								<p:ajax listener="#{marketingRecordCreateBean.getLeaguerMoney}" update=":form:leaguerReadyMoney :form:rebateMoney" />
+								<f:selectItems value="#{marketingRecordCreateBean.marketingRecordCreateDto.customLeaguerDetailItems}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column styleClass="column4">
+							<pe:inputNumber id="leaguerReadyMoney" maxlength="10" size="12" value="#{marketingRecordCreateBean.marketingRecordCreateDto.leaguerReadyMoney}" style="margin-left: 10px;"
+								minValue="0.00" emptyValue="0" maxValue="#{marketingRecordCreateBean.marketingRecordCreateDto.leaguerMoney}" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{marketingRecordCreateBean.getSurplusMoney}" update=":form:sumReadyMoney :form:surplusMoney" />
+							</pe:inputNumber>
+							<h:outputText id="rebateMoney" value="折后需付款：#{marketingRecordCreateBean.marketingRecordCreateDto.rebateMoney}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="现金" />
+						</p:column>
+						<p:column styleClass="column4">
+							<pe:inputNumber maxlength="10" size="12" value="#{marketingRecordCreateBean.marketingRecordCreateDto.readyMoney}" 
+								minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{marketingRecordCreateBean.getSurplusMoney}" update=":form:sumReadyMoney :form:surplusMoney" />
+							</pe:inputNumber>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="已经支付了：" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText id="sumReadyMoney" value="#{marketingRecordCreateBean.marketingRecordCreateDto.sumReadyMoney} ￥" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="还需支付：" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText id="surplusMoney" value="#{marketingRecordCreateBean.marketingRecordCreateDto.surplusMoney} ￥" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<div>
+					<p:commandButton value="确认付款" styleClass="saveBtn"
+						action="#{marketingRecordCreateBean.queryPay}"
+						update="@form" oncomplete="PF('payType').hide();"/>
+				</div>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

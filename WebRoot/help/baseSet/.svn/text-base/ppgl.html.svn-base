@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>立盛会员消费智能管理系统1.0用户手册</title>
+		<link rel="stylesheet" type="text/css" href="../css/css.css"/>
+	</head>
+	<body>
+		<div class="mainDiv" style="text-align:center;">
+			<table class="table" align="center">
+				<tr>
+					<td style="text-align:center;">
+						<h1>品牌管理</h1>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:center;">
+						<img src="../files/ppgl.jpg" width="1000"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="divText" align="left">
+							<li>
+								<span style="font-weight:bold;">功能说明：</span>用于建立品牌基础信息
+							</li>
+							<li>
+								<span style="font-weight:bold;">添加品牌操作步骤：</span>
+								<li>A：点击左上角的“添加”按钮，进入品牌添加页面，如图
+                               		<br />
+									<img src="../files/ppgl1.jpg" width="1000" />
+                                    <br />
+									<img src="../files/ppgl2.jpg" width="1000" />
+                                </li>
+                                <li>B：输入对应的信息，如图
+                               		<br />
+									<img src="../files/ppgl3.jpg" width="1000" />
+                                </li>
+                                <li>C：输入完毕之后，单击保存按钮，系统会进行相对应的提示来告知这次操作是否成功，如图
+                                	<br />
+									<img src="../files/ppgl4.jpg" width="1000"/>
+                                    <br />
+									<img src="../files/bccgts.jpg"/>
+                                </li>
+                                <li>D：信息添加成功后，还可以对本次信息进行修改，修改请重新按下保存按钮系统也会做出相对应的提示，如图
+                                	<br />
+									<img src="../files/xgcgts.jpg"/>
+                                </li>
+                                <li>E：如果还有继续添加新的品牌信息，请单击“添加”按钮，这时会清空本页面的数据信息让您重新添加
+                                	<br />
+									<img src="../files/ppgl5.jpg" width="1000"/>
+                                    <br />
+									<img src="../files/ppgl6.jpg" width="1000"/>
+                                </li>
+                                <span style="font-weight:bold;">修改品牌信息操作步骤：</span>
+								<li>A：点击列表中的"修改"按钮，进入品牌修改页面，如图
+                               		<br />
+									<img src="../files/ppgl7.jpg" width="1000" />
+                                    <br />
+									<img src="../files/ppgl8.jpg" width="1000" />
+                                </li>
+                                <li>B：修改完毕之后，单击保存按钮，系统会进行相对应的提示来告知这次操作是否成功，如图
+                                    <br />
+									<img src="../files/xgcgts.jpg"/>
+                                </li>
+                                <span style="font-weight:bold;">删除品牌信息操作步骤：</span>
+								<li>A：点击列表中的"删除"按钮，弹出删除提示框，如果点击确认就执行删除操作，如果选择取消就取消了本次操作，如图
+                               		<br />
+									<img src="../files/ppgl9.jpg" width="1000" />
+                                    <br />
+									<img src="../files/ppgl10.jpg"/>
+                                    <br />
+									<img src="../files/sccgts.jpg"/>
+                                </li>
+                                <span style="font-weight:bold;">批量删除品牌信息操作步骤：</span>
+								<li>A：选中删除的列表，然后单击“批量删除”按钮
+                               		<br />
+									<img src="../files/ppgl11.jpg" width="1000" />
+                                    <br />
+									<img src="../files/ppgl10.jpg"/>
+                                    <br />
+									<img src="../files/sccgts.jpg"/>
+                                </li>
+							</li>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

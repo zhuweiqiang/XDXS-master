@@ -1,0 +1,176 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户产品记录登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{historyMarketingRecordCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{historyMarketingRecordCreateBean.newMarketingRecord}" immediate="true" ajax="false" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('history_productStock', '添加')}"/>
+			<p:commandButton value="保存" action="#{historyMarketingRecordCreateBean.saveMarketingRecord}" ajax="false" styleClass="saveBtn" 
+				disabled="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.state}"
+				rendered="#{userBean.isCheckPermission('history_productStock', '添加') or userBean.isCheckPermission('history_productStock', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="销售日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="购买费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择产品" action="#{historyMarketingRecordCreateBean.findProductStock}"
+							 update=":form:productStock" oncomplete="PF('productStock').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.marketingRecordDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					产品或者疗程明细列表
+				</f:facet>
+				<p:column headerText="品牌名称" width="120">
+					<h:outputText value="#{model.productStock.brand.name}" />
+				</p:column>
+				<p:column headerText="系列" width="220">
+					<h:outputText value="#{model.productStock.series.name}" />
+				</p:column>
+				<p:column headerText="产品名称">
+					<h:outputText value="#{model.productStock.name}" />
+				</p:column>
+				<p:column headerText="产品单价" width="120">
+					<h:outputText value="#{model.money} ￥" />
+				</p:column>
+				<p:column headerText="数量" width="120">
+					<p:inputText value="#{model.number}" size="10" maxlength="10" label="数量必须输入" required="true">
+						<f:validator validatorId="numberValidator" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{historyMarketingRecordCreateBean.deleteMarketingRecord(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						disabled="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.state}"
+						rendered="#{userBean.isCheckPermission('history_productStock', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+			<p:dialog id="productStock" header="产品信息" width="700"
+				widgetVar="productStock" modal="true" position="center">
+				<div>
+					<p:commandButton value="确认选择并关闭" styleClass="saveBtn"
+						action="#{historyMarketingRecordCreateBean.queryCloce}"
+						oncomplete="PF('productStock').hide();" update=":form:viewTable :form:messages"/>
+				</div>
+				<div class="searchRequirementNorth">
+					<h:panelGrid id="manageGrids" columns="7">
+						<h:outputLabel value="品牌" />
+						<p:autoComplete value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.brand}"
+							completeMethod="#{selectBean.selectBrand}" size="10" maxlength="20"
+							var="brand" itemLabel="#{brand.name}" dropdown="true"
+							itemValue="#{brand}" converter="brandConverter" forceSelection="true">
+							<p:ajax event="itemSelect" listener="#{historyMarketingRecordCreateBean.selectSeriesItems}" update=":form:seriesId" />
+							<h:outputText value="#{brand.name}" />
+						</p:autoComplete>
+						<h:outputLabel value="系列" for="seriesId" style="margin-left:40px;"/>
+						<p:selectOneMenu id="seriesId" value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.seriesId}">
+							<f:selectItems value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.seriesItems}"/>
+						</p:selectOneMenu>
+						<h:outputLabel for="name" value="产品名" />
+						<p:inputText styleClass="inputText" id="name" size="10" maxlength="50"
+							value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.productStockName}" />
+						<p:commandButton id="searchBtn" style="margin-left:40px;" value="搜索" action="#{historyMarketingRecordCreateBean.selectProductStock}" process=":form:manageGrids" 
+							update=":form:productStockDetail" styleClass="searchBtn" accesskey="s" />
+					</h:panelGrid>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" id="productStockDetail" 
+					value="#{historyMarketingRecordCreateBean.historyMarketingRecordCreateDto.productStockList}">
+					<f:facet name="header" >
+						产品库存详细信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{historyMarketingRecordCreateBean.findProductStocks(model)}"
+							update="productStockDetail"/>
+					</p:column>
+					<p:column headerText="品牌" width="120">
+						<h:outputText value="#{model.brand.name}" />
+					</p:column>
+					<p:column headerText="系列" width="200">
+						<h:outputText value="#{model.series.name}" />
+					</p:column>
+					<p:column headerText="产品名称">
+						<h:outputText value="#{model.name}" />
+					</p:column>
+					<p:column headerText="销售价格" width="100">
+						<h:outputText value="#{model.money}" />
+					</p:column>
+				</p:dataTable>	
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

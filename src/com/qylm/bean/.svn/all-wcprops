@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/XDXS/!svn/ver/55/src/com/qylm/bean
+END
+FileExportBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/FileExportBean.java
+END
+BasePagingBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/BasePagingBean.java
+END
+FileUploadBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/FileUploadBean.java
+END
+UserBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/XDXS/!svn/ver/9/src/com/qylm/bean/UserBean.java
+END
+AddressFinderBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/AddressFinderBean.java
+END
+LoginBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/LoginBean.java
+END
+MyDeskBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/13/src/com/qylm/bean/MyDeskBean.java
+END
+OneAddressFinderBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/OneAddressFinderBean.java
+END
+UpdatePassWordBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/UpdatePassWordBean.java
+END
+GenericCodeBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/20/src/com/qylm/bean/GenericCodeBean.java
+END

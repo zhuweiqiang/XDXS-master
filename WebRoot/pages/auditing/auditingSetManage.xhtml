@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="审核设定管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{auditingSetManageBean.auditingSetManageDto}" />
+		<t:saveState value="#{auditingSetManageBean.auditingSetList}" />
+		<div class="buttonNorth">
+	        <p:commandButton value="添加" action="#{auditingSetManageBean.newAuditingSet}" ajax="false" styleClass="createBtn" style="margin-left: 4px" accesskey="c"/>
+			<p:commandButton value="批量删除" actionListener="#{auditingSetManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"/>
+		</div>
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{auditingSetManageBean.auditingSetList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{auditingSetManageBean.selectedModels}">
+				<f:facet name="header" >
+					#{title}
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<p:column headerText="类型" styleClass="textConter" style="width: 200px;">
+					#{rw:label(genericCodeBean.c0401,model.applyNumber)}
+				</p:column>
+				<p:column headerText="审核人员按审核顺序显示" styleClass="textConter">
+					<h:outputText value="#{model.showName}" />
+				</p:column>
+				<p:column headerText="审核设定有效情况" styleClass="textConter" style="width: 100px;">
+					<h:outputText value="#{model.state ? '有效' : '无效'}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 100px;" styleClass="textConter">
+					<p:commandButton value="#{model.state ? '查看' : '修改'}" action="#{auditingSetManageBean.updateAuditingSet(model)}" ajax="false" styleClass="modifyBtn" />
+					&#160;
+					<p:commandButton value="删除" action="#{auditingSetManageBean.deleteAuditingSet(model)}" 
+						disabled="#{model.state}"
+						partialSubmit="true" process="@this"  update="viewTable" onstart="return deleteConfirm();" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

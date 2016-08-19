@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/sms
+END
+SmsUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/sms/SmsUtil.java
+END
+CallNotification.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/sms/CallNotification.java
+END
+OutboundNotification.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/common/sms/OutboundNotification.java
+END

@@ -1,0 +1,582 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户档案信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{customInfoCreateBean.customInfoCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{customInfoCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{customInfoCreateBean.newCustomInfo}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_customInfo', '添加')}"/>
+			<p:commandButton value="保存" action="#{customInfoCreateBean.saveCustomInfo}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_customInfo', '添加') or userBean.isCheckPermission('baseSet_customInfo', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="name" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<!--
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="leaguer" value="卡别" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="leaguer" value="#{customInfoCreateBean.customInfoCreateDto.leaguer}"
+							completeMethod="#{selectBean.selectLeaguer}" size="40" maxlength="20"
+							var="leaguer" itemLabel="#{leaguer.level}" dropdown="true" label="卡别必须选择" required="true"
+							itemValue="#{leaguer}" converter="leaguerConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="#{leaguer.level}" />
+							</p:column>
+							<p:column width="120">
+								<h:outputText value="折扣：#{leaguer.rebate}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				-->
+				<p:row>
+					<p:column styleClass="column4" colspan="2">
+						<p:panelGrid styleClass="dataTable">
+							<f:facet name="header">
+								<p:row>
+									<p:column styleClass="column4" colspan="8">
+										<h:outputText value="国际克缇香度香生顾客专业护理档案" />
+									</p:column>
+								</p:row>
+							</f:facet>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguer" value="是否会员" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="leaguer" value="#{customInfoCreateBean.customInfoCreateDto.leaguer}">
+										<f:selectItems value="#{genericCodeBean.c0702}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerSource" value="会员来源" />
+								</p:column>
+								<p:column styleClass="column4" colspan="5">
+									<p:inputText styleClass="inputText" id="leaguerSource" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.leaguerSource}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="name" value="姓名" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="name" size="10" maxlength="10"
+										value="#{customInfoCreateBean.customInfoCreateDto.name}" label="姓名必须输入" required="true"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="birthday" value="生日" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:calendar navigator="true" id="birthday" size="10" maxlength="10"
+										locale="tr" value="#{customInfoCreateBean.customInfoCreateDto.birthday}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerNumber" value="会员编号" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="leaguerNumber" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.leaguerNumber}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="spouse" value="配偶" />
+								</p:column>
+								<p:column styleClass="column4">
+									<p:inputText styleClass="inputText" id="spouse" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.spouse}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<!--  
+								<p:column styleClass="column1">
+									<p:outputLabel for="issue" value="子女" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="issue" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.issue}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="bloodGroup" value="血型" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="bloodGroup" value="#{customInfoCreateBean.customInfoCreateDto.bloodGroup}">
+										<f:selectItems value="#{genericCodeBean.c0201}" />
+									</p:selectOneRadio>
+								</p:column>
+								-->
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalStatus" value="婚姻状况" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="maritalStatus" value="#{customInfoCreateBean.customInfoCreateDto.maritalStatus}">
+										<f:selectItems value="#{genericCodeBean.c0104}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalDeta" value="结婚纪念日" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:calendar navigator="true" id="maritalDeta" size="10" maxlength="10"
+										locale="tr" value="#{customInfoCreateBean.customInfoCreateDto.maritalDeta}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="emergencyContact" value="备注联系人" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="emergencyContact" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.emergencyContact}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="emergencyMobile" value="备注联系电话" />
+								</p:column>
+								<p:column styleClass="column4">
+									<p:inputText styleClass="inputText" id="emergencyMobile" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.emergencyMobile}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="provinceId" value="地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<rw:address requiredCheck="true" requiredMessage="请选择地点"
+										addressEntity="#{customInfoCreateBean.customInfoCreateDto.addressEntity}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="addressDetail" value="详细地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="addressDetail" size="50" maxlength="100"
+										value="#{customInfoCreateBean.customInfoCreateDto.addressDetail}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="mobile" value="电话" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="mobile" size="20" maxlength="20"
+										value="#{customInfoCreateBean.customInfoCreateDto.mobile}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="remark" value="备注" />
+								</p:column >
+								<p:column styleClass="column4" colspan="7">
+									<p:inputTextarea id="remark" cols="80" rows="5" maxlength="1000" 
+										value="#{customInfoCreateBean.customInfoCreateDto.remark}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="personnelInfo2" value="负责顾问" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:autoComplete id="personnelInfo2" value="#{customInfoCreateBean.customInfoCreateDto.personnelInfo2}"
+										completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+										var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="负责顾问必须选择" required="true"
+										itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+										<h:outputText value="#{personnelInfo.name}" />
+									</p:autoComplete>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="personnelInfo1" value="跟踪美容师" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:autoComplete id="personnelInfo1" value="#{customInfoCreateBean.customInfoCreateDto.personnelInfo1}"
+										completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+										var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+										itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+										<h:outputText value="#{personnelInfo.name}" />
+									</p:autoComplete>
+								</p:column>
+							</p:row>
+							<!--
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="skinType" value="皮肤类型" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="skinType" value="#{customInfoCreateBean.customInfoCreateDto.skinType}">
+										<f:selectItems value="#{genericCodeBean.c0202}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="ocularRegionState" value="眼部情况" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="ocularRegionState"
+										value="#{customInfoCreateBean.customInfoCreateDto.ocularRegionState}">
+										<f:selectItems value="#{genericCodeBean.c0203}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<img src="#{resource['images:mbtp.jpg']}" width="80" height="80" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox value="#{customInfoCreateBean.customInfoCreateDto.faceState}">
+										<f:selectItems value="#{genericCodeBean.c0204}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="faceNeed" value="面部皮肤重建需要" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="faceNeed" value="#{customInfoCreateBean.customInfoCreateDto.faceNeed}">
+										<f:selectItems value="#{genericCodeBean.c0205}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column4" colspan="8">
+									<h:outputText value="饮食习惯" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="dietPractice" value="进食速度" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="dietPractice" value="#{customInfoCreateBean.customInfoCreateDto.dietPractice}">
+										<f:selectItems value="#{genericCodeBean.c0206}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="stapleFood" value="主食" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="stapleFood" value="#{customInfoCreateBean.customInfoCreateDto.stapleFood}">
+										<f:selectItems value="#{genericCodeBean.c0207}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="repast" value="食量" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="repast" value="#{customInfoCreateBean.customInfoCreateDto.repast}">
+										<f:selectItems value="#{genericCodeBean.c0208}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="addSeasonings" value="加味调料" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="addSeasonings" value="#{customInfoCreateBean.customInfoCreateDto.addSeasonings}">
+										<f:selectItems value="#{genericCodeBean.c0209}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="xhwd" value="喜欢味道" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="xhwd" value="#{customInfoCreateBean.customInfoCreateDto.xhwd}">
+										<f:selectItems value="#{genericCodeBean.c0210}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="yzsw" value="油炸食物" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="yzsw" value="#{customInfoCreateBean.customInfoCreateDto.yzsw}">
+										<f:selectItems value="#{genericCodeBean.c0211}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="dietaryBias" value="偏食" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="dietaryBias" value="#{customInfoCreateBean.customInfoCreateDto.dietaryBias}">
+										<f:selectItems value="#{genericCodeBean.c0212}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="pac" value="偏爱吃" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="pac" value="#{customInfoCreateBean.customInfoCreateDto.pac}">
+										<f:selectItems value="#{genericCodeBean.c0213}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="diet" value="饮食" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="diet" value="#{customInfoCreateBean.customInfoCreateDto.diet}">
+										<f:selectItems value="#{genericCodeBean.c0214}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column4" colspan="8">
+									<h:outputText value="健康状态" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="healthState" value="月经生理" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="healthState" value="#{customInfoCreateBean.customInfoCreateDto.healthState}">
+										<f:selectItems value="#{genericCodeBean.c0215}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="yjkzt" value="亚健康状态" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:selectManyCheckbox id="yjkzt" layout="grid" columns="8" value="#{customInfoCreateBean.customInfoCreateDto.yjkzt}">
+										<f:selectItems value="#{genericCodeBean.c0216}" />
+									</p:selectManyCheckbox>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="skinType1" value="皮肤类型" />
+								</p:column>
+								<p:column styleClass="column4" colspan="3">
+									<p:inputText styleClass="inputText" id="skinType1" size="50" maxlength="100"
+										value="#{customInfoCreateBean.customInfoCreateDto.skinType1}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="remark" value="对自己皮肤不满意的地方" />
+								</p:column>
+								<p:column styleClass="column4" colspan="3">
+									<p:inputText styleClass="inputText" id="remark" size="50" maxlength="50"
+										value="#{customInfoCreateBean.customInfoCreateDto.remark}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="在美容店接受面部皮肤护理经验" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio value="#{customInfoCreateBean.customInfoCreateDto.hljy}">
+										<f:selectItems value="#{genericCodeBean.c0217}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="yearNumber" value="年数" />
+								</p:column>
+								<p:column styleClass="column2">
+									<pe:inputNumber id="yearNumber" maxlength="9" size="12" value="#{customInfoCreateBean.customInfoCreateDto.yearNumber}" 
+										minValue="0.00" emptyValue="0" decimalPlaces="2">
+									</pe:inputNumber>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="impressions" value="感想" />
+								</p:column>
+								<p:column styleClass="column4" colspan="3">
+									<p:inputText styleClass="inputText" id="impressions" size="50" maxlength="50"
+										value="#{customInfoCreateBean.customInfoCreateDto.impressions}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="shiftShopCause" value="转店原因" />
+								</p:column>
+								<p:column styleClass="column4" colspan="3">
+									<p:inputText styleClass="inputText" id="shiftShopCause" size="50" maxlength="50"
+										value="#{customInfoCreateBean.customInfoCreateDto.shiftShopCause}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="purpose" value="目的" />
+								</p:column>
+								<p:column styleClass="column4" colspan="3">
+									<p:inputText styleClass="inputText" id="purpose" size="50" maxlength="50"
+										value="#{customInfoCreateBean.customInfoCreateDto.purpose}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column4" colspan="8">
+									<h:outputText value="个人日常皮肤护理" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column4" colspan="8">
+									<table width="800" style="border: 1px color:#00FF00; text-align:center;">
+										<tr>
+											<td width="200px;">
+												
+											</td>
+											<td class="tableLabel" width="200px;">
+												产品种类
+											</td>
+											<td class="tableLabel" width="200px;">
+												牌子
+											</td>
+											<td class="tableLabel" width="200px;">
+												用户感受
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												洗脸
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value1}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value2}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value3}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												化妆水
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value4}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value5}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value6}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												乳液
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value7}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value8}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value9}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												乳霜
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value10}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value11}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value12}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												按摩霜
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value13}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value14}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value15}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												面膜
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value16}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value17}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value18}"/>
+											</td>
+										</tr>
+										<tr>
+											<td class="tableLabel" width="200px;">
+												其他
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value19}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value20}"/>
+											</td>
+											<td width="200px;">
+												<p:inputText styleClass="inputText" size="20" maxlength="20"
+													value="#{customInfoCreateBean.customInfoCreateDto.customInfoNurseCreateDto.value21}"/>
+											</td>
+										</tr>
+									</table>
+								</p:column>
+							</p:row>
+							-->
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

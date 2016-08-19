@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="菜单管理" />
+	<ui:define name="customcss">
+		<h:outputScript library="js/dtree" name="dtree.js" />
+	</ui:define>
+	<ui:define name="tableCenter">
+		<t:saveState value="#{treeItemManageBean.treeItemManageDto}" />
+		<t:saveState value="#{treeItemManageBean.meuns}" />
+		<div class="right_mian">
+			<table width="98%" border="0"
+				cellpadding="0" cellspacing="0" style="margin-top: 10px;">
+				<tr>
+					<td width="200" align="left" valign="top">
+						<script type="text/javascript">
+							#{treeItemManageBean.meuns}
+							function openCreatePage(str) {
+								var strs = new Array();
+								if (str == "-1") {
+								    document.getElementById("form:treeItemId").value = "";
+									document.getElementById("form:tabel").value = "";
+									document.getElementById("form:action").value = "";
+									document.getElementById("form:target").value = "";
+									document.getElementById("form:order").value = "";
+									document.getElementById("form:nodeId").value = "";
+									document.getElementById("form:superiorNodeId").innerText = "";
+									document.getElementById("form:nodeType").value = 0;
+									document.getElementById("form:displayChildRen").checked = false;
+								} else {
+									strs = str.split("=");
+									document.getElementById("form:treeItemId").value = strs[0];
+									document.getElementById("form:tabel").value = strs[3];
+									document.getElementById("form:action").value = strs[5];
+									document.getElementById("form:target").value = strs[4];
+									document.getElementById("form:order").value = strs[6];
+									document.getElementById("form:nodeId").value = strs[1];
+									document.getElementById("form:superiorNodeId").innerText = strs[2];
+									if (strs[7] == "true") {
+										document.getElementById("form:displayChildRen").checked = true;
+									} else {
+										document.getElementById("form:displayChildRen").checked = false;
+									}
+									document.getElementById("form:nodeType").value = strs[8]; // 赋值菜单类型
+								}
+							}
+						</script>
+					</td>
+					<td align="center" valign="top">
+						<div class="headButton" style="text-align: left;">
+							<p:commandButton value="添加" action="#{treeItemManageBean.createTreeItem}" 
+								rendered="#{userBean.isCheckPermission('system_treeItem', '添加')}" ajax="false" styleClass="createBtn" accesskey="c"/>
+							<p:commandButton value="保存" action="#{treeItemManageBean.saveTreeItem}" 
+								rendered="#{userBean.isCheckPermission('system_treeItem', '添加')}" ajax="false" styleClass="createBtn"/>
+							<p:commandButton value="删除" action="#{treeItemManageBean.deleteTreeItem}"
+								rendered="#{userBean.isCheckPermission('system_treeItem', '添加')}" ajax="false" styleClass="createBtn" accesskey="c"/>
+							<h:inputHidden id="treeItemId" value="#{treeItemManageBean.treeItemManageDto.treeItemId}" />
+						</div>
+						<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="菜单名称：" for="tabel" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{treeItemManageBean.treeItemManageDto.label}" maxlength="20"
+										id="tabel" styleClass="input3" size="20"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="上级节点ID："/>
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:outputText id="superiorNodeId" value="#{treeItemManageBean.treeItemManageDto.superiorNodeId}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="节点ID：" for="nodeId" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{treeItemManageBean.treeItemManageDto.nodeId}" maxlength="50"
+										id="nodeId" styleClass="input3" size="50"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="菜单事件：" for="action" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{treeItemManageBean.treeItemManageDto.action}" maxlength="100"
+										id="action" styleClass="input3" size="50"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="目标frame：" for="target" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{treeItemManageBean.treeItemManageDto.target}" maxlength="20"
+										id="target" styleClass="input3" size="20"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="菜单顺序：" for="order" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:inputText value="#{treeItemManageBean.treeItemManageDto.order}" maxlength="20"
+										id="order" styleClass="input3" size="20"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="菜单类型：" for="order" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:selectOneMenu id="nodeType" value="#{treeItemManageBean.treeItemManageDto.nodeType}">
+										<f:selectItems value="#{genericCodeBean.c0106}" />
+									</h:selectOneMenu>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputLabel value="是否显示：" for="displayChildRen" />
+								</p:column>
+								<p:column styleClass="column4" style="text-align:left;">
+									<h:selectBooleanCheckbox id="displayChildRen" value="#{treeItemManageBean.treeItemManageDto.displayChildRen}" styleClass="input3"/>
+									<h:outputLabel value="打钩为不显示" for="displayChildRen" styleClass="red"/>
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="会员充值记录详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{historyTemporaryViewBean.historyTemporaryViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="购买时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{historyTemporaryViewBean.historyTemporaryViewDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<table width="100%" height="100%" border="1" style="border:#000000; text-align: center;">
+							<tr>
+								<td colspan="4">购买的活动套餐</td>
+							</tr>
+							<tr>
+								<td class="column1">活动名称</td>
+								<td class="column2" align="left">
+									<h:outputText value="#{historyTemporaryViewBean.historyTemporaryViewDto.temporaryActivity.name}" />
+								</td>
+								<td class="column1">套餐价格</td>
+								<td align="left" class="column4">
+									<h:outputText value="#{historyTemporaryViewBean.historyTemporaryViewDto.temporaryActivity.money}" />
+								</td>
+							</tr>
+							<tr>
+								<td class="column1">活动介绍</td>
+								<td colspan="3" align="left"><h:outputText value="#{historyTemporaryViewBean.historyTemporaryViewDto.temporaryActivity.remark}" /></td>
+							</tr>
+							<tr>
+								<td colspan="4" align="left">
+									<table width="440px;" height="100%" border="1" style="border:#000000;">
+										<tr>
+											<td class="column1" width="200px;">项目名称</td>
+											<td class="column1" width="120px;">次数</td>
+											<td class="column1" width="120px;">剩余次数</td>
+											<td class="column1" width="120px;">活动价值</td>
+										</tr>
+										<ui:repeat var="detail" value="#{historyTemporaryViewBean.historyTemporaryViewDto.mealBuyRecordDetailList}">
+											<tr>
+												<td><h:outputText value="#{detail.marketingProject.project}" /></td>
+												<td><h:outputText value="#{detail.number}" /></td>
+												<td><h:outputText value="#{detail.surplusNumber}" /></td>
+												<td><h:outputText value="#{detail.money} ￥" /></td>
+											</tr>
+										</ui:repeat>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

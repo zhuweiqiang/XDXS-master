@@ -1,0 +1,26 @@
+<html jsfc="f:view" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rw="http://www.chouchou.com">
+	<table cellspacing="0" cellpadding="0">
+		<tr>
+			<td style="width:100px;">
+				<table cellspacing="0" cellpadding="0" style="width:100px;height:10px;">
+					<tr>
+						<td style="width:#{progress}%;background-color:#55dd22;">
+						</td>
+						<td style="width:#{100-progress}%;background-color:#b2b2b2;">
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td style="width:42px;text-align:center">
+			&#160;#{progress}%
+			</td>
+		</tr>
+	</table>
+</html>

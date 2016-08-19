@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户产品记录详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{historyMarketingRecordViewBean.historyMarketingRecordViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{historyMarketingRecordViewBean.historyMarketingRecordViewDto.personnelInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="销售日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{historyMarketingRecordViewBean.historyMarketingRecordViewDto.date}" >
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="购买费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{historyMarketingRecordViewBean.historyMarketingRecordViewDto.money} ￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:dataTable emptyMessage="暂无数据" var="model" 
+							value="#{historyMarketingRecordViewBean.historyMarketingRecordViewDto.marketingRecordDetailList}"
+							widgetVar="viewTable" id="viewTable">
+							<f:facet name="header" >
+								产品或者疗程明细列表
+							</f:facet>
+							<p:column headerText="品牌名称" width="120">
+								<h:outputText value="#{model.productStock.brand.name}" />
+							</p:column>
+							<p:column headerText="系列" width="120">
+								<h:outputText value="#{model.productStock.series.name}" />
+							</p:column>
+							<p:column headerText="产品名称">
+								<h:outputText value="#{model.productStock.name}" />
+							</p:column>
+							<p:column headerText="产品单价" width="120">
+								<h:outputText value="#{model.money} ￥" />
+							</p:column>
+							<p:column headerText="数量" width="80">
+								#{model.number}
+							</p:column>
+							<p:column headerText="价格" width="80">
+								#{model.money}￥
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

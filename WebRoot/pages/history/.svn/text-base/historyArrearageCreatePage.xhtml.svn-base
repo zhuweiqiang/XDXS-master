@@ -1,0 +1,209 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户档案信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{historyArrearageCreateBean.historyArrearageCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{historyArrearageCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="保存" action="#{historyArrearageCreateBean.saveCustomInfo}" ajax="false" styleClass="saveBtn" 
+			/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="name" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<!--
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="leaguer" value="卡别" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="leaguer" value="#{historyArrearageCreate.customInfoCreateDto.leaguer}"
+							completeMethod="#{selectBean.selectLeaguer}" size="40" maxlength="20"
+							var="leaguer" itemLabel="#{leaguer.level}" dropdown="true" label="卡别必须选择" required="true"
+							itemValue="#{leaguer}" converter="leaguerConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="#{leaguer.level}" />
+							</p:column>
+							<p:column width="120">
+								<h:outputText value="折扣：#{leaguer.rebate}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				-->
+				<p:row>
+					<p:column styleClass="column4" colspan="2">
+						<p:panelGrid styleClass="dataTable">
+							<f:facet name="header">
+								<p:row>
+									<p:column styleClass="column4" colspan="8">
+										<h:outputText value="国际克缇香度香生顾客专业护理档案" />
+									</p:column>
+								</p:row>
+							</f:facet>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguer" value="是否会员" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="leaguer" value="#{historyArrearageCreateBean.historyArrearageCreateDto.leaguer}">
+										<f:selectItems value="#{genericCodeBean.c0702}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerSource" value="会员来源" />
+								</p:column>
+								<p:column styleClass="column4" colspan="5">
+									<p:inputText styleClass="inputText" id="leaguerSource" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.leaguerSource}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="name" value="姓名" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="name" size="10" maxlength="10"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.name}" label="姓名必须输入" required="true"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="birthday" value="生日" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:calendar navigator="true" id="birthday" size="10" maxlength="10"
+										locale="tr" value="#{historyArrearageCreateBean.historyArrearageCreateDto.birthday}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerNumber" value="会员编号" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="leaguerNumber" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.leaguerNumber}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="spouse" value="配偶" />
+								</p:column>
+								<p:column styleClass="column4">
+									<p:inputText styleClass="inputText" id="spouse" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.spouse}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalStatus" value="婚姻状况" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="maritalStatus" value="#{historyArrearageCreateBean.historyArrearageCreateDto.maritalStatus}">
+										<f:selectItems value="#{genericCodeBean.c0104}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalDeta" value="结婚纪念日" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:calendar navigator="true" id="maritalDeta" size="10" maxlength="10"
+										locale="tr" value="#{historyArrearageCreateBean.historyArrearageCreateDto.maritalDeta}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="emergencyContact" value="备注联系人" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="emergencyContact" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.emergencyContact}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="emergencyMobile" value="备注联系电话" />
+								</p:column>
+								<p:column styleClass="column4">
+									<p:inputText styleClass="inputText" id="emergencyMobile" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.emergencyMobile}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="provinceId" value="地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<rw:address requiredCheck="true" requiredMessage="请选择地点"
+										addressEntity="#{historyArrearageCreateBean.historyArrearageCreateDto.addressEntity}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="addressDetail" value="详细地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="addressDetail" size="50" maxlength="100"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.addressDetail}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="mobile" value="电话" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="mobile" size="20" maxlength="20"
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.mobile}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="remark" value="备注" />
+								</p:column >
+								<p:column styleClass="column4" colspan="7">
+									<p:inputTextarea id="remark" cols="80" rows="5" maxlength="1000" 
+										value="#{historyArrearageCreateBean.historyArrearageCreateDto.remark}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="personnelInfo2" value="负责顾问" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:autoComplete id="personnelInfo2" value="#{historyArrearageCreateBean.historyArrearageCreateDto.personnelInfo2}"
+										completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+										var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="负责顾问必须选择" required="true"
+										itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+										<h:outputText value="#{personnelInfo.name}" />
+									</p:autoComplete>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="personnelInfo1" value="跟踪美容师" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:autoComplete id="personnelInfo1" value="#{historyArrearageCreateBean.historyArrearageCreateDto.personnelInfo1}"
+										completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+										var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+										itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+										<h:outputText value="#{personnelInfo.name}" />
+									</p:autoComplete>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="欠款" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<pe:inputNumber  maxlength="10" size="12" value="#{historyArrearageCreateBean.historyArrearageCreateDto.arrearage}" 
+										minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+								</p:column>
+							</p:row>
+
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

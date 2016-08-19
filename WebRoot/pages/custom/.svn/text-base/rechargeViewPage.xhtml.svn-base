@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="会员充值记录详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{rechargeViewBean.rechargeViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="充值时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rechargeViewBean.rechargeViewDto.rechargeDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="充值金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rechargeViewBean.rechargeViewDto.money}￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="充值人" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rechargeViewBean.rechargeViewDto.creater.userName}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

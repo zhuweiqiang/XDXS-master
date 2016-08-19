@@ -1,0 +1,161 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户档案信息详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column4" colspan="2">
+						<p:panelGrid styleClass="dataTable">
+							<f:facet name="header">
+								<p:row>
+									<p:column styleClass="column4" colspan="8">
+										<h:outputText value="国际克缇香度香生顾客专业护理档案" />
+									</p:column>
+								</p:row>
+							</f:facet>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguer" value="是否会员" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="leaguer" value="#{customInfoViewBean.customInfoViewDto.leaguer}">
+										<f:selectItems value="#{genericCodeBean.c0702}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerSource" value="会员来源" />
+								</p:column>
+								<p:column styleClass="column4" colspan="5">
+									<p:inputText styleClass="inputText" id="leaguerSource" size="20" maxlength="20"
+										value="#{customInfoViewBean.customInfoViewDto.leaguerSource}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="姓名" />
+								</p:column>
+								<p:column styleClass="column2">
+									#{customInfoViewBean.customInfoViewDto.name}
+								</p:column>
+								<p:column styleClass="column1">
+									<h:outputText value="充值卡余额" />
+								</p:column>
+								<p:column styleClass="column2">
+									<h:outputText value="#{customInfoViewBean.customInfoViewDto.money} ￥" />
+								</p:column>
+								<p:column styleClass="column1">
+									<h:outputText value="客户欠款" />
+								</p:column>
+								<p:column styleClass="column4">
+									<h:outputText value="#{customInfoViewBean.customInfoViewDto.arrearage} ￥" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="leaguerNumber" value="会员编号" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:inputText styleClass="inputText" id="leaguerNumber" size="20" maxlength="20"
+										value="#{customInfoViewBean.customInfoViewDto.leaguerNumber}"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="birthday" value="生日" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:calendar navigator="true" id="birthday" size="10" maxlength="10"
+										locale="tr" value="#{customInfoViewBean.customInfoViewDto.birthday}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="spouse" value="配偶" />
+								</p:column>
+								<p:column styleClass="column4">
+									<p:inputText styleClass="inputText" id="spouse" size="20" maxlength="20"
+										value="#{customInfoViewBean.customInfoViewDto.spouse}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalStatus" value="婚姻状况" />
+								</p:column>
+								<p:column styleClass="column2">
+									<p:selectOneRadio id="maritalStatus" value="#{customInfoViewBean.customInfoViewDto.maritalStatus}">
+										<f:selectItems value="#{genericCodeBean.c0104}" />
+									</p:selectOneRadio>
+								</p:column>
+								<p:column styleClass="column1">
+									<p:outputLabel for="maritalDeta" value="结婚纪念日" />
+								</p:column>
+								<p:column styleClass="column4" colspan="5">
+									<p:calendar navigator="true" id="maritalDeta" size="10" maxlength="10"
+										locale="tr" value="#{customInfoViewBean.customInfoViewDto.maritalDeta}"
+										pattern="yyyy-MM-dd"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="provinceId" value="地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<rw:address requiredCheck="true" requiredMessage="请选择地点"
+										addressEntity="#{customInfoViewBean.customInfoViewDto.addressEntity}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="addressDetail" value="详细地址" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="addressDetail" size="50" maxlength="100"
+										value="#{customInfoViewBean.customInfoViewDto.addressDetail}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="mobile" value="电话" />
+								</p:column>
+								<p:column styleClass="column4" colspan="7">
+									<p:inputText styleClass="inputText" id="mobile" size="20" maxlength="20"
+										value="#{customInfoViewBean.customInfoViewDto.mobile}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<p:outputLabel for="remark" value="备注" />
+								</p:column >
+								<p:column styleClass="column4" colspan="7">
+									<p:inputTextarea id="remark" cols="80" rows="5" maxlength="1000" 
+										value="#{customInfoViewBean.customInfoViewDto.remark}"/>
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="负责顾问" />
+								</p:column >
+								<p:column styleClass="column4" colspan="7">
+									<h:outputText value="#{customInfoViewBean.customInfoViewDto.personnelInfo2.name}" />
+								</p:column>
+							</p:row>
+							<p:row>
+								<p:column styleClass="column1">
+									<h:outputText value="跟踪美容师" />
+								</p:column >
+								<p:column styleClass="column4" colspan="7">
+									<h:outputText value="#{customInfoViewBean.customInfoViewDto.personnelInfo1.name}" />
+								</p:column>
+							</p:row>
+						</p:panelGrid>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

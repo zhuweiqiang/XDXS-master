@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="服务管理管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{marketingProjectManageBean.marketingProjectManageDto}" />
+		<t:saveState value="#{marketingProjectManageBean.marketingProjectList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{marketingProjectManageBean.newMarketingProject}" ajax="false" styleClass="createBtn" accesskey="c"
+				rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '添加')}"/>
+			<p:commandButton value="批量删除" actionListener="#{marketingProjectManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"
+				rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '删除')}"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="project" />
+			<h:panelGrid id="manageGrid" columns="3">
+				<h:outputLabel for="project" value="项目名称" />
+				<p:inputText styleClass="inputText" id="project" size="20" maxlength="20"
+					value="#{marketingProjectManageBean.marketingProjectManageDto.project}" />
+				<p:commandButton id="searchBtn" value="搜索" action="#{marketingProjectManageBean.selectMarketingProject}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{marketingProjectManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{marketingProjectManageBean.marketingProjectList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{marketingProjectManageBean.selectedModels}">
+				<f:facet name="header" >
+					服务管理信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="服务管理" sortBy="#{model.project}" width="120">
+					<h:outputText value="#{model.project}" />
+				</p:column>
+				<p:column headerText="类型" sortBy="#{model.type}" width="120">
+					<h:outputText value="#{rw:label(genericCodeBean.c0701, model.type)}" />
+				</p:column>
+				<p:column headerText="费用" sortBy="#{model.money}" width="120">
+					<h:outputText value="#{model.money}" />
+				</p:column>
+				<p:column headerText="备注" sortBy="#{model.remark}">
+					<h:outputText value="#{model.remark}" />
+				</p:column>
+				<p:column headerText="创建时间" sortBy="#{model.createDate}" width="120">
+					<h:outputText value="#{model.createDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai"/>
+					</h:outputText>
+				</p:column>
+				<!--  
+				<p:column headerText="有效情况" sortBy="#{model.state}" width="120">
+					<h:outputText value="#{model.state ? '有效' : '无效'}" />
+				</p:column>
+				-->
+				<p:column headerText="基本操作" exportable="false" style="width: 120px;">
+					<!--  
+					<p:commandButton value="#{model.state ? '暂停' : '启用'}" 
+						action="#{marketingProjectManageBean.operationMarketingProject(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '修改')}"/>
+					-->
+					<p:commandButton value="修改" action="#{marketingProjectManageBean.updateMarketingProject(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '修改')}"/>
+					<p:commandButton value="删除" action="#{marketingProjectManageBean.deleteMarketingProject(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('baseSet_marketingProject', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<util:viewDialog id="viewDialog" modelId="#{marketingProjectManageBean.modelId}" actionMethod="#{marketingProjectManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

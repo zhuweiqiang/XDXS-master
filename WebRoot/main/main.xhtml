@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com">
+<f:view contentType="text/html">
+	<!--f:loadBundle basename="com.qylm.resources.messages" var="msgs" /-->
+	<h:head>
+		<title>上帝助手消费管理系统</title>
+		<f:facet name="first">
+			<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta name="viewport"
+				content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+			<meta name="apple-mobile-web-app-capable" content="yes" />
+		</f:facet>
+		<link href="#{resource['icon:favicon.ico']}" rel="shortcut icon"
+			type="image/x-icon" />
+		<h:outputScript library="js" name="locale_zh_CN.js" />
+	</h:head>
+	<h:body>
+		<h:form id="form">
+			<p:growl id="messages" life="8000" widgetVar="messages" />
+			<pe:layout maskPanesEarly="false">
+				<pe:layoutPane position="north" size="62" resizable="false">
+					<ui:insert name="North">
+						<ui:include src="top.xhtml" />
+					</ui:insert>
+				</pe:layoutPane>
+				<pe:layoutPane position="center" maskContents="true">
+					<iframe id="mainFrame" name="mainFrame" src="main/myDeskPage.jsf" width="100%"
+						height="100%" noresize="noresize" scrolling="yes" frameborder="0">
+					</iframe>
+				</pe:layoutPane>
+				<pe:layoutPane position="west" size="170" height="100%"
+					resizeWhileDragging="false" resizable="false" closable="true">
+					<ui:insert name="West">
+						<ui:include src="menu.xhtml" />
+					</ui:insert>
+				</pe:layoutPane>
+				<pe:layoutPane position="south" size="40" resizable="false">
+					<ui:insert name="south">
+						<ui:include src="bottom.xhtml" />
+					</ui:insert>
+				</pe:layoutPane>
+			</pe:layout>
+			<p:dialog id="passwordDialog" header="修改密码"
+				widgetVar="passwordDialog" modal="true"
+				position="center">
+				<t:saveState value="#{updatePassWordBean.user}" />
+				<p:panelGrid id="manageGrid" styleClass="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="用户名" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText
+								value="#{updatePassWordBean.user.userName}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="password" value="旧密码" />
+						</p:column>
+						<p:column styleClass="column4">
+							<p:password id="password"
+								value="#{updatePassWordBean.password}"
+								maxlength="20" size="20" required="true" label="旧密码">
+							</p:password>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="password1" value="新密码" />
+						</p:column>
+						<p:column styleClass="column4">
+							<p:password styleClass="inputText" id="password1"
+								value="#{updatePassWordBean.password1}"
+								maxlength="20" size="20" required="true" label="新密码">
+							</p:password>
+						</p:column>
+					</p:row>
+					<f:facet name="footer">
+						<p:row>
+							<p:column colspan="4">
+								<p:commandButton value="保存" styleClass="saveBtn"
+									action="#{updatePassWordBean.save}"
+									partialSubmit="true" process="form:passwordDialog"
+									update="form:messages" oncomplete="PF('passwordDialog').hide();"/>
+							</p:column>
+						</p:row>
+					</f:facet>
+				</p:panelGrid>
+			</p:dialog>
+		</h:form>
+		<h:outputStylesheet library="css/main" name="main.css" />
+	</h:body>
+</f:view>
+</html>

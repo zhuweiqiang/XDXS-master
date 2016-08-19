@@ -1,0 +1,214 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:panel id="fittingPurchase" header="需要您采购的配件" toggleable="true"
+		closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="fittingPurchase"
+		style="margin-bottom:20px">
+		<p:ajax event="close" update="messages" />
+		<p:ajax event="toggle" update="messages" />
+		<h:panelGrid columns="1" cellpadding="10">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{myDeskBean.myDeskDto.fittingPurchaseList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true" id="fittingPurchaseTable">
+				<f:facet name="header" >
+					采购配件信息列表
+				</f:facet>
+				<p:column headerText="采购编号" width="100px;">
+					<h:outputText value="#{model.serialNumber}" />
+				</p:column>
+				<p:column headerText="申请日期" width="100px;">
+					<h:outputText value="#{model.applyDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="金额状况" width="220px;">
+					<div style="text-align: left;">
+						<h:outputText value="申请金额：#{model.applyPrice}" />
+						<br />
+						<h:outputText value="审批金额：#{model.budgetPrice}" />
+						<br />
+						<h:outputText value="采购金额：#{model.purchasePrice}" /><h:outputText style="margin-left: 10px;" value="运费：#{model.freight}" />
+					</div>
+				</p:column>
+				<p:column headerText="采购内容">
+					<h:outputText value="#{model.title}" />
+				</p:column>
+				<p:column headerText="采购单状态" width="120px;">
+					<h:outputText value="#{rw:label(genericCodeBean.c0106,model.state)}" style="color:#{model.typeColor};"/>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 60px;">
+					<p:commandButton value="采购" action="#{myDeskBean.purchaseFitting(model)}" partialSubmit="true" process="@this"
+						oncomplete="PF('dlgPurchase').show();" 
+						update="fittingPurchaseTable :form:dlgPurchase" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+			<p:dialog id="dlgPurchase" header="配件采购详细" widgetVar="dlgPurchase" resizable="false" modal="true" position="center" width="1000">
+				<div class="buttonNorth">
+					<p:commandButton value="采购入库" action="#{myDeskBean.purchaseStorage}"
+						oncomplete="PF('dlgPurchase').hide();"
+						update=":form:fittingPurchaseTable :form:messages" styleClass="singleDelBtn"/>
+					<p:commandButton value="无法采购" action="#{myDeskBean.purchaseFailure}" 
+						style="margin-top:4px;"
+						oncomplete="PF('dlgPurchase').hide();"
+						update=":form:fittingPurchaseTable :form:messages" styleClass="singleDelBtn"/>
+				</div>
+				<p:panelGrid styleClass="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="采购编号" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.serialNumber}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="申请预算金额" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.applyPrice}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="审批金额" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.applyPrice}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="采购内容" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.title}"  />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="采购源" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.purchaseSource}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="申请人" />
+						</p:column>
+						<p:column styleClass="column2">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.creater.userName}" />
+						</p:column>
+						<p:column styleClass="column1">
+							<h:outputText value="申请日期" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.applyDate}">
+								<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+							</h:outputText>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="采购人员" />
+						</p:column>
+						<p:column styleClass="column2">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.purchaseUser.userName}" />
+						</p:column>
+						<p:column styleClass="column1">
+							<h:outputText value="入库人员" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText value="#{myDeskBean.myDeskDto.fittingPurchase.storageUser.userName}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="purchasePrice" value="采购金额" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<pe:inputNumber id="purchasePrice" maxlength="10" size="12" 
+								value="#{myDeskBean.myDeskDto.fittingPurchase.purchasePrice}" 
+								minValue="0.00" emptyValue="0" decimalPlaces="2" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="freight" value="运费" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<pe:inputNumber id="freight" maxlength="10" size="12" 
+								value="#{myDeskBean.myDeskDto.fittingPurchase.freight}" 
+								minValue="0.00" emptyValue="0" decimalPlaces="2" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:outputLabel for="remark" value="采购备注" />
+						</p:column>
+						<p:column styleClass="column4" colspan="3">
+							<p:inputTextarea id="remark" maxlength="500" cols="80" rows="3" 
+								value="#{myDeskBean.myDeskDto.fittingPurchase.remark}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<p:dataTable var="model" value="#{myDeskBean.myDeskDto.fittingPurchase.fittingPurchaseDetailList}" id="fittingPurchaseDetail">
+					<f:facet name="header" >
+						采购配件列表信息
+					</f:facet>
+					<p:column headerText="车辆名称" width="100px;">
+						<h:outputText value="#{model.carName}" />
+					</p:column>
+					<p:column headerText="配件品牌" width="100px;">
+						<h:outputText value="#{model.fittingBrand}" />
+					</p:column>
+					<p:column headerText="配件名称" width="100px;">
+						<h:outputText value="#{model.fittingName}" />
+					</p:column>
+					<p:column headerText="型号" width="100px;">
+						<h:outputText value="#{model.model}" />
+					</p:column>
+					<p:column headerText="最新单价" width="80px;">
+						<h:outputText value="#{model.price}" />
+					</p:column>
+					<p:column headerText="保养情况" >
+						<div style="text-align: left;">
+							天数：
+							<p:inputText styleClass="inputText" size="8" maxlength="10"
+								value="#{model.maintenanceDay}"  >
+								<f:validator validatorId="numberValidator" />
+							</p:inputText>
+							<br />
+							立方：
+							<pe:inputNumber maxlength="10" size="8" 
+								value="#{model.maintenanceCubic}" 
+								minValue="0.00" emptyValue="0" decimalPlaces="2">
+							</pe:inputNumber>
+						</div>
+					</p:column>
+					<p:column headerText="最新单价" width="80px;">
+						<h:outputText value="#{model.price}" />
+					</p:column>
+					<p:column headerText="采购数量" width="80px;">
+						<h:outputText value="#{model.quantity}"/>
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</h:panelGrid>
+		<f:facet name="options">
+			<p:menu>
+				<p:submenu label="Settings">
+					<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+						onclick="PF('fittingPurchase').toggle()" />
+					<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+						onclick="PF('fittingPurchase').close()" />
+				</p:submenu>
+			</p:menu>
+		</f:facet>
+	</p:panel>
+</div>

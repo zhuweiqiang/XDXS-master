@@ -1,0 +1,30 @@
+<rw:saveState xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com" value="#{addressFinderBean.cityItems}" >
+	<p:selectOneMenu styleClass="selectOneMenu" id="provinceId1" value="#{addressEntity.provinceId}"
+		validatorMessage="#{requiredMessage}（省）">
+		<f:ajax event="change" listener="#{addressFinderBean.refreshCityItems}" execute="@this" render=":form:cityId1 :form:districtId1" immediate="true"/>
+		<!--p:ajax event="change" listener="#{addressFinderBean.refreshCityItems}" partialSubmit="true" process="@this" update=":form:cityId :form:districtId" /-->
+		<f:selectItems value="#{addressFinder.provinceItems}" />
+		<f:validator validatorId="unSelectValidator" />
+		<f:attribute name="requiredCheck" value="#{requiredCheck}"/>
+	</p:selectOneMenu>
+	<p:selectOneMenu styleClass="selectOneMenu" id="cityId1" value="#{addressEntity.cityId}"
+		validatorMessage="#{requiredMessage}（市）">
+		<f:ajax event="change" listener="#{addressFinderBean.refreshDistrictItems}" execute="@this" render=":form:districtId1" immediate="true"/>
+		<!--p:ajax event="change" listener="#{addressFinderBean.refreshDistrictItems}" partialSubmit="true" process="@this" update=":form:districtId" /-->
+		<f:selectItems value="#{addressFinderBean.cityItems}" />
+		<f:validator validatorId="unSelectValidator" />
+		<f:attribute name="requiredCheck" value="#{requiredCheck}"/>
+	</p:selectOneMenu>
+	<p:selectOneMenu styleClass="selectOneMenu" id="districtId1" value="#{addressEntity.districtId}"
+		validatorMessage="#{requiredMessage}（县）" >
+		<!--  rendered="#{addressFinderBean.districtItems!=null}">-->
+		<f:selectItems value="#{addressFinderBean.districtItems}" />
+	</p:selectOneMenu>
+	<t:saveState value="#{addressFinderBean.districtItems}" />
+</rw:saveState>

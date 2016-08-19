@@ -1,0 +1,52 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:rw="http://www.qylm.com"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<t:saveState value="#{projectBuyDetailSelectBean.projectBuyDetailSelectDto}" />
+	<t:saveState value="#{projectBuyDetailSelectBean.projectBuyDetailList}" />
+	<div class="searchRequirementNorth">
+		<p:focus for="name" />
+		<h:panelGrid id="manageGridSelect" columns="9">
+			<h:outputLabel for="name" value="客户姓名" />
+			<p:inputText styleClass="inputText" id="name" size="10" maxlength="20"
+				value="#{projectBuyDetailSelectBean.projectBuyDetailSelectDto.name}" />
+			<h:outputLabel for="projectName" value="疗程名称" />
+			<p:inputText styleClass="inputText" id="projectName" size="20" maxlength="20"
+				value="#{projectBuyDetailSelectBean.projectBuyDetailSelectDto.projectName}" />
+			<p:commandButton id="searchBtn" value="搜索" action="#{projectBuyDetailSelectBean.selectProjectBuyDetail}" process=":form:manageGridSelect" 
+				styleClass="searchBtn" accesskey="s" ajax="false"/>
+		</h:panelGrid>
+	</div>
+	<rw:paging pageBean="#{projectBuyDetailSelectBean}" />
+	<div class="tableCenter">
+		<p:dataTable emptyMessage="暂无数据" var="model" value="#{projectBuyDetailSelectBean.projectBuyDetailList}" rowIndexVar="rowIndex"
+			widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+			sortBy="createDate" sortOrder="descending" id="viewTables">
+			<f:facet name="header" >
+				项目购买信息列表
+			</f:facet>
+			<p:column headerText="客户姓名" sortBy="#{model.projectBuy.customInfo.name}" width="80">
+				<h:outputText value="#{model.projectBuy.customInfo.name}" />
+			</p:column>
+			<p:column headerText="项目名称">
+				<h:outputText value="服务管理：#{model.marketingProject.project}" />
+				&#160;&#160;
+				<h:outputText value="单价：#{model.marketingProject.money}" style="margin-left: 50px;" />
+			</p:column>
+			<p:column headerText="次数" width="120">
+				<h:outputText value="#{model.number}" />
+			</p:column>
+			<p:column headerText="剩余次数" width="120">
+				<h:outputText value="#{model.surplusNumber}" />
+			</p:column>
+			<p:column headerText="价值" width="120">
+				<h:outputText value="￥ #{model.money}" />
+			</p:column>
+		</p:dataTable>
+	</div>
+</div>

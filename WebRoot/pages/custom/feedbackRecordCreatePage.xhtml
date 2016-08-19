@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户反馈记录信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{feedbackRecordCreateBean.feedbackRecordCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{feedbackRecordCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="保存" action="#{feedbackRecordCreateBean.saveFeedbackRecord}" ajax="false" styleClass="saveBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:autoComplete id="customInfo" value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="反馈日期" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="反馈的内容" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="2000" value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.remark}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="已推荐的项目" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.marketingProject.project}" />
+						<p:commandButton value="选择项目" action="#{feedbackRecordCreateBean.findMarketingProject}"
+							 update=":form:marketingProject" oncomplete="PF('marketingProject').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="已推荐的产品" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<ui:fragment rendered="#{feedbackRecordCreateBean.feedbackRecordCreateDto.productStock != null}">
+							<h:outputText value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.productStock.name}" />
+							&#160;&#160;
+						</ui:fragment>
+						<p:commandButton value="选择产品" action="#{feedbackRecordCreateBean.findProductStock}"
+							 update=":form:productStock" oncomplete="PF('productStock').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:autoComplete id="personnelInfo" value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:autoComplete id="adviser" value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dialog id="marketingProject" header="已推荐的项目" width="500" height="400"
+				widgetVar="marketingProject" modal="true" position="center">
+				<p:dataTable emptyMessage="暂无数据" var="model"
+					value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.marketingProjectList}">
+					<f:facet name="header" >
+						项目信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{feedbackRecordCreateBean.findMarketingProjects(model)}"
+							update="@form" oncomplete="PF('marketingProject').hide();"/>
+					</p:column>
+					<p:column headerText="项目名称" width="220">
+						<h:outputText value="#{model.project}" />
+					</p:column>
+					<p:column headerText="备注">
+						<h:outputText value="#{model.remark}" />
+					</p:column>
+				</p:dataTable>	
+			</p:dialog>
+			<p:dialog id="productStock" header="产品库存" width="500" height="400"
+				widgetVar="productStock" modal="true" position="center">
+				<p:dataTable emptyMessage="暂无数据" var="model" id="productStockDetail" 
+					value="#{feedbackRecordCreateBean.feedbackRecordCreateDto.productStockList}">
+					<f:facet name="header" >
+						产品信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{feedbackRecordCreateBean.findProductStocks(model)}"
+							update="@form" oncomplete="PF('productStock').hide();"/>
+					</p:column>
+					<p:column headerText="产品名称" width="220">
+						<h:outputText value="#{model.name}" />
+					</p:column>
+					<p:column headerText="描述">
+						<h:outputText value="#{model.introduce}" />
+					</p:column>
+				</p:dataTable>	
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="活动套餐信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{temporaryActivityCreateBean.temporaryActivityCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{temporaryActivityCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{temporaryActivityCreateBean.newTemporaryActivity}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_temporaryActivity', '添加')}"/>
+			<p:commandButton value="保存" action="#{temporaryActivityCreateBean.saveTemporaryActivity}" 
+				disabled="#{temporaryActivityCreateBean.temporaryActivityCreateDto.state}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_temporaryActivity', '添加') or userBean.isCheckPermission('baseSet_temporaryActivity', '修改')}"/>
+			<p:commandButton value="确认生效" action="#{temporaryActivityCreateBean.queryTemporaryActivity}" 
+				disabled="#{temporaryActivityCreateBean.temporaryActivityCreateDto.state}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_temporaryActivity', '添加') or userBean.isCheckPermission('baseSet_temporaryActivity', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="name" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="name" value="活动名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="name" size="20" maxlength="20"
+							value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.name}" label="活动名称必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="套餐费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="活动介绍" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputTextarea value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.remark}" 
+							id="remark" cols="80" rows="5" maxlength="2000"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="增加一行活动项目" action="#{temporaryActivityCreateBean.addTemporaryActivity}"  
+							disabled="#{temporaryActivityCreateBean.temporaryActivityCreateDto.state}" ajax="false" styleClass="saveBtn" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						服务管理原价格：<h:outputText id="sumYmoney" value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.sumYmoney}" /> ￥，
+						现价格：<h:outputText id="sumXmoney" value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.sumXmoney}" />￥
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{temporaryActivityCreateBean.temporaryActivityCreateDto.temporaryActivityDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					参加活动的项目列表
+				</f:facet>
+				<p:column headerText="项目名称">
+					<p:autoComplete value="#{model.marketingProject}"
+						completeMethod="#{selectBean.selectMarketingProject}" size="20" maxlength="20"
+						var="marketingProject" itemLabel="#{marketingProject.project}" dropdown="true" label="营业项目必须选择" required="true"
+						itemValue="#{marketingProject}" converter="marketingProjectConverter" forceSelection="true">
+						<p:ajax event="itemSelect" update="@form" listener="#{temporaryActivityCreateBean.createMarketingProject(model)}" />
+						<p:column width="120">
+							<h:outputText value="#{marketingProject.project}" />
+						</p:column>
+						<p:column width="120">
+							<h:outputText value="单价：#{marketingProject.money}" />
+						</p:column>
+					</p:autoComplete>
+				</p:column>
+				<p:column headerText="疗程单价" width="120">
+					#{model.marketingProject.money} ￥
+				</p:column>
+				<p:column headerText="次数" width="120">
+					<p:inputText value="#{model.number}" size="10" maxlength="10" label="次数必须输入" required="true">
+						<p:ajax event="keyup" listener="#{temporaryActivityCreateBean.getSumMoney}" update=":form:sumYmoney :form:sumXmoney :form:money" />
+						<f:validator validatorId="numberValidator" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="折后价" width="120">
+					<pe:inputNumber maxlength="10" size="12" value="#{model.money}" symbol="￥ "
+						minValue="0.00" emptyValue="0" decimalPlaces="2" label="折后价必须输入" required="true">
+						<p:ajax event="keyup" listener="#{temporaryActivityCreateBean.getSumMoney}" update=":form:sumYmoney :form:sumXmoney :form:money" />
+					</pe:inputNumber>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{temporaryActivityCreateBean.deleteTemporaryActivity(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						disabled="#{temporaryActivityCreateBean.temporaryActivityCreateDto.state}"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

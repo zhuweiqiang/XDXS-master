@@ -1,0 +1,93 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:rw="http://www.qylm.com"
+	width="168" style="height: 100%; background-color: #E5F4FD; overflow: auto;">
+	<table width="168" style="height: auto;" border="0" align="left"
+		cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="168" height="23" valign="bottom">
+				<img src="#{resource['images/back:menu-4.gif']}" alt="" width="168" height="23" />
+			</td>
+		</tr>
+		<tr>
+			<td width="168" height="85" bgcolor="#E5F4FD">
+				<table width="168" height="84" border="0" align="center"
+					cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="43" align="center">
+							<img src="#{resource['images/back:menu-3.gif']}" alt="" width="17" height="20" />
+						</td>
+						<td width="40" height="28">
+							<span class="infoLabel">姓名:</span>
+						</td>
+						<td width="85">
+							#{userBean.user.userName}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							&#160;
+						</td>
+						<td width="40" colspan="2">
+							
+						</td>
+					</tr>
+					<!--<tr>
+						<td>
+							&#160;
+						</td>
+						<td width="40" height="28">
+							<span class="infoLabel">岗位:</span>
+						</td>
+						<td width="85">
+							
+						</td>
+					</tr>
+				-->
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td height="25" background="#{resource['images/back:menu-5.gif']}">
+				&#160;
+			</td>
+		</tr>
+		<tr>
+			<td width="168" bgcolor="#E5F4FD" valign="top" height="100%"
+				align="left">
+				<table width="150" border="0" align="center"
+					cellpadding="0" cellspacing="0" class="treeclass">
+					<tbody>
+						<tr>
+							<td width="168" align="left" valign="top"
+								style="background-color: #E5F4FD; background-repeat: repeat-x; padding-left: 13px; padding-top: 8px">
+								<script type="text/javascript">
+									function preLoad(){
+										var minus = new Image();
+										minus.src = "#{resource['images/back:menu-1.gif']}";
+									}
+									function changeDisplayNode(anchor,nodeId) {
+										var node = document.getElementById(nodeId);
+										if (node.style.display == "block") {
+											node.style.display = "none";
+											anchor.style.backgroundImage="url(#{resource['images/back:menu-2.gif']})";
+										} else {
+											node.style.display = "block";
+											anchor.style.backgroundImage="url(#{resource['images/back:menu-1.gif']})";
+										}
+									}
+								</script>
+								<!--菜单开始-->
+								<rw:tree id="tree" styleClass="treeclass" user="#{userBean.user}" type="2" />
+								<!--菜单结束-->
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

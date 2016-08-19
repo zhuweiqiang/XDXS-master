@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="项目操作信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{projectOperationCreateBean.projectOperationCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{projectOperationCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="客户名：#{projectOperationCreateBean.projectOperationCreateDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{projectOperationCreateBean.projectOperationCreateDto.personnelInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{projectOperationCreateBean.projectOperationCreateDto.adviser.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{projectOperationCreateBean.projectOperationCreateDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="实耗金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						#{projectOperationCreateBean.projectOperationCreateDto.realityMoney} ￥
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{projectOperationCreateBean.projectOperationCreateDto.consumptionRegisterDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					操作项目列表
+				</f:facet>
+				<p:column headerText="付款详细/实耗项目">
+					<h:outputText value="【#{model.name}-价值：#{model.money} ￥】" />
+					<br />
+				</p:column>
+				<p:column headerText="数量" width="100px;">
+					<h:outputText value="#{model.number}" />
+				</p:column>
+				<p:column headerText="消耗次数" width="100px;">
+					<h:outputText value="#{model.consumptionNumber}" />
+				</p:column>
+				<p:column headerText="费用" width="100px;">
+					<h:outputText value="#{model.sumMoney}" />
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

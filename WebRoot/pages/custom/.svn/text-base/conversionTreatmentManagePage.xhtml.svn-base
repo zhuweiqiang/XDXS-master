@@ -1,0 +1,81 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="疗程转换管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{conversionTreatmentManageBean.conversionTreatmentManageDto}" />
+		<t:saveState value="#{conversionTreatmentManageBean.conversionTreatmentList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="批量删除" actionListener="#{conversionTreatmentManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"
+				rendered="#{userBean.isCheckPermission('custom_consumptionRegister', '删除')}"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="name" />
+			<h:panelGrid id="manageGrid" columns="7">
+				<h:outputLabel for="name" value="客户姓名" />
+				<p:inputText styleClass="inputText" id="name" size="10" maxlength="20"
+					value="#{conversionTreatmentManageBean.conversionTreatmentManageDto.name}" />
+				<h:outputLabel for="beginDate" value="购买时间（开始）" />
+				<p:calendar navigator="true" id="beginDate" size="10" maxlength="10"
+					locale="tr" value="#{conversionTreatmentManageBean.conversionTreatmentManageDto.beginDate}"
+					pattern="yyyy-MM-dd"/>
+				~
+				<p:calendar navigator="true" id="endDate" size="10" maxlength="10"
+					locale="tr" value="#{conversionTreatmentManageBean.conversionTreatmentManageDto.endDate}"
+					pattern="yyyy-MM-dd"/>
+				<p:commandButton id="searchBtn" value="搜索" action="#{conversionTreatmentManageBean.selectConversionTreatment}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{conversionTreatmentManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{conversionTreatmentManageBean.conversionTreatmentList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{conversionTreatmentManageBean.selectedModels}">
+				<f:facet name="header" >
+					疗程转换信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="转换日期" sortBy="#{model.date}" width="100">
+					<h:outputText value="#{model.date}" >
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="转换的项目" sortBy="#{model.marketingProject.project}">
+					<h:outputText value="#{model.marketingProject.project}" />
+				</p:column>
+				<p:column headerText="转换的次数" sortBy="#{model.money}" width="80">
+					<h:outputText value="#{model.money}￥" />
+				</p:column>
+				<p:column headerText="客户姓名" sortBy="#{model.customInfo.name}" width="80">
+					<h:outputText value="#{model.customInfo.name}" />
+				</p:column>
+				<p:column headerText="美容师" sortBy="#{model.personnelInfo.name}" width="80">
+					<h:outputText value="#{model.personnelInfo.name}" />
+				</p:column>
+				<p:column headerText="顾问" sortBy="#{model.adviser.name}" width="80">
+					<h:outputText value="#{model.adviser.name}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="#{model.state ? '详细' : '修改'}" action="#{conversionTreatmentManageBean.updateConversionTreatment(model)}"
+						ajax="false" styleClass="modifyBtn"/>
+					<p:commandButton value="删除" action="#{conversionTreatmentManageBean.deleteConversionTreatment(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('custom_consumptionRegister', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<util:viewDialog id="viewDialog" modelId="#{conversionTreatmentManageBean.modelId}" actionMethod="#{conversionTreatmentManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

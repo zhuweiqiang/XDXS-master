@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户赠送记录管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{historyLargessRecordManageBean.historyLargessRecordManageDto}" />
+		<t:saveState value="#{historyLargessRecordManageBean.largessRecordList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{historyLargessRecordManageBean.newLargessRecord}" ajax="false" immediate="true"
+				rendered="#{userBean.isCheckPermission('history_largessRecord', '添加')}"/>
+			<p:commandButton value="批量删除" actionListener="#{historyLargessRecordManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"
+				rendered="#{userBean.isCheckPermission('history_largessRecord', '删除')}"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="name" />
+			<h:panelGrid id="manageGrid" columns="9">
+				<h:outputLabel for="name" value="客户姓名" />
+				<p:inputText styleClass="inputText" id="name" size="10" maxlength="20"
+					value="#{historyLargessRecordManageBean.historyLargessRecordManageDto.name}" />
+				<h:outputLabel for="leaguerNumber" value="卡项号" />
+				<p:inputText styleClass="inputText" id="leaguerNumber" size="20" maxlength="20"
+					value="#{historyLargessRecordManageBean.historyLargessRecordManageDto.leaguerNumber}" />
+				<h:outputLabel for="beginDate" value="赠送时间（开始）" />
+				<p:calendar navigator="true" id="beginDate" size="16" maxlength="16"
+					locale="tr" value="#{historyLargessRecordManageBean.historyLargessRecordManageDto.beginDate}"
+					pattern="yyyy-MM-dd HH:mm"/>
+				~
+				<p:calendar navigator="true" id="endDate" size="16" maxlength="16"
+					locale="tr" value="#{historyLargessRecordManageBean.historyLargessRecordManageDto.endDate}"
+					pattern="yyyy-MM-dd HH:mm"/>
+				<p:commandButton id="searchBtn" value="搜索" action="#{historyLargessRecordManageBean.selectLargessRecord}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{historyLargessRecordManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{historyLargessRecordManageBean.largessRecordList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{historyLargessRecordManageBean.selectedModels}">
+				<f:facet name="header" >
+					客户赠送记录信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="充值时间" sortBy="#{model.createDate}" width="120">
+					<h:outputText value="#{model.createDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="赠送项目及使用明细">
+					<div style="width: 100%; text-align: left;">
+						<h:outputText value="赠送项目：#{model.marketingProject.project}" />
+						<br />
+						<h:outputText value="使用明细：#{model.remark}" />
+					</div>
+				</p:column>
+				<p:column headerText="次数/剩余次数" width="100">
+					<h:outputText value="次数：#{model.number}" />
+					<br />
+					<h:outputText value="剩余次数：#{model.surplusNumber}" />
+				</p:column>
+				<p:column headerText="顾客信息" width="200">
+					<h:outputText value="客户名：#{model.customInfo.name}" />
+					<br />
+					<h:outputText value="卡项号：#{model.customInfo.leaguerNumber}" />
+				</p:column>
+				<p:column headerText="顾问" sortBy="#{model.personnelInfo2.name}" width="80">
+					<h:outputText value="#{model.personnelInfo2.name}" />
+				</p:column>
+				<p:column headerText="美容师" sortBy="#{model.personnelInfo1.name}" width="80">
+					<h:outputText value="#{model.personnelInfo1.name}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="修改" action="#{historyLargessRecordManageBean.updateLargessRecord(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('history_largessRecord', '修改')}"/>
+					<p:commandButton value="删除" action="#{historyLargessRecordManageBean.deleteCustomInfo(model)}"
+						partialSubmit="true" process="@this" update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('history_largessRecord', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<util:viewDialog id="viewDialog" modelId="#{historyLargessRecordManageBean.modelId}" actionMethod="#{historyLargessRecordManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

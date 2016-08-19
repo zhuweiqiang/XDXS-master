@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd 
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+	default-lazy-init="true">
+
+	<description>Apache CXF的Restful Web Service配置</description>
+	<!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
+	<jaxrs:server id="restServiceContainer" address="/rest">
+	    <jaxrs:serviceBeans>
+	        <ref bean="restSample" />
+	        <ref bean="authorizeServiceImpl" />
+	    </jaxrs:serviceBeans>
+	    <jaxrs:extensionMappings>
+	        <entry key="json" value="application/json" />
+	        <entry key="xml" value="application/xml" />
+	    </jaxrs:extensionMappings>
+	</jaxrs:server>
+	
+	<!-- WebService的实现Bean定义 -->
+	<bean id="restSample" class="com.qylm.spring.webservice.rest.RESTSampleSource"/>
+	<!-- 创建客户端 -->
+	<bean id="restSampleBean" class="org.apache.cxf.jaxrs.client.JAXRSClientFactory" factory-method="create">
+		<constructor-arg type="java.lang.String" value="http://localhost/DZWL/webservice/rest/sample" />
+		<constructor-arg type="java.lang.Class" value="com.qylm.spring.webservice.rest.RESTSample" />
+	</bean>
+	
+	<bean id="authorizeServiceImpl" class="com.qylm.spring.webservice.desk.AuthorizeServiceImpl"/>
+	<bean id="authorizeService" class="org.apache.cxf.jaxrs.client.JAXRSClientFactory" factory-method="create">
+		<constructor-arg type="java.lang.String" value="http://localhost/DZWL/webservice/rest/authorize" />
+		<constructor-arg type="java.lang.Class" value="com.qylm.spring.webservice.desk.AuthorizeService" />
+	</bean>
+	
+</beans>

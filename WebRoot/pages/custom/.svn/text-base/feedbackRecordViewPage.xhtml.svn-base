@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户反馈记录详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						#{feedbackRecordViewBean.feedbackRecordViewDto.customInfo.name}
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="反馈日期" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{feedbackRecordViewBean.feedbackRecordViewDto.date}">
+							<f:convertDateTime timeZone="Asia/Shanghai" pattern="yyyy-MM-dd"/>
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="反馈的内容" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="2000" value="#{feedbackRecordViewBean.feedbackRecordViewDto.remark}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="已推荐的项目" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{feedbackRecordViewBean.feedbackRecordViewDto.marketingProject.project}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="已推荐的产品" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{feedbackRecordViewBean.feedbackRecordViewDto.productStock.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						#{feedbackRecordViewBean.feedbackRecordViewDto.personnelInfo.name}
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

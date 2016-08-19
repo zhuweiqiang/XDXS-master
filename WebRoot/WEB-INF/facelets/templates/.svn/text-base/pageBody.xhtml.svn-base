@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rw="http://www.qylm.com">
+	<tr>
+		<td width="10" background="../images/main-13.gif">
+		</td>
+		<td valign="top" bgcolor="#e5f4fd">
+			<t:messages showSummary="true" styleClass="error"
+				style="margin-top:4px;margin-bottom:4px;" />
+			<ui:insert name="form1">
+			</ui:insert>
+		</td>
+		<td width="10" background="../images/main-14.gif">
+		</td>
+	</tr>
+</ui:composition>

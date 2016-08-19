@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/company
+END
+RoleManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/company/RoleManageDto.java
+END
+UserCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/company/UserCreateDto.java
+END
+RoleCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/company/RoleCreateDto.java
+END
+UserManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/company/UserManageDto.java
+END

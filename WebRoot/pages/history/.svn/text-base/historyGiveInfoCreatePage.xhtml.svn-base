@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户#{customCardCreateBean.customCardCreateDto.title}记录登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{customCardCreateBean.customCardCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{customCardCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{customCardCreateBean.newCustomCard}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('history_giveInfo', '添加')}"/>
+			<p:commandButton value="保存" action="#{customCardCreateBean.saveCustomCard}" update="@form" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('history_giveInfo', '添加') or userBean.isCheckPermission('history_giveInfo', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="GiveInfoItems" value="选择卡项" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectOneMenu id="GiveInfoItems" value="#{customCardCreateBean.customCardCreateDto.giveInfoId}">
+							<f:selectItems value="#{customCardCreateBean.customCardCreateDto.giveInfoItems}" />						
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{customCardCreateBean.customCardCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="卡号：#{customInfo.leaguerNumber}" />
+							</p:column>
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="卡项余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber  maxlength="10" size="12" value="#{customCardCreateBean.customCardCreateDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{customCardCreateBean.customCardCreateDto.createDate}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

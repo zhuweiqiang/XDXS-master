@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="品牌信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{brandCreateBean.brandCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{brandCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{brandCreateBean.newBrand}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_brand', '添加')}"/>
+			<p:commandButton value="保存" action="#{brandCreateBean.saveBrand}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_brand', '添加') or userBean.isCheckPermission('baseSet_brand', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="name" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="name" value="品牌名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="name" size="30" maxlength="30"
+							value="#{brandCreateBean.brandCreateDto.name}" label="品牌名称必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="备注" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputTextarea id="remark" value="#{brandCreateBean.brandCreateDto.remark}" 
+							cols="80" rows="5" maxlength="200"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

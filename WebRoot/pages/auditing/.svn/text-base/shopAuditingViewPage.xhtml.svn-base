@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="店铺配货审核信息详细" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{leaguerViewBean.leaguerViewDto}" />
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="审核时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai"/>
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="审核备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{shopAppleViewBean.shopAppleViewDto.remark}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="编号" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.number}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="仓库" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.depotInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="申请日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.appleDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai"/>
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.remark}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="入库人" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.user.userName}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="4" style="text-align:center;">
+						<p:dataTable emptyMessage="暂无数据" var="model" id="shopAppleDetail" 
+							value="#{shopAuditingViewBean.shopAuditingViewDto.shopApple.shopAppleDetailList}">
+							<f:facet name="header" >
+								店铺申请配货详细信息列表
+							</f:facet>
+							<p:column headerText="产品名称" width="220">
+								<h:outputText value="#{model.productStock.name}" />
+							</p:column>
+							<p:column headerText="产品介绍">
+								<h:outputText value="#{model.productStock.introduce}" />
+							</p:column>
+							<p:column headerText="数量" width="120">
+								<h:outputText value="#{model.number}" />
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

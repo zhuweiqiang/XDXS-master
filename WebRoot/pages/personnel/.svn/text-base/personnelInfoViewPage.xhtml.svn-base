@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="人事信息信息详细" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{leaguerViewBean.leaguerViewDto}" />
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="工号" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{personnelInfoViewBean.personnelInfoViewDto.workNumber}"/>
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="姓名" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{personnelInfoViewBean.personnelInfoViewDto.name}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="身份证号" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{personnelInfoViewBean.personnelInfoViewDto.identification}"/>
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="性别" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rw:label(genericCodeBean.c0102, personnelInfoViewBean.personnelInfoViewDto.sex)}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="民族" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{rw:label(genericCodeBean.c0101, personnelInfoViewBean.personnelInfoViewDto.nation)}" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="婚否" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rw:label(genericCodeBean.c0104, personnelInfoViewBean.personnelInfoViewDto.marriage)}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="出身日期" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{personnelInfoViewBean.personnelInfoViewDto.birthDate}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="政治面貌" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rw:label(genericCodeBean.c0103, personnelInfoViewBean.personnelInfoViewDto.politicalStatus)}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="学历" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{rw:label(genericCodeBean.c0105, personnelInfoViewBean.personnelInfoViewDto.formalSchooling)}" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="联系电话" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{personnelInfoViewBean.personnelInfoViewDto.mobile}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

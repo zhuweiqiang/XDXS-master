@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/XDXS/!svn/ver/11/src/com/qylm/logic/custom
+END
+ConsumptionRegisterLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/11/src/com/qylm/logic/custom/ConsumptionRegisterLogic.java
+END
+ProjectBuyLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/8/src/com/qylm/logic/custom/ProjectBuyLogic.java
+END
+ProjectOperationLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/logic/custom/ProjectOperationLogic.java
+END
+ConversionTreatmentLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/11/src/com/qylm/logic/custom/ConversionTreatmentLogic.java
+END
+MealBuyRecordLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/8/src/com/qylm/logic/custom/MealBuyRecordLogic.java
+END
+MarketingRecordLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/10/src/com/qylm/logic/custom/MarketingRecordLogic.java
+END
+RechargeLogic.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/logic/custom/RechargeLogic.java
+END

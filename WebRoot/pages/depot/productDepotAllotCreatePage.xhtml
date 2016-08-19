@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="仓库库存调拨信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{productDepotAllotCreateBean.productDepotAllotCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{productDepotAllotCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{productDepotAllotCreateBean.newProductDepotAllot}" immediate="true" update="@form" styleClass="createBtn" />
+			<p:commandButton value="保存" action="#{productDepotAllotCreateBean.saveProductDepotAllot}" ajax="false" styleClass="saveBtn" 
+				disabled="#{productDepotAllotCreateBean.productDepotAllotCreateDto.state}"/>
+			<p:commandButton value="确认生效" action="#{productDepotAllotCreateBean.queryProductDepotAllot}" 
+				disabled="#{productDepotAllotCreateBean.productDepotAllotCreateDto.state}" ajax="false" styleClass="saveBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:focus for="depotInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="depotInfo" value="原仓库" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="depotInfo" value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.depotInfo}"
+							completeMethod="#{selectBean.selectDepotInfo}" size="10" maxlength="20"
+							var="depotInfo" itemLabel="#{depotInfo.name}" dropdown="true" label="原仓库必须输入" required="true"
+							itemValue="#{depotInfo}" converter="depotInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{productDepotAllotCreateBean.validate}" />
+							<h:outputText value="#{depotInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="产品" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.productStockDetail.productStock.name}" />
+						<p:commandButton value="选择产品" action="#{productDepotAllotCreateBean.findProductStock}"
+							 update=":form:productStock" oncomplete="PF('productStock').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="number" value="调拨数量" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="number" maxlength="10" size="12" value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.number}" 
+							minValue="0" emptyValue="0" decimalPlaces="0">
+						</pe:inputNumber>
+						<h:outputText value="现有库存：#{productDepotAllotCreateBean.productDepotAllotCreateDto.productStockDetail.number}" style="margin-left:30px;"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="allotDepotInfo" value="调往仓库" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="allotDepotInfo" value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.allotDepotInfo}"
+							completeMethod="#{selectBean.selectDepotInfo}" size="10" maxlength="20"
+							var="depotInfo" itemLabel="#{depotInfo.name}" dropdown="true"
+							itemValue="#{depotInfo}" converter="depotInfoConverter" forceSelection="true">
+							<h:outputText value="#{depotInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dialog id="productStock" header="产品库存" width="500"
+				widgetVar="productStock" modal="true" position="center">
+				<div class="searchRequirementNorth">
+					<h:panelGrid id="manageGrids" columns="3">
+						<h:outputLabel for="name" value="产品名" />
+						<p:inputText styleClass="inputText" id="name" size="50" maxlength="50"
+							value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.productStockName}" />
+						<p:commandButton id="searchBtn" style="margin-left:40px;" value="搜索" action="#{productDepotAllotCreateBean.selectProductStock}" process=":form:manageGrids" 
+							update=":form:productStockDetail" styleClass="searchBtn" accesskey="s" />
+					</h:panelGrid>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" id="productStockDetail" 
+					value="#{productDepotAllotCreateBean.productDepotAllotCreateDto.productStockDetailList}">
+					<f:facet name="header" >
+						产品库存详细信息列表
+					</f:facet>
+					<p:column headerText="选择">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{productDepotAllotCreateBean.findProductStockDetail(model)}"
+							update="@form" oncomplete="PF('productStock').hide();"/>
+					</p:column>
+					<p:column headerText="产品名称">
+						<h:outputText value="#{model.productStock.name}" />
+					</p:column>
+					<p:column headerText="数量" width="120">
+						<h:outputText value="#{model.number}" />
+					</p:column>
+				</p:dataTable>	
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

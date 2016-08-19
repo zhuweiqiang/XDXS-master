@@ -1,0 +1,197 @@
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="欢迎界面" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{myDeskBean.myDeskDto}" />
+		<!--  
+		<p:poll interval="10" listener="#{myDeskBean.refreshDesk}" update="@form" />-->
+		<p:tabView styleClass="tabView">
+			<p:tab title="快捷菜单" styleClass="tabView">
+				<div style="width: 100%; height: 100%; text-align: left;">
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.selectCustomDetail}">
+							<h:graphicImage library="images/bt" name="khda.png" />
+							<br />
+							<h:outputText value="客户档案" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.shopCard}">
+							<h:graphicImage library="images/bt" name="gk.png" />
+							<br />
+							<h:outputText value="购卡" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.mealBuyRecord}">
+							<h:graphicImage library="images/bt" name="gmtc.png" />
+							<br />
+							<h:outputText value="购买套餐" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.projectBuy}">
+							<h:graphicImage library="images/bt" name="gmfw.png" />
+							<br />
+							<h:outputText value="购买疗程" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.marketingRecord}">
+							<h:graphicImage library="images/bt" name="gmcp.png" />
+							<br />
+							<h:outputText value="购买产品" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.serviceConsumption}">
+							<h:graphicImage library="images/bt" name="fwxf.png" />
+							<br />
+							<h:outputText value="服务消费" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.registerFeedbackRecord}">
+							<h:graphicImage library="images/bt" name="khfk.png" />
+							<br />
+							<h:outputText value="客户反馈" />
+						</h:commandLink>
+					</div>
+					<!--
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.recharge}">
+							<h:graphicImage library="images/bt" name="grxfdj.png" />
+							<br />
+							<h:outputText value="客户消费登记" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.recharge}">
+							<h:graphicImage library="images/bt" name="jz.png" />
+							<br />
+							<h:outputText value="结账" />
+						</h:commandLink>
+					</div>
+					-->
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.conversionTreatment}">
+							<h:graphicImage library="images/bt" name="zk.png" />
+							<br />
+							<h:outputText value="疗程转换" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.recharge}">
+							<h:graphicImage library="images/bt" name="czkcz.png" />
+							<br />
+							<h:outputText value="充值卡充值" />
+						</h:commandLink>
+					</div>
+					<!--  
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.turnLeaguerOperation}">
+							<h:graphicImage library="images/bt" name="zk.png" />
+							<br />
+							<h:outputText value="转卡" />
+						</h:commandLink>
+					</div>
+					-->
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.customLeaguerOperation}">
+							<h:graphicImage library="images/bt" name="tk.png" />
+							<br />
+							<h:outputText value="退卡" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.repayment}">
+							<h:graphicImage library="images/bt" name="hk.png" />
+							<br />
+							<h:outputText value="还款" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.giveBodyVolume}">
+							<h:graphicImage library="images/bt" name="zsfwj.png" />
+							<br />
+							<h:outputText value="赠送身体卷" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.giveCashVolume}">
+							<h:graphicImage library="images/bt" name="zsxjj.png" />
+							<br />
+							<h:outputText value="赠送现金卷" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.giveExperienceCard}">
+							<h:graphicImage library="images/bt" name="zsstj.png" />
+							<br />
+							<h:outputText value="赠送体验卡" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.giveLargessRecord}">
+							<h:graphicImage library="images/bt" name="zsxmk.png" />
+							<br />
+							<h:outputText value="赠送项目疗程" />
+						</h:commandLink>
+					</div>
+					<!--
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.learnCard}">
+							<h:graphicImage library="images/bt" name="xmczjl.png" />
+							<br />
+							<h:outputText value="体验卡记录查询" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.projectBuySelect}">
+							<h:graphicImage library="images/bt" name="xmgmjl.png" />
+							<br />
+							<h:outputText value="项目购买记录" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.projectBuySelect}">
+							<h:graphicImage library="images/bt" name="tcgmjl.png" />
+							<br />
+							<h:outputText value="购买套餐记录" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.shopCard}">
+							<h:graphicImage library="images/bt" name="xmzsjl.png" />
+							<br />
+							<h:outputText value="赠送项目记录" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.shopCard}">
+							<h:graphicImage library="images/bt" name="cpxsjl.png" />
+							<br />
+							<h:outputText value="产品销售记录" />
+						</h:commandLink>
+					</div>
+					<div style="width: 200px; height: 120px; float: left; text-align: center;">
+						<h:commandLink action="#{myDeskBean.recharge}">
+							<h:graphicImage library="images/bt" name="grczjl.png" />
+							<br />
+							<h:outputText value="个人充值记录" />
+						</h:commandLink>
+					</div>
+					-->
+				</div>
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+</ui:composition>

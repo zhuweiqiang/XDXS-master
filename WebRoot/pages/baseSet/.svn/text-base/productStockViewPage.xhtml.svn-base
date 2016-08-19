@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="仓库信息信息详细" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{leaguerViewBean.leaguerViewDto}" />
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="品牌" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						#{productStockViewBean.productStockViewDto.brand.name}
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="系列" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						#{productStockViewBean.productStockViewDto.series.name}
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="产品名" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						#{productStockViewBean.productStockViewDto.name}
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="产品价格" />
+					</p:column>
+					<p:column styleClass="column2">
+						#{productStockViewBean.productStockViewDto.money} ￥
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="产品成本" />
+					</p:column>
+					<p:column styleClass="column4">
+						#{productStockViewBean.productStockViewDto.cost} ￥
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="500" 
+							value="#{productStockViewBean.productStockViewDto.remark}"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,593 @@
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/XDXS/!svn/ver/8/src/com/qylm/dao
+END
+GiveInfoDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/GiveInfoDetailDaoImpl.java
+END
+ShopAppleDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAppleDaoImpl.java
+END
+TreeItemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TreeItemDao.java
+END
+ConversionTreatmentDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/8/src/com/qylm/dao/ConversionTreatmentDetailDaoImpl.java
+END
+RechargeDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RechargeDao.java
+END
+AuditingSetDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/AuditingSetDao.java
+END
+TemporaryActivityDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TemporaryActivityDetailDao.java
+END
+ConsumptionDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionDetailDaoImpl.java
+END
+ConsumptionRegisterDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionRegisterDao.java
+END
+RoleDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RoleDetailDao.java
+END
+GiveInfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/GiveInfoDaoImpl.java
+END
+GiveInfoDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/GiveInfoDetailDao.java
+END
+LeaguerDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LeaguerDetailDaoImpl.java
+END
+ShopAppleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAppleDao.java
+END
+ProjectBuyDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectBuyDetailDaoImpl.java
+END
+ConversionTreatmentDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/8/src/com/qylm/dao/ConversionTreatmentDetailDao.java
+END
+ProjectOperationDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectOperationDetailDaoImpl.java
+END
+UserDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserDaoImpl.java
+END
+ConsumptionDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionDetailDao.java
+END
+MealBuyRecordDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MealBuyRecordDetailDaoImpl.java
+END
+FileControlDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FileControlDaoImpl.java
+END
+LeaguerDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LeaguerDaoImpl.java
+END
+GiveInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/GiveInfoDao.java
+END
+LeaguerDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LeaguerDetailDao.java
+END
+ProjectBuyDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectBuyDaoImpl.java
+END
+DepotInfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/DepotInfoDaoImpl.java
+END
+ProjectBuyDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectBuyDetailDao.java
+END
+ProjectOperationDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectOperationDetailDao.java
+END
+SeriesDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/SeriesDaoImpl.java
+END
+UserDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserDao.java
+END
+ShopAuditingDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAuditingDaoImpl.java
+END
+MealBuyRecordDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MealBuyRecordDetailDao.java
+END
+FileControlDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FileControlDao.java
+END
+UserRoleDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserRoleDaoImpl.java
+END
+LeaguerDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LeaguerDao.java
+END
+ProjectBuyDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectBuyDao.java
+END
+DepotInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/DepotInfoDao.java
+END
+ConsumptionRegisterDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionRegisterDetailDaoImpl.java
+END
+ProductStockDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductStockDetailDaoImpl.java
+END
+SeriesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/SeriesDao.java
+END
+UserDepotDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserDepotDaoImpl.java
+END
+ShopAuditingDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAuditingDao.java
+END
+UserRoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserRoleDao.java
+END
+ShopAppleDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAppleDetailDaoImpl.java
+END
+PersonnelInfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/PersonnelInfoDaoImpl.java
+END
+FeedbackRecordDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FeedbackRecordDaoImpl.java
+END
+ConsumptionRegisterDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionRegisterDetailDao.java
+END
+ProductStockDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductStockDaoImpl.java
+END
+ProductStockDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductStockDetailDao.java
+END
+CustomInfoDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomInfoDaoImpl.java
+END
+UserDepotDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/UserDepotDao.java
+END
+ShopAppleDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ShopAppleDetailDao.java
+END
+TemporaryActivityDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TemporaryActivityDaoImpl.java
+END
+PersonnelInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/PersonnelInfoDao.java
+END
+RoleDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RoleDaoImpl.java
+END
+FeedbackRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FeedbackRecordDao.java
+END
+EntityClassDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/EntityClassDaoImpl.java
+END
+CustomLeaguerDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomLeaguerDetailDaoImpl.java
+END
+ProductStockDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductStockDao.java
+END
+RepaymentRecordDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RepaymentRecordDaoImpl.java
+END
+MarketingRecordDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingRecordDetailDaoImpl.java
+END
+CustomInfoDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomInfoDao.java
+END
+MarketingProjectDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingProjectDaoImpl.java
+END
+ProductDepotAllotDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductDepotAllotDaoImpl.java
+END
+ConversionTreatmentDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/8/src/com/qylm/dao/ConversionTreatmentDaoImpl.java
+END
+TemporaryActivityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TemporaryActivityDao.java
+END
+RoleDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RoleDao.java
+END
+MarketingRecordDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingRecordDaoImpl.java
+END
+CustomLeaguerDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomLeaguerDetailDao.java
+END
+EntityClassDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/EntityClassDao.java
+END
+MarketingRecordDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingRecordDetailDao.java
+END
+FileExportDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FileExportDaoImpl.java
+END
+RepaymentRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RepaymentRecordDao.java
+END
+FunctionDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FunctionDaoImpl.java
+END
+ProductDepotAllotDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProductDepotAllotDao.java
+END
+MarketingProjectDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingProjectDao.java
+END
+BrandDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/BrandDaoImpl.java
+END
+ConversionTreatmentDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/8/src/com/qylm/dao/ConversionTreatmentDao.java
+END
+ProjectOperationDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectOperationDaoImpl.java
+END
+MealBuyRecordDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MealBuyRecordDaoImpl.java
+END
+MarketingRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MarketingRecordDao.java
+END
+LargessRecordDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LargessRecordDaoImpl.java
+END
+FileExportDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FileExportDao.java
+END
+CustomLeaguerOperationDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomLeaguerOperationDaoImpl.java
+END
+FunctionDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/FunctionDao.java
+END
+AuditingSetDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/AuditingSetDetailDaoImpl.java
+END
+BrandDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/BrandDao.java
+END
+ProjectOperationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ProjectOperationDao.java
+END
+MealBuyRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/MealBuyRecordDao.java
+END
+LargessRecordDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/LargessRecordDao.java
+END
+CustomLeaguerOperationDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/CustomLeaguerOperationDao.java
+END
+TreeItemDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TreeItemDaoImpl.java
+END
+AuditingSetDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/AuditingSetDaoImpl.java
+END
+RechargeDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RechargeDaoImpl.java
+END
+AuditingSetDetailDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/AuditingSetDetailDao.java
+END
+TemporaryActivityDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/TemporaryActivityDetailDaoImpl.java
+END
+ConsumptionRegisterDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/ConsumptionRegisterDaoImpl.java
+END
+RoleDetailDaoImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/dao/RoleDetailDaoImpl.java
+END

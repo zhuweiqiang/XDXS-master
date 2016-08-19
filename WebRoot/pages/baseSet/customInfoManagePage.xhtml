@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户档案管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{customInfoManageBean.customInfoManageDto}" />
+		<t:saveState value="#{customInfoManageBean.userItems}" />
+		<t:saveState value="#{customInfoManageBean.customInfoList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{customInfoManageBean.newCustomInfo}" ajax="false" styleClass="createBtn" accesskey="c"
+				rendered="#{userBean.isCheckPermission('baseSet_customInfo', '添加')}"/>
+			<p:commandButton value="批量删除" actionListener="#{customInfoManageBean.deleteMul}" 
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"
+				rendered="#{userBean.isCheckPermission('baseSet_customInfo', '删除')}"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="name" />
+			<h:panelGrid id="manageGrid" columns="5">
+				<h:outputLabel for="name" value="客户姓名" style="margin-left: 30px;"/>
+				<p:inputText styleClass="inputText" id="name" size="20" maxlength="20"
+					value="#{customInfoManageBean.customInfoManageDto.name}" />
+				<h:outputLabel for="leaguerNumber" value="卡项号" />
+				<p:inputText styleClass="inputText" id="leaguerNumber" size="20" maxlength="20"
+					value="#{customInfoManageBean.customInfoManageDto.leaguerNumber}" />
+				<p:commandButton id="searchBtn" value="搜索" action="#{customInfoManageBean.selectCustomInfo}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{customInfoManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{customInfoManageBean.customInfoList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{customInfoManageBean.selectedModels}">
+				<f:facet name="header" >
+					客户档案信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<pe:javascript event="rowDblselect" execute="viewDialog(source, event, params, ext, 'form:viewDialog')"  />
+				<p:column headerText="卡项卡号" sortBy="#{model.leaguerNumber}" width="120">
+					<h:outputText value="#{model.leaguerNumber}" />
+				</p:column>
+				<p:column headerText="客户姓名" sortBy="#{model.name}" width="80">
+					<h:outputText value="#{model.name}" />
+				</p:column>
+				<p:column headerText="客户生日" sortBy="#{model.birthday}" width="100">
+					<h:outputText value="#{model.birthday}" >
+						<f:convertDateTime pattern="yyyy-MM-dd"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="客户电话" sortBy="#{model.mobile}" width="120">
+					<h:outputText value="#{model.mobile}" />
+				</p:column>
+				<p:column headerText="地址" sortBy="#{model.address}" >
+					<h:outputText value="#{rw:displayAddress(model.addressEntity)}" /><br/>
+					<h:outputText value="#{model.addressDetail}" />
+				</p:column>
+				<p:column headerText="创建时间" sortBy="#{model.createDate}" width="120">
+					<h:outputText value="#{model.createDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 120px;">
+					<p:commandButton value="转店" action="#{customInfoManageBean.changeCustomInfo(model)}"
+						oncomplete="PF('changeCustomInfo').show();" partialSubmit="true" process="@this"
+						update=":form:changeCustomInfo :form:messages"
+						rendered="#{userBean.isCheckPermission('baseSet_customInfo', '转店')}"/>
+					<p:commandButton value="修改" action="#{customInfoManageBean.updateCustomInfo(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('baseSet_customInfo', '修改')}"/>
+					<p:commandButton value="删除" action="#{customInfoManageBean.deleteCustomInfo(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('baseSet_customInfo', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+		<p:dialog header="选择店铺" id="changeCustomInfo"
+			widgetVar="changeCustomInfo" modal="true" width="20%" height="15%">
+			<p:panelGrid styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="belongingUserId" value="转入店铺" />
+					</p:column>
+					<p:column styleClass="column4" colspan="10">
+						<p:selectOneMenu id="belongingUserId" value="#{customInfoManageBean.customInfoManageDto.belongingUserId}">
+							<f:selectItems value="#{customInfoManageBean.userItems}" />
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="3" >
+						<p:commandButton value="保存"
+							action="#{customInfoManageBean.saveCustomInfo}"
+							update=":form:viewTable :form:messages" styleClass="modifyBtn" 
+							oncomplete="PF('changeCustomInfo').hide();" />
+					</p:column>
+				</p:row>
+				
+			</p:panelGrid>
+		</p:dialog>
+		<util:viewDialog id="viewDialog" modelId="#{customInfoManageBean.modelId}" actionMethod="#{customInfoManageBean.viewDetail(null)}"  />
+	</ui:define>
+</ui:composition>

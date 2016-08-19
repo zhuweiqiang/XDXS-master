@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>SimpleTree</title>
+<link rel="stylesheet" type="text/css" href="css/SimpleTree.css"/>
+<link rel="stylesheet" type="text/css" href="css/css.css"/>
+<script type="text/javascript" src="js/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="js/SimpleTree.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".st_tree").SimpleTree({
+		click:function(a){
+			if(!$(a).attr("hasChild"))
+				$(a).attr("ref");
+		}
+	});
+});
+function jump(a) {
+	window.parent.mainFrame.location.href=a;
+}
+</script>
+</head>
+<body>
+<div class="menuDiv">
+	<div class="st_tree">
+	<ul>
+		<li><a href="#" onclick="jump('mainFrame.html');">立盛会员消费</a></li>
+		<li><a href="#" onclick="jump('basicKnowledge/index.html');">基础知识</a></li>
+		<li><a href="#" onclick="jump('dl/index.html');">登陆</a></li>
+		<li><a href="#" onclick="jump('zjm/index.html');">主界面</a></li>
+        <li><a href="#" onclick="jump('desk/index.html');">桌面快捷图标</a></li>
+		<ul>
+			<li><a href="#" onclick="jump('desk/khda.html');">客户档案</a></li>
+			<li><a href="#" onclick="jump('desk/gk.html');">购卡</a></li>
+			<li><a href="#" onclick="jump('desk/tcgm.html');">购买套餐</a></li>
+            <li><a href="#" onclick="jump('desk/lcgm.html');">购买疗程</a></li>
+            <li><a href="#" onclick="jump('desk/gmcp.html');">购买产品</a></li>
+            <li><a href="#" onclick="jump('desk/fwxf.html');">服务消费</a></li>
+            <li><a href="#" onclick="jump('desk/khfk.html');">客户反馈</a></li>
+            <li><a href="#" onclick="jump('desk/lczh.html');">疗程转换</a></li>
+            <li><a href="#" onclick="jump('desk/czkcz.html');">充值卡充值</a></li>
+            <li><a href="#" onclick="jump('desk/tk.html');">退卡</a></li>
+            <li><a href="#" onclick="jump('desk/hk.html');">还款</a></li>
+            <li><a href="#" onclick="jump('desk/zsstj.html');">赠送身体卷</a></li>
+            <li><a href="#" onclick="jump('desk/zsxjj.html');">赠送现金卷</a></li>
+            <li><a href="#" onclick="jump('desk/zstyk.html');">赠送体验卡</a></li>
+            <li><a href="#" onclick="jump('desk/zsxm.html');">赠送疗程项目</a></li>
+		</ul>
+		<li><a href="#">基础配置</a></li>
+		<ul>
+			<li><a href="#" onclick="jump('baseSet/ppgl.html');">品牌管理</a></li>
+			<li><a href="#" onclick="jump('baseSet/xlsd.html');">系列设定</a></li>
+			<li><a href="#" onclick="jump('baseSet/cpgl.html');">产品管理</a></li>
+            <li><a href="#" onclick="jump('baseSet/fwgl.html');">服务管理</a></li>
+            <li><a href="#" onclick="jump('baseSet/tcgl.html');">套餐管理</a></li>
+            <li><a href="#" onclick="jump('baseSet/kxgl.html');">卡项管理</a></li>
+            <li><a href="#" onclick="jump('baseSet/tyk.html');">体验卡</a></li>
+            <li><a href="#" onclick="jump('baseSet/xjj.html');">现金卷</a></li>
+            <li><a href="#" onclick="jump('baseSet/stj.html');">身体卷</a></li>
+            <li><a href="#" onclick="jump('baseSet/zd.html');">客户信息</a></li>
+		</ul>
+		<li><a href="#">客户档案</a></li>
+		<ul>
+			<li><a href="#" onclick="jump('custom/khfk.html');">客户反馈记录</a></li>
+			<li><a href="#" onclick="jump('custom/grxfdj.html');">个人消费登记</a></li>
+			<li><a href="#" onclick="jump('custom/xmczjl.html');">项目操作记录</a></li>
+            <li><a href="#" onclick="jump('custom/xmzsjl.html');">赠送项目记录</a></li>
+            <li><a href="#" onclick="jump('custom/cpxsjl.html');">产品销售记录</a></li>
+            <li><a href="#" onclick="jump('custom/grczjl.html');">个人充值记录</a></li>
+            <li><a href="#" onclick="jump('custom/tcgmjl.html');">套餐购买记录</a></li>
+            <li><a href="#" onclick="jump('custom/xmgmjl.html');">项目购买记录</a></li>
+		</ul>
+		<li><a href="#">人事管理</a></li>
+		<ul>
+			<li><a href="#" onclick="jump('personnel/personnel.html');">人员信息</a></li>
+		</ul>
+		<li><a href="#">用户管理</a></li>
+		<ul show="true">
+			<li><a href="#" onclick="jump('user/yhgl.html');">用户管理</a></li>
+			<li><a href="#" onclick="jump('user/yhgl.html');">角色管理</a></li>
+		</ul>
+	</ul>
+	</div>
+</div>
+</body>
+</html>

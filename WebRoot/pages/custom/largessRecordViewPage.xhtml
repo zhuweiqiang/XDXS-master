@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="赠送项目记录详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="赠送时间" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.date}">
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="赠送项目" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="项目名：#{largessRecordViewBean.largessRecordViewDto.marketingProject.project}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="使用明细" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.remark}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="金额" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.money}" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="次数" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.number}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="顾问" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.personnelInfo1.name}" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{largessRecordViewBean.largessRecordViewDto.personnelInfo2.name}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

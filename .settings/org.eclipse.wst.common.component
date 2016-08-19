@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MyFaces">
+        <wb-resource deploy-path="/" source-path="/WebRoot"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/fw"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/text"/>
+        <property name="java-output-path" value="/MyFaces/WebRoot/WEB-INF/classes"/>
+        <property name="context-root" value="/XDXS"/>
+    </wb-module>
+</project-modules>

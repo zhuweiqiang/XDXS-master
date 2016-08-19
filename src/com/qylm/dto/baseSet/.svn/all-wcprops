@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/XDXS/!svn/ver/55/src/com/qylm/dto/baseSet
+END
+MarketingProjectCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/MarketingProjectCreateDto.java
+END
+SeriesCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/SeriesCreateDto.java
+END
+MarketingProjectViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/MarketingProjectViewDto.java
+END
+MarketingProjectManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/MarketingProjectManageDto.java
+END
+CustomInfoNurseCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/CustomInfoNurseCreateDto.java
+END
+GiveInfoCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/GiveInfoCreateDto.java
+END
+CustomInfoCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/55/src/com/qylm/dto/baseSet/CustomInfoCreateDto.java
+END
+SeriesManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/SeriesManageDto.java
+END
+TemporaryActivityCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/TemporaryActivityCreateDto.java
+END
+SeriesViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/SeriesViewDto.java
+END
+LeaguerCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/LeaguerCreateDto.java
+END
+ProductStockCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/ProductStockCreateDto.java
+END
+BrandCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/BrandCreateDto.java
+END
+CustomInfoManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/55/src/com/qylm/dto/baseSet/CustomInfoManageDto.java
+END
+GiveInfoViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/GiveInfoViewDto.java
+END
+GiveInfoManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/GiveInfoManageDto.java
+END
+CustomInfoViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/55/src/com/qylm/dto/baseSet/CustomInfoViewDto.java
+END
+TemporaryActivityViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/TemporaryActivityViewDto.java
+END
+TemporaryActivityManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/TemporaryActivityManageDto.java
+END
+LeaguerManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/LeaguerManageDto.java
+END
+LeaguerViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/LeaguerViewDto.java
+END
+ProductStockManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/ProductStockManageDto.java
+END
+BrandManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/BrandManageDto.java
+END
+ProductStockViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/ProductStockViewDto.java
+END
+BrandViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/baseSet/BrandViewDto.java
+END

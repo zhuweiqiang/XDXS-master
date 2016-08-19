@@ -1,0 +1,158 @@
+html,body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	width: 100%;
+	background: #F7F8FA;
+	SCROLLBAR-FACE-COLOR: #5c9ccc;/*滚动条突出部分的颜色*/
+	SCROLLBAR-HIGHLIGHT-COLOR: rgb(223, 239, 252);/*滚动条空白部分的颜色*/
+	SCROLLBAR-SHADOW-COLOR: rgb(223, 239, 252);/*立体滚动条阴影的颜色 */
+	SCROLLBAR-3DLIGHT-COLOR: #5c9ccc;/*滚动条亮边的颜色*/
+	/*SCROLLBAR-ARROW-COLOR: rgb(223, 239, 252);上下按钮上三角箭头的颜色*/
+	SCROLLBAR-TRACK-COLOR: rgb(223, 239, 252);/*滚动条的背景颜色*/
+	SCROLLBAR-DARKSHADOW-COLOR: #5c9ccc;/*滚动条强阴影的颜色*/
+	SCROLLBAR-BASE-COLOR: rgb(223, 239, 252);/*滚动条的基本颜色*/
+	overflow-x: hidden;font-family: '微软雅黑';
+}
+/* CSS Document */
+body {
+	margin: 0px;
+	background-color: #FFFFFF;
+	font-family: 微软雅黑, 宋体, Arial, Verdana;
+	font-size: 12px;
+	color: #075587;
+	SCROLLBAR-FACE-COLOR: #5c9ccc;/*滚动条突出部分的颜色*/
+	SCROLLBAR-HIGHLIGHT-COLOR: rgb(223, 239, 252);/*滚动条空白部分的颜色*/
+	SCROLLBAR-SHADOW-COLOR: rgb(223, 239, 252);/*立体滚动条阴影的颜色 */
+	SCROLLBAR-3DLIGHT-COLOR: #5c9ccc;/*滚动条亮边的颜色*/
+	/*SCROLLBAR-ARROW-COLOR: rgb(223, 239, 252);上下按钮上三角箭头的颜色*/
+	SCROLLBAR-TRACK-COLOR: rgb(223, 239, 252);/*滚动条的背景颜色*/
+	SCROLLBAR-DARKSHADOW-COLOR: #5c9ccc;/*滚动条强阴影的颜色*/
+	SCROLLBAR-BASE-COLOR: rgb(223, 239, 252);/*滚动条的基本颜色*/
+	overflow-x: hidden;
+	display: block;
+}
+a img {
+	padding: 0;
+	border: none;
+}
+.treeview UL {
+	!important;
+	background-color: inherit;
+}
+
+.pe-layout-pane-content {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	overflow:hidden;
+}
+
+#date .ui-widget-header {
+	background-image:url("");
+	background-color:transparent;
+	border-top-color:transparent;
+	border-right-color:transparent;
+	border-bottom-color:transparent;
+	border-left-color:transparent;
+}
+
+/************************************超链接显示*****************************************/
+a {
+	font-family: 微软雅黑,Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #666666;
+	list-style-type: none;
+	list-style-image: none;
+	text-decoration: none;
+}
+a:link {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+a:hover {
+	font-size: 12px;
+	color: #666666;
+	text-decoration: none;
+}
+a:visited {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+
+/************************************菜单*****************************************/
+TD {
+	COLOR: #000000;
+	LINE-HEIGHT: 20pt;
+	font-family: "微软雅黑";
+}
+UL {
+	PADDING-LEFT: 12px;
+	MARGIN: 0px;
+	LIST-STYLE-TYPE: none;
+	TEXT-ALIGN: left;
+}
+
+.ulclass {
+	PADDING-LEFT: 20px;
+	FONT-SIZE: 12px;
+	TEXT-ALIGN: left;
+}
+
+.treeclass {
+	FONT-SIZE: 13px;
+	TEXT-INDENT: 10px;
+	TEXT-ALIGN: left;
+	PADDING-LEFT: 0px;
+	padding-bottom:4px;
+}
+
+.liStyleClass {
+	DISPLAY: block;
+	COLOR: #000000;
+	TEXT-ALIGN: left;
+}
+
+.actionStyelClass {
+	PADDING-LEFT: 15px;
+	BACKGROUND-IMAGE: url("#{resource['images/back:menu-7.gif']}");
+	PADDING-BOTTOM: 6px;
+	COLOR: #000000;
+	BACKGROUND-REPEAT: no-repeat;
+	HEIGHT:25px;
+	TEXT-DECORATION: none;
+	TEXT-ALIGN: left;
+}
+
+.actionStyelClass:hover {
+	PADDING-LEFT: 15px;
+	PADDING-BOTTOM: 6px;
+	COLOR: #0a5c8e;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left;
+}
+
+.labelStyleClass {
+	PADDING-LEFT: 16px;
+	BACKGROUND-IMAGE: url("#{resource['images/back:menu-2.gif']}");
+	PADDING-BOTTOM: 3px;
+	COLOR: #000000;
+	PADDING-TOP: 1px;
+	BACKGROUND-REPEAT: no-repeat;
+	HEIGHT: 25px;
+	TEXT-DECORATION: none;
+	TEXT-ALIGN: left;
+}
+
+.labelStyleClass:hover {
+	PADDING-LEFT: 16px;
+	PADDING-BOTTOM: 3px;
+	COLOR: #0a5c8e;
+	PADDING-TOP: 1px;
+	HEIGHT: 25px;
+	TEXT-ALIGN: left;
+}

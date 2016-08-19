@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot
+END
+DepotInfoCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/DepotInfoCreateDto.java
+END
+ProductDepotAllotCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/ProductDepotAllotCreateDto.java
+END
+DepotInfoManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/DepotInfoManageDto.java
+END
+ProductDepotAllotManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/ProductDepotAllotManageDto.java
+END
+DepotInfoViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/DepotInfoViewDto.java
+END
+ProductDepotAllotViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/depot/ProductDepotAllotViewDto.java
+END

@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="产品销售信息详细" />
+	<ui:define name="tableCenter" >
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{marketingRecordViewBean.marketingRecordViewDto.customInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{marketingRecordViewBean.marketingRecordViewDto.personnelInfo.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="销售日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{marketingRecordViewBean.marketingRecordViewDto.date}" >
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="购买费用" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{marketingRecordViewBean.marketingRecordViewDto.money} ￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:dataTable emptyMessage="暂无数据" var="model" 
+							value="#{marketingRecordViewBean.marketingRecordViewDto.marketingRecordDetailList}"
+							widgetVar="viewTable" id="viewTable">
+							<f:facet name="header" >
+								产品或者疗程明细列表
+							</f:facet>
+							<p:column headerText="仓库" width="220">
+								#{model.depotInfo.name}
+							</p:column>
+							<p:column headerText="产品或疗程明细">
+								<h:outputText value="#{model.productStock.name}" />
+								<h:outputText style="margin-left: 30px;" value="售价：#{model.productStock.money} ￥" />
+							</p:column>
+							<p:column headerText="数量" width="120">
+								#{model.number}
+							</p:column>
+							<p:column headerText="价格" width="120">
+								#{model.money}￥
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

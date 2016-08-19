@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator
+END
+PhoneValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/PhoneValidator.java
+END
+AlphabetOrNumberValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/AlphabetOrNumberValidator.java
+END
+UnSelectValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/UnSelectValidator.java
+END
+FileUploadValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/FileUploadValidator.java
+END
+IdCardValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/IdCardValidator.java
+END
+DecimalNumberValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/DecimalNumberValidator.java
+END
+EmailValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/EmailValidator.java
+END
+ImageUploadValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/ImageUploadValidator.java
+END
+NumberValidator.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/faces/validator/NumberValidator.java
+END

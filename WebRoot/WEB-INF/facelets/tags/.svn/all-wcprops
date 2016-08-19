@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/XDXS/!svn/ver/16/WebRoot/WEB-INF/facelets/tags
+END
+progress.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/progress.xhtml
+END
+address.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/address.xhtml
+END
+paging.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/16/WebRoot/WEB-INF/facelets/tags/paging.xhtml
+END
+oneAddress.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/oneAddress.xhtml
+END
+dynamicDisplay.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/dynamicDisplay.xhtml
+END
+uploadError.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/uploadError.xhtml
+END
+showFile.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/tags/showFile.xhtml
+END

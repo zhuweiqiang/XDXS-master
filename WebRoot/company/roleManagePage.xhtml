@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	xmlns:util="http://java.sun.com/jsf/composite/component/util"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="角色管理" />
+	<ui:define name="tableCenter">
+		<t:saveState value="#{roleManageBean.roleManageDto}" />
+		<t:saveState value="#{roleManageBean.roleList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="添加" action="#{roleManageBean.newRole}" ajax="false" styleClass="createBtn" accesskey="c"
+				rendered="#{userBean.isCheckPermission('company_role', '添加')}"/>
+			<p:commandButton value="批量删除" actionListener="#{roleManageBean.deleteMul}" 
+				rendered="#{userBean.isCheckPermission('company_role', '删除')}"
+				update="viewTable :form:messages" onstart="return deleteConfirm();" styleClass="multipleDelBtn" accesskey="d"/>
+		</div>
+		<div class="searchRequirementNorth">
+			<p:focus for="roleName" />
+			<h:panelGrid id="manageGrid" columns="3">
+				<h:outputLabel for="roleName" value="角色姓名" />
+				<p:inputText styleClass="inputText" id="roleName" size="20" maxlength="20"
+					value="#{roleManageBean.roleManageDto.roleName}" />
+				<p:commandButton id="searchBtn" value="搜索" action="#{roleManageBean.selectRole}" process=":form:manageGrid" 
+					ajax="false" styleClass="searchBtn" accesskey="s" />
+			</h:panelGrid>
+		</div>
+		<rw:paging pageBean="#{roleManageBean}" />
+		<div class="tableCenter">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{roleManageBean.roleList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true"
+				sortBy="createDate" sortOrder="descending" id="viewTable"
+				selection="#{roleManageBean.selectedModels}">
+				<f:facet name="header" >
+					角色信息列表
+				</f:facet>
+				<p:column selectionMode="multiple" exportable="false" style="width:32px" />
+				<p:column headerText="角色名称" sortBy="#{model.roleName}" style="width: 200px;">
+					<h:outputText value="#{model.roleName}" />
+				</p:column>
+				<p:column headerText="角色描述" sortBy="#{model.description}">
+					<h:outputText value="#{model.description}" />
+				</p:column>
+				<!--  
+				<p:column headerText="角色" sortBy="#{model.roles}">
+					<h:outputText value="#{model.roles}" />
+				</p:column>
+				-->
+				<p:column headerText="创建时间" sortBy="#{model.createDate}" style="width: 140px;">
+					<h:outputText value="#{model.createDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="修改" action="#{roleManageBean.updateRole(model)}"
+						ajax="false" styleClass="modifyBtn"
+						rendered="#{userBean.isCheckPermission('company_role', '修改')}"/>
+					<p:commandButton value="删除" action="#{roleManageBean.deleteRole(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"
+						rendered="#{userBean.isCheckPermission('company_role', '删除')}"/>
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

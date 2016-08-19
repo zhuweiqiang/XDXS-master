@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="会员充值记录信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{rechargeCreateBean.rechargeCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{rechargeCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="保存" action="#{rechargeCreateBean.saveRecharge}" ajax="false" styleClass="saveBtn" 
+				disabled="#{rechargeCreateBean.rechargeCreateDto.state}"/>
+			<p:commandButton value="确认充值" action="#{rechargeCreateBean.querRecharge}" update="@form" styleClass="saveBtn" 
+				disabled="#{rechargeCreateBean.rechargeCreateDto.state}"
+				onstart="return rechargeConfirm();"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{rechargeCreateBean.rechargeCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="rechargeDate" value="充值时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="rechargeDate" size="16" maxlength="16"
+							locale="tr" value="#{rechargeCreateBean.rechargeCreateDto.rechargeDate}"
+							pattern="yyyy-MM-dd HH:mm"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="充值金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="9" size="12" symbol="￥ "
+							value="#{rechargeCreateBean.rechargeCreateDto.money}" 
+							minValue="0.00" emptyValue="0" decimalPlaces="2">
+						</pe:inputNumber>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="充值人" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rechargeCreateBean.rechargeCreateDto.creater.userName}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

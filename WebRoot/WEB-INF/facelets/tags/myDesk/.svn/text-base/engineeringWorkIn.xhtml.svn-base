@@ -1,0 +1,39 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:dataTable emptyMessage="暂无数据" var="model" value="#{myDeskBean.myDeskDto.engineeringWorkInList}" rowIndexVar="rowIndex"
+		widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true">
+		<f:facet name="header" >
+			<div style="width: 100%; height: 20px;">
+				<h:outputText value="最新（前十条）车辆工作中的工程项目" style="float: left;" />
+				<h:commandLink action="#{myDeskBean.selectEngineering('3')}" value="更多" immediate="true" style="float: right;"/>
+			</div>
+		</f:facet>
+		<p:column headerText="客户" sortBy="#{model.customer.name}">
+			<h:outputText value="#{model.customer.name}" />
+		</p:column>
+		<p:column headerText="项目期限" width="140px;">
+			开始日期：
+			<h:outputText value="#{model.beginDate}">
+				<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai"/>
+			</h:outputText>
+			<br/>
+			结束日期：
+			<h:outputText value="#{model.endDate}">
+				<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+			</h:outputText>
+		</p:column>
+		<p:column headerText="项目状态" sortBy="#{model.type}" width="80px;">
+			<h:outputText value="#{rw:label(genericCodeBean.c0501,model.type)}" style="color:#{model.typeColor};"/>
+		</p:column>
+		<p:column headerText="基本操作" exportable="false" style="width: 90px;">
+			<p:commandButton value="车辆工作情况" action="#{engineeringProjectManageBean.updateEngineeringProject(model)}"
+				ajax="false" styleClass="modifyBtn"/>
+		</p:column>
+	</p:dataTable>
+</div>

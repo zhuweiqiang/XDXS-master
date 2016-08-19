@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE facelet-taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN" "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
+<facelet-taglib xmlns="http://java.sun.com/JSF/Facelet">
+    <namespace>http://www.qylm.com</namespace>
+    <!-- 共通翻页 -->
+	<tag>
+		<tag-name>paging</tag-name>
+		<source>tags/paging.xhtml</source>
+	</tag>
+	<!-- 手机页面共通翻页 -->
+	<tag>
+		<tag-name>mobilePaging</tag-name>
+		<source>tags/mobile/mobilePaging.xhtml</source>
+	</tag>
+	<!-- 共通进度条 -->
+	<tag>
+		<tag-name>progress</tag-name>
+		<source>tags/progress.xhtml</source>
+	</tag>
+	<!-- 共通地点查询 -->
+	<tag>
+		<tag-name>address</tag-name>
+		<source>tags/address.xhtml</source>
+	</tag>
+	<!-- 共通地点查询1 -->
+	<tag>
+		<tag-name>oneAddress</tag-name>
+		<source>tags/oneAddress.xhtml</source>
+	</tag>
+	<!-- 共通文件上传出错处理 -->
+	<tag>
+		<tag-name>uploadError</tag-name>
+		<source>tags/uploadError.xhtml</source>
+	</tag>
+	<!-- 地点显示函数 -->
+	<function>
+		<function-name>displayAddress</function-name>
+		<function-class>com.qylm.common.AddressFinder</function-class>
+		<function-signature>java.lang.String displayAddress(com.qylm.entity.AddressEntity)</function-signature>
+	</function>
+	<!-- 菜单 -->
+	<tag>
+		<tag-name>tree</tag-name>
+		<component>
+			<component-type>TreeComponent</component-type>
+			<renderer-type>TreeRenderer</renderer-type>
+			<handler-class>com.qylm.menu.TreeComponentHandler</handler-class>
+		</component>
+	</tag>
+	<!-- 保存 -->
+	<tag>
+		<tag-name>saveState</tag-name>
+		<component>
+			<component-type>com.qylm.faces.component.SaveState</component-type>
+		</component>
+	</tag>
+	<!-- 根据下拉框获取label -->
+	<function>
+		<function-name>label</function-name>
+		<function-class>com.qylm.common.Functions</function-class>
+		<function-signature>java.lang.String label(javax.faces.model.SelectItem[],java.lang.String)</function-signature>
+	</function>
+	<!-- 获取地址label -->
+	<function>
+		<function-name>displayAddress</function-name>
+		<function-class>com.qylm.common.AddressFinder</function-class>
+		<function-signature>java.lang.String displayAddress(com.qylm.entity.AddressEntity)</function-signature>
+	</function>
+</facelet-taglib>

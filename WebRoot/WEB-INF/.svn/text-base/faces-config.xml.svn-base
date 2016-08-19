@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+	version="2.0">
+	
+	<application>
+		<locale-config>
+			<default-locale>zh_CN</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+		<el-resolver>
+			org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+		<action-listener>
+			com.qylm.common.BaseActionListenerImpl
+		</action-listener>
+		<navigation-handler>
+			com.qylm.common.BaseNavigationHandlerImpl
+		</navigation-handler>
+	</application>
+	
+	<component>
+		<description>tree</description>
+		<display-name>tree</display-name>
+		<component-type>TreeComponent</component-type>
+		<component-class>com.qylm.menu.TreeComponent</component-class>
+	</component>
+	<component>
+		<component-type>com.qylm.faces.component.SaveState</component-type>
+		<component-class>com.qylm.faces.component.savestate.SaveState</component-class>
+	</component>
+	<render-kit>
+		<renderer>
+			<component-family>javax.faces.Output</component-family>
+			<renderer-type>TreeRenderer</renderer-type>
+			<renderer-class>com.qylm.menu.TreeRenderer</renderer-class>
+		</renderer>
+	</render-kit>
+</faces-config>

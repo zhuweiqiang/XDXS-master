@@ -1,0 +1,169 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="个人消费登记信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{consumptionRegisterCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="保存" action="#{consumptionRegisterCreateBean.saveConsumptionRegister}" 
+				disabled="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.state}" ajax="false" styleClass="saveBtn" />
+			<p:commandButton value="确认生效" action="#{consumptionRegisterCreateBean.queryConsumptionRegister}" 
+				disabled="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.state}" ajax="false" styleClass="saveBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{consumptionRegisterCreateBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="已付款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.money}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="realityMoney" value="实耗金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="realityMoney" maxlength="10" size="12" value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.realityMoney}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+						<h:outputText value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.sumMoney}" style="margin-left: 30px;"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款"/>
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.debt} ￥"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择付款/实耗项目" action="#{consumptionRegisterCreateBean.findMarketingProject}"
+							 update=":form:marketingProject" oncomplete="PF('marketingProject').show();" styleClass="singleDelBtn"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.consumptionRegisterDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					付款项目/实耗项目信息列表
+				</f:facet>
+				<p:column headerText="付款详细/实耗项目">
+					<h:outputText value="【#{model.name}-价值：#{model.money} ￥】" />
+					<br />
+				</p:column>
+				<p:column headerText="数量" width="100px;">
+					<h:outputText value="#{model.number}" />
+				</p:column>
+				<p:column headerText="消耗次数" width="100px;">
+					<h:outputText value="#{model.consumptionNumber}" />
+				</p:column>
+				<p:column headerText="费用" width="100px;">
+					<h:outputText value="#{model.sumMoney}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{consumptionRegisterCreateBean.deleteConsumptionRegister(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						disabled="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.state}"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+			<p:dialog id="marketingProject" header="已推荐的项目" width="600" height="500"
+				widgetVar="marketingProject" modal="true" position="center">
+				<div>
+					<p:commandButton value="确认选择并关闭" styleClass="saveBtn"
+						action="#{consumptionRegisterCreateBean.queryCloce}"
+						update="@form" oncomplete="PF('marketingProject').hide();"/>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" id="consumptionRegisterProjectDto"
+					value="#{consumptionRegisterCreateBean.consumptionRegisterCreateDto.consumptionRegisterProjectDtoList}">
+					<f:facet name="header" >
+						项目信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{consumptionRegisterCreateBean.findMarketingProjects(model)}"
+							update="consumptionRegisterProjectDto"/>
+					</p:column>
+					<p:column headerText="项目类型" width="100">
+						<h:outputText value="#{model.typeLabel}" />
+					</p:column>
+					<p:column headerText="项目名称">
+						<h:outputText value="#{model.marketingProject.project}" />
+					</p:column>
+					<p:column headerText="项目金额/剩余次数" width="220">
+						<ui:fragment rendered="#{model.number == null}">
+							<h:outputText value="项目金额：#{model.marketingProject.money}" />
+						</ui:fragment>
+						<ui:fragment rendered="#{model.number != null}">
+							<h:outputText value="剩余次数：#{model.number}" />
+						</ui:fragment>
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

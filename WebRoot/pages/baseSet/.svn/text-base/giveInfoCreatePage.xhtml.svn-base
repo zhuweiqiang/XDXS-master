@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="#{giveInfoCreateBean.giveInfoCreateDto.name}登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{giveInfoCreateBean.giveInfoCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{giveInfoCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{giveInfoCreateBean.newGiveInfo}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_giveInfo', '添加')}"/>
+			<p:commandButton value="保存" action="#{giveInfoCreateBean.saveGiveInfo}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_giveInfo', '添加') or userBean.isCheckPermission('baseSet_giveInfo', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="title" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="title" value="标题" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="title" size="20" maxlength="20"
+							value="#{giveInfoCreateBean.giveInfoCreateDto.title}" label="标题必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="价格" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{giveInfoCreateBean.giveInfoCreateDto.money}" 
+							minValue="0.00" emptyValue="0" decimalPlaces="2" symbol="￥ "/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="rebate" value="消费折扣" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="rebate" maxlength="10" size="12" value="#{giveInfoCreateBean.giveInfoCreateDto.rebate}" 
+							minValue="0.00" emptyValue="0" decimalPlaces="2" />
+						<h:outputText value="例：7.5折，就输入7.5" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:tabView styleClass="tabView" rendered="#{giveInfoCreateBean.giveInfoCreateDto.type == 1}">
+				<p:tab title="设定消费项目">
+					<div>
+						<p:commandButton value="增加一行消费项目" action="#{giveInfoCreateBean.addMarketingProject}"  
+							ajax="false" styleClass="saveBtn" />
+					</div>
+					<p:dataTable emptyMessage="暂无数据" var="model" 
+						value="#{giveInfoCreateBean.giveInfoCreateDto.giveInfoDetailList}"
+						widgetVar="viewTable" id="viewTable">
+						<f:facet name="header" >
+							赠送项目列表
+						</f:facet>
+						<p:column headerText="赠送项目名称">
+							<p:autoComplete value="#{model.marketingProject}"
+								completeMethod="#{selectBean.selectMarketingProject}" size="20" maxlength="20"
+								var="marketingProject" itemLabel="#{marketingProject.project}" dropdown="true" label="营业项目必须选择" required="true"
+								itemValue="#{marketingProject}" converter="marketingProjectConverter" forceSelection="true">
+								<p:column width="120">
+									<h:outputText value="#{marketingProject.project}" />
+								</p:column>
+								<p:column width="120">
+									<h:outputText value="单价：#{marketingProject.money}" />
+								</p:column>
+							</p:autoComplete>
+						</p:column>
+						<p:column headerText="次数" width="120">
+							<p:inputText value="#{model.number}" size="10" maxlength="10" label="次数必须输入" required="true">
+								<f:validator validatorId="numberValidator" />
+							</p:inputText>
+						</p:column>
+						<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+							<p:commandButton value="删除" action="#{giveInfoCreateBean.deleteGiveInfoDetail(model)}"
+								partialSubmit="true" process="@this"  update="viewTable :form:messages"
+								onstart="return deleteConfirm();" styleClass="singleDelBtn"
+								rendered="#{userBean.isCheckPermission('baseSet_giveInfo', '删除')}"/>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+			</p:tabView>
+		</div>
+	</ui:define>
+</ui:composition>

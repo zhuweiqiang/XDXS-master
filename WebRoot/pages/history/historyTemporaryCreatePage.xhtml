@@ -1,0 +1,177 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="套餐购买记录信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{historyTemporaryCreateBean.historyTemporaryCreateDto}" />
+		<t:saveState value="#{historyTemporaryCreateBean.temporaryActivityList}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{historyTemporaryCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{historyTemporaryCreateBean.newMealBuyRecord}" immediate="true" ajax="false" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('history_temporaryActivity', '添加')}"/>
+			<p:commandButton value="保存" action="#{historyTemporaryCreateBean.saveMealBuyRecord}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('history_temporaryActivity', '添加') or userBean.isCheckPermission('history_temporaryActivity', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="customInfo" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{historyTemporaryCreateBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="购买时间" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="16" maxlength="16" label="购买时间必须输入" required="true"
+							locale="tr" value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.date}"
+							pattern="yyyy-MM-dd HH:mm"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" 
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择活动套餐" action="#{historyTemporaryCreateBean.findTemporaryActivity}"  
+							oncomplete="PF('temporaryActivity').show();" update="@form" styleClass="saveBtn" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<table border="1" cellpadding="1" cellspacing="2"
+							style="border:1px solid #000000; text-align:left; width:100%; height: 100%">
+							<tr>
+								<td colspan="4">购买的活动套餐</td>
+							</tr>
+							<tr>
+								<td class="column1">活动名称</td>
+								<td class="column2" align="left">
+									<h:outputText value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.temporaryActivity.name}" />
+								</td>
+								<td class="column1">套餐价格</td>
+								<td align="left" class="column4">
+									<h:outputText value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.temporaryActivity.money}" />
+								</td>
+							</tr>
+							<tr>
+								<td class="column1">活动介绍</td>
+								<td colspan="3" align="left"><h:outputText value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.temporaryActivity.remark}" /></td>
+							</tr>
+							<tr>
+								<td colspan="4" align="left">
+									<table border="1" cellpadding="1" cellspacing="2"
+										style="border:1px solid #000000; text-align:left; width:560px; height: 100%">
+										<tr>
+											<td class="column1" width="200px;">项目名称</td>
+											<td class="column1" width="120px;">次数</td>
+											<td class="column1" width="120px;">剩余次数</td>
+											<td class="column1" width="120px;">活动价值</td>
+										</tr>
+										<ui:repeat var="detail" value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.mealBuyRecordDetailList}">
+											<tr>
+												<td><h:outputText value="#{detail.marketingProject.project}" /></td>
+												<td><h:outputText value="#{detail.number}" /></td>
+												<td>
+													<p:inputText value="#{detail.surplusNumber}" size="10" maxlength="10" label="剩余次数必须输入" required="true">
+														<f:validator validatorId="numberValidator" />
+													</p:inputText>
+												</td>
+												<td><h:outputText value="#{detail.money} ￥" /></td>
+											</tr>
+										</ui:repeat>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dialog id="temporaryActivity" header="选择活动套餐"
+				widgetVar="temporaryActivity" modal="true" width="800"
+				position="center">
+				<div class="searchRequirementNorth">
+					<p:focus for="temporaryActivityName" />
+					<h:panelGrid columns="3">
+						<h:outputLabel for="temporaryActivityName" value="活动套餐名" />
+						<p:inputText styleClass="inputText" id="temporaryActivityName" size="10" maxlength="20"
+							value="#{historyTemporaryCreateBean.historyTemporaryCreateDto.temporaryActivityName}" />
+						<p:commandButton id="searchBtn" value="搜索" action="#{historyTemporaryCreateBean.select}"
+							update=":form:viewTable"
+							styleClass="searchBtn" accesskey="s" />
+					</h:panelGrid>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" 
+					value="#{historyTemporaryCreateBean.temporaryActivityList}" id="viewTable">
+					<f:facet name="header" >
+						活动套餐信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" action="#{historyTemporaryCreateBean.selectTemporaryActivity(model)}"
+							styleClass="modifyBtn" partialSubmit="true" process="@this" 
+							update="@form" oncomplete="PF('temporaryActivity').hide();"/>
+					</p:column>
+					<p:column headerText="活动名称" sortBy="#{model.name}" width="120">
+						<h:outputText value="#{model.name}" />
+					</p:column>
+					<p:column headerText="套餐价格" sortBy="#{model.money}" width="120">
+						<h:outputText value="#{model.money}" />
+					</p:column>
+					<p:column headerText="活动介绍" sortBy="#{model.remark}">
+						<h:outputText value="#{model.remark}" />
+					</p:column>
+					<p:column headerText="创建时间" sortBy="#{model.createDate}" width="120">
+						<h:outputText value="#{model.createDate}" >
+							<f:convertDateTime pattern="yyyy-MM-dd HH:mm" timeZone="Asia/Shanghai"/>
+						</h:outputText>
+					</p:column>
+					<p:column headerText="有效情况" sortBy="#{model.state}" width="120">
+						<h:outputText value="#{model.state ? '有效' : '无效'}" />
+					</p:column>
+				</p:dataTable>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,86 @@
+10
+
+dir
+55
+http://www.zjlskj.com:8089/svn/XDXS/src/com/qylm/bean/returner
+http://www.zjlskj.com:8089/svn/XDXS
+
+
+
+2016-01-20T03:39:35.477765Z
+55
+wk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+92b3ab56-7a83-9e40-99c9-a24edbb7143e
+
+MyDeskReturner.java
+file
+
+
+
+
+2015-12-16T08:31:09.815573Z
+4e4e2494cf457c1c7c07ceba340f180c
+2015-11-10T03:41:20.960126Z
+1
+smj
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+501
+
+auditing
+dir
+
+baseSet
+dir
+
+company
+dir
+
+custom
+dir
+
+depot
+dir
+
+history
+dir
+
+personnel
+dir
+
+prepareGoods
+dir
+

@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/XDXS/!svn/ver/47/src/com/qylm/dto/custom
+END
+MealBuyRecordViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/MealBuyRecordViewDto.java
+END
+MarketingRecordManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/MarketingRecordManageDto.java
+END
+LargessRecordViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/LargessRecordViewDto.java
+END
+ConversionTreatmentCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/11/src/com/qylm/dto/custom/ConversionTreatmentCreateDto.java
+END
+ProjectBuyManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ProjectBuyManageDto.java
+END
+ProjectOperationManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/ProjectOperationManageDto.java
+END
+MarketingRecordCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/10/src/com/qylm/dto/custom/MarketingRecordCreateDto.java
+END
+MealBuyRecordManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/MealBuyRecordManageDto.java
+END
+LargessRecordManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/LargessRecordManageDto.java
+END
+ProjectBuyDetailSelectDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/16/src/com/qylm/dto/custom/ProjectBuyDetailSelectDto.java
+END
+ProjectBuyCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/2/src/com/qylm/dto/custom/ProjectBuyCreateDto.java
+END
+ConsumptionRegisterProjectDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ConsumptionRegisterProjectDto.java
+END
+RechargeViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/RechargeViewDto.java
+END
+ProjectOperationCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ProjectOperationCreateDto.java
+END
+ConsumptionRegisterViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/ConsumptionRegisterViewDto.java
+END
+FeedbackRecordViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/FeedbackRecordViewDto.java
+END
+MealBuyRecordCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/2/src/com/qylm/dto/custom/MealBuyRecordCreateDto.java
+END
+LargessRecordCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/LargessRecordCreateDto.java
+END
+RechargeManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/RechargeManageDto.java
+END
+FeedbackRecordManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/FeedbackRecordManageDto.java
+END
+ConsumptionRegisterManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/ConsumptionRegisterManageDto.java
+END
+MealBuyRecordSelectDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/15/src/com/qylm/dto/custom/MealBuyRecordSelectDto.java
+END
+ConversionTreatmentViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ConversionTreatmentViewDto.java
+END
+RechargeCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/RechargeCreateDto.java
+END
+FeedbackRecordCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/FeedbackRecordCreateDto.java
+END
+ConsumptionRegisterCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/ConsumptionRegisterCreateDto.java
+END
+MarketingRecordViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/custom/MarketingRecordViewDto.java
+END
+CustomLeaguerDetailManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/15/src/com/qylm/dto/custom/CustomLeaguerDetailManageDto.java
+END
+ProjectBuyViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ProjectBuyViewDto.java
+END
+ProjectOperationViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ProjectOperationViewDto.java
+END
+ConversionTreatmentManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/XDXS/!svn/ver/8/src/com/qylm/dto/custom/ConversionTreatmentManageDto.java
+END

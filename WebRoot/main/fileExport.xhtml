@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="文件上传"/>
+	<ui:param name="enctype" value="multipart/form-data"/>
+	<ui:define name="tableCenter">
+		<t:saveState value="#{fileExportBean.fileExportDto}"/>
+		<div class="buttonNorth">
+			<p:commandButton value="返回" styleClass="backBtn"  action="#{fileExportBean.back}"  immediate="true"  ajax="false"/>
+			<p:commandButton value="保存" styleClass="saveBtn" ajax="false" action="#{fileExportBean.handleFileExport}"/> 
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid style="width:100%;" id="subPanel">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="file" value="上传文件"/>
+					</p:column>
+					<p:column styleClass="column4">
+						<p:fileUpload value="#{fileExportBean.uploadedFile}" mode="simple" id="file" required="true" requiredMessage="文件不能为空" validator="#{fileExportBean.validateFile}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" value="#{fileExportBean.fileExportDto.fileExportList}" var="fileExport" id="fileExport" >
+				<f:facet name="header" >
+					文件信息
+				</f:facet>
+				<p:column headerText="文件"  styleClass="columnClass" style="width: 200px;">
+					<h:outputText value="#{fileExport.originalName}"/>
+				</p:column>
+				<p:column headerText="上传日期"  styleClass="columnClass" >
+					<h:outputText value="#{fileExport.createDate}" >
+						<f:convertDateTime pattern="yyyy-MM-dd HH:mm"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="基本操作" styleClass="columnClass" style="width: 140px;">
+					<p:commandLink value="删除文件" action="#{fileExportBean.deleteFileExport(fileExport)}" process="@this" update="fileExport @(.ui-growl)" immediate="true"/>
+				</p:column>
+			</p:dataTable>
+			<p:dataTable emptyMessage="暂无数据" value="#{fileExportBean.errorList}" rendered="#{fileExportBean.errorList ne null}" var="errorInfo" id="errorInfo">
+				<p:column headerText="错误信息" styleClass="columnClass">
+					<span class="red">#{errorInfo}</span>
+				</p:column>
+			</p:dataTable>
+		</div>
+	</ui:define>
+</ui:composition>

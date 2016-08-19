@@ -1,0 +1,605 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/XDXS/!svn/ver/10/src/com/qylm/service
+END
+TreeItemService.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TreeItemService.java
+END
+ConversionTreatmentDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/XDXS/!svn/ver/8/src/com/qylm/service/ConversionTreatmentDetailServiceImpl.java
+END
+RechargeService.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RechargeService.java
+END
+AuditingSetService.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/AuditingSetService.java
+END
+TemporaryActivityDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TemporaryActivityDetailService.java
+END
+ConsumptionDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ConsumptionDetailServiceImpl.java
+END
+ConsumptionRegisterService.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/10/src/com/qylm/service/ConsumptionRegisterService.java
+END
+RoleDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RoleDetailService.java
+END
+GiveInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GiveInfoServiceImpl.java
+END
+GiveInfoDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GiveInfoDetailService.java
+END
+LeaguerDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LeaguerDetailServiceImpl.java
+END
+ShopAppleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAppleService.java
+END
+ProjectBuyDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectBuyDetailServiceImpl.java
+END
+ProjectOperationDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectOperationDetailServiceImpl.java
+END
+ConversionTreatmentDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/8/src/com/qylm/service/ConversionTreatmentDetailService.java
+END
+UserServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserServiceImpl.java
+END
+ConsumptionDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ConsumptionDetailService.java
+END
+MealBuyRecordDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MealBuyRecordDetailServiceImpl.java
+END
+FileControlServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FileControlServiceImpl.java
+END
+LeaguerServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LeaguerServiceImpl.java
+END
+GiveInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GiveInfoService.java
+END
+LeaguerDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LeaguerDetailService.java
+END
+ProjectBuyServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/2/src/com/qylm/service/ProjectBuyServiceImpl.java
+END
+DepotInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/DepotInfoServiceImpl.java
+END
+ProjectBuyDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectBuyDetailService.java
+END
+ProjectOperationDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectOperationDetailService.java
+END
+SeriesServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/SeriesServiceImpl.java
+END
+UserService.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserService.java
+END
+MealBuyRecordDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MealBuyRecordDetailService.java
+END
+FileControlService.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FileControlService.java
+END
+ShopAuditingServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAuditingServiceImpl.java
+END
+UserRoleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserRoleServiceImpl.java
+END
+LeaguerService.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LeaguerService.java
+END
+ProjectBuyService.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/2/src/com/qylm/service/ProjectBuyService.java
+END
+DepotInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/DepotInfoService.java
+END
+ConsumptionRegisterDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ConsumptionRegisterDetailServiceImpl.java
+END
+ProductStockDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductStockDetailServiceImpl.java
+END
+SeriesService.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/SeriesService.java
+END
+UserDepotServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserDepotServiceImpl.java
+END
+ShopAuditingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAuditingService.java
+END
+UserRoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserRoleService.java
+END
+ShopAppleDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAppleDetailServiceImpl.java
+END
+PersonnelInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/PersonnelInfoServiceImpl.java
+END
+FeedbackRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FeedbackRecordServiceImpl.java
+END
+ConsumptionRegisterDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ConsumptionRegisterDetailService.java
+END
+ProductStockServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductStockServiceImpl.java
+END
+ProductStockDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductStockDetailService.java
+END
+CustomInfoServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomInfoServiceImpl.java
+END
+UserDepotService.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/UserDepotService.java
+END
+ShopAppleDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAppleDetailService.java
+END
+TemporaryActivityServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TemporaryActivityServiceImpl.java
+END
+PersonnelInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/PersonnelInfoService.java
+END
+RoleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RoleServiceImpl.java
+END
+FeedbackRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FeedbackRecordService.java
+END
+EntityClassServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/EntityClassServiceImpl.java
+END
+CustomLeaguerDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomLeaguerDetailServiceImpl.java
+END
+ProductStockService.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductStockService.java
+END
+RepaymentRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RepaymentRecordServiceImpl.java
+END
+MarketingRecordDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MarketingRecordDetailServiceImpl.java
+END
+CustomInfoService.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomInfoService.java
+END
+MarketingProjectServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MarketingProjectServiceImpl.java
+END
+ProductDepotAllotServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductDepotAllotServiceImpl.java
+END
+ConversionTreatmentServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/XDXS/!svn/ver/8/src/com/qylm/service/ConversionTreatmentServiceImpl.java
+END
+GenericFileServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GenericFileServiceImpl.java
+END
+TemporaryActivityService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TemporaryActivityService.java
+END
+RoleService.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RoleService.java
+END
+MarketingRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/10/src/com/qylm/service/MarketingRecordServiceImpl.java
+END
+CustomLeaguerDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomLeaguerDetailService.java
+END
+EntityClassService.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/EntityClassService.java
+END
+MarketingRecordDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MarketingRecordDetailService.java
+END
+FileExportServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FileExportServiceImpl.java
+END
+RepaymentRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RepaymentRecordService.java
+END
+FunctionServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FunctionServiceImpl.java
+END
+ProductDepotAllotService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProductDepotAllotService.java
+END
+MarketingProjectService.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/MarketingProjectService.java
+END
+BrandServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/BrandServiceImpl.java
+END
+ConversionTreatmentService.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/8/src/com/qylm/service/ConversionTreatmentService.java
+END
+ProjectOperationServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectOperationServiceImpl.java
+END
+GenericFileService.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GenericFileService.java
+END
+MealBuyRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/2/src/com/qylm/service/MealBuyRecordServiceImpl.java
+END
+MarketingRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/10/src/com/qylm/service/MarketingRecordService.java
+END
+LargessRecordServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LargessRecordServiceImpl.java
+END
+FileExportService.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FileExportService.java
+END
+CustomLeaguerOperationServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomLeaguerOperationServiceImpl.java
+END
+FunctionService.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/FunctionService.java
+END
+AuditingSetDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/AuditingSetDetailServiceImpl.java
+END
+BrandService.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/BrandService.java
+END
+ProjectOperationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ProjectOperationService.java
+END
+MealBuyRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/2/src/com/qylm/service/MealBuyRecordService.java
+END
+LargessRecordService.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/LargessRecordService.java
+END
+CustomLeaguerOperationService.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/CustomLeaguerOperationService.java
+END
+TreeItemServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TreeItemServiceImpl.java
+END
+AuditingSetServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/AuditingSetServiceImpl.java
+END
+RechargeServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RechargeServiceImpl.java
+END
+AuditingSetDetailService.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/AuditingSetDetailService.java
+END
+TemporaryActivityDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/TemporaryActivityDetailServiceImpl.java
+END
+ConsumptionRegisterServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/XDXS/!svn/ver/10/src/com/qylm/service/ConsumptionRegisterServiceImpl.java
+END
+RoleDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/RoleDetailServiceImpl.java
+END
+GiveInfoDetailServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/GiveInfoDetailServiceImpl.java
+END
+ShopAppleServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/service/ShopAppleServiceImpl.java
+END

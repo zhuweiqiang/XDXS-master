@@ -1,0 +1,103 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="赠送项目登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{giveLargessRecordBean.giveLargessRecordDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{giveLargessRecordBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续赠送项目" action="#{giveLargessRecordBean.newGiveLargessRecord}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{giveLargessRecordBean.giveLargessRecordDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:column width="220">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{giveLargessRecordBean.giveLargessRecordDto.personnelInfo1}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo2" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo2" value="#{giveLargessRecordBean.giveLargessRecordDto.personnelInfo2}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{giveLargessRecordBean.giveLargessRecordDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="marketingProject" value="赠送的项目" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="marketingProject" value="#{giveLargessRecordBean.giveLargessRecordDto.marketingProject}"
+							completeMethod="#{selectBean.selectMarketingProject}" size="10" maxlength="20"
+							var="marketingProject" itemLabel="#{marketingProject.project}" dropdown="true" label="赠送的项目必须选择" required="true"
+							itemValue="#{marketingProject}" converter="marketingProjectConverter" forceSelection="true">
+							<h:outputText value="#{marketingProject.project}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="number" value="赠送次数" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText id="number" value="#{giveLargessRecordBean.giveLargessRecordDto.number}" 
+							size="10" maxlength="10" label="次数必须输入" required="true">
+							<f:validator validatorId="numberValidator" />
+						</p:inputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="确认赠送" action="#{giveLargessRecordBean.save}"
+							 update="@form" styleClass="singleDelBtn" ajax="false"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

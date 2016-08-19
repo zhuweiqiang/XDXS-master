@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing
+END
+AuditingSetManageBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing/AuditingSetManageBean.java
+END
+ShopAuditingViewBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing/ShopAuditingViewBean.java
+END
+ShopAuditingCreateBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing/ShopAuditingCreateBean.java
+END
+AuditingSetCreateBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing/AuditingSetCreateBean.java
+END
+ShopAuditingManageBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/XDXS/!svn/ver/1/src/com/qylm/bean/auditing/ShopAuditingManageBean.java
+END

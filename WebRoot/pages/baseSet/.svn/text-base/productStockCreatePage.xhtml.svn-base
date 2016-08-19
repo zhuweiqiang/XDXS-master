@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="产品信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{productStockCreateBean.productStockCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{productStockCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{productStockCreateBean.newProductStock}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_productStock', '添加')}"/>
+			<p:commandButton value="保存" action="#{productStockCreateBean.saveProductStock}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_productStock', '添加') or userBean.isCheckPermission('baseSet_productStock', '修改')}"/>
+			<p:commandButton value="上传" action="#{productStockCreateBean.uploadFile}"
+				immediate="true" styleClass="fileBtn" ajax="false" 
+				rendered="#{userBean.isCheckPermission('baseSet_productStock', '添加') or userBean.isCheckPermission('baseSet_productStock', '修改')}"
+				disabled="#{productStockCreateBean.productStockCreateDto.transferProductStock == null}" accesskey="u"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="brand" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="brand" value="品牌" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:autoComplete value="#{productStockCreateBean.productStockCreateDto.brand}"
+							completeMethod="#{selectBean.selectBrand}" size="10" maxlength="20" id="brand"
+							var="brand" itemLabel="#{brand.name}" dropdown="true" label="品牌必须输入" required="true"
+							itemValue="#{brand}" converter="brandConverter" forceSelection="true">
+							<p:ajax event="itemSelect" listener="#{productStockCreateBean.selectSeriesItems}" update=":form:seriesId" />
+							<h:outputText value="#{brand.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="seriesId" value="系列" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:selectOneMenu id="seriesId" value="#{productStockCreateBean.productStockCreateDto.seriesId}">
+							<f:selectItems value="#{productStockCreateBean.productStockCreateDto.seriesItems}"/>
+						</p:selectOneMenu>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="name" value="产品名" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputText styleClass="inputText" id="name" size="50" maxlength="50"
+							value="#{productStockCreateBean.productStockCreateDto.name}" label="产品名必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="unit" value="单位数" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputText id="unit" maxlength="20" size="20" value="#{productStockCreateBean.productStockCreateDto.unit}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="产品价格" />
+					</p:column>
+					<p:column styleClass="column2">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{productStockCreateBean.productStockCreateDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2" label="套餐费用必须输入" required="true"/>
+					</p:column>
+					<p:column styleClass="column1">
+						<p:outputLabel for="cost" value="产品成本" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="cost" maxlength="10" size="12" value="#{productStockCreateBean.productStockCreateDto.cost}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="备注" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:inputTextarea id="remark" cols="80" rows="5" maxlength="500" 
+							value="#{productStockCreateBean.productStockCreateDto.remark}"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

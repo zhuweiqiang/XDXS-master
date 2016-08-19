@@ -1,0 +1,312 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="服务消费登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{serviceConsumptionBean.serviceConsumptionDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{serviceConsumptionBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续消费" action="#{serviceConsumptionBean.newServiceConsumption}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{serviceConsumptionBean.serviceConsumptionDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="20" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{serviceConsumptionBean.clearMarketingProject}" />
+							<p:column width="220">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{serviceConsumptionBean.serviceConsumptionDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{serviceConsumptionBean.serviceConsumptionDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10" label="登记日期必须输入" required="true"
+							locale="tr" value="#{serviceConsumptionBean.serviceConsumptionDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="卡项余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="充值卡余额：#{serviceConsumptionBean.serviceConsumptionDto.money} ￥" />
+						<ui:repeat var="customLeaguerDetail" value="#{serviceConsumptionBean.serviceConsumptionDto.customLeaguerDetailList}">
+							<ui:fragment rendered="#{customLeaguerDetail.leaguer != null}">
+								<h:outputText value="#{customLeaguerDetail.leaguer.level}：" style="margin-left: 30px;"/>
+								<h:outputText value="#{customLeaguerDetail.money} ￥" />
+							</ui:fragment>
+							<ui:fragment rendered="#{customLeaguerDetail.giveInfo != null}">
+								<h:outputText value="#{customLeaguerDetail.giveInfo.title}：" style="margin-left: 30px;"/>
+								<h:outputText value="#{customLeaguerDetail.money} ￥" />
+							</ui:fragment>
+						</ui:repeat>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{serviceConsumptionBean.serviceConsumptionDto.customInfo.arrearage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="消费总金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText id="sumMoney" value="#{serviceConsumptionBean.serviceConsumptionDto.sumMoney}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="选择服务项目" action="#{serviceConsumptionBean.selectMarketingProject}"
+							 update="@form" styleClass="singleDelBtn" oncomplete="PF('marketingProject').show();"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dataTable emptyMessage="暂无数据" var="model" 
+				value="#{serviceConsumptionBean.serviceConsumptionDto.consumptionRegisterDetailList}"
+				widgetVar="viewTable" id="viewTable">
+				<f:facet name="header" >
+					服务项目列表
+				</f:facet>
+				<p:column headerText="项目名称">
+					<h:outputText value="#{model.marketingProject.project}" />
+				</p:column>
+				<p:column headerText="项目金额" width="200">
+					<h:outputText value="#{model.marketingProject.money}" />
+				</p:column>
+				<p:column headerText="消费数量" width="200">
+					<p:inputText value="#{model.number}" size="10" maxlength="10" label="次数必须输入" required="true" style="margin-left:30px;">
+						<p:ajax event="keyup" update="viewTable :form:sumMoney" listener="#{serviceConsumptionBean.getSumMoney}" />
+						<f:validator validatorId="numberValidator" />
+					</p:inputText>
+				</p:column>
+				<p:column headerText="消费金额" width="200">
+					<h:outputText value="#{model.sumMoney}" />
+				</p:column>
+				<p:column headerText="基本操作" exportable="false" style="width: 80px;">
+					<p:commandButton value="删除" action="#{serviceConsumptionBean.deleteConsumptionRegister(model)}"
+						partialSubmit="true" process="@this"  update="viewTable :form:messages"
+						disabled="#{serviceConsumptionBean.serviceConsumptionDto.state}"
+						onstart="return deleteConfirm();" styleClass="singleDelBtn"/>
+				</p:column>
+			</p:dataTable>
+			<div class="buttonNorth" style="text-align: center;">
+				<p:commandButton value="付款结算" action="#{serviceConsumptionBean.findPay}"
+					update="@form" styleClass="singleDelBtn" oncomplete="PF('payType').show();"/>
+			</div>
+			<p:dialog id="marketingProject" header="选择服务项目" width="600" height="500"
+				widgetVar="marketingProject" modal="true" position="center">
+				<div>
+					<p:commandButton value="确认选择并关闭" styleClass="saveBtn" action="#{serviceConsumptionBean.queryClose}"
+						update=":form:viewTable :form:sumMoney" oncomplete="PF('marketingProject').hide();"/>
+				</div>
+				<div class="searchRequirementNorth">
+					<h:panelGrid id="manageGrids" columns="3">
+						<h:outputLabel for="marketingProjectName" value="项目名称" />
+						<p:inputText styleClass="inputText" id="marketingProjectName" size="20" maxlength="20"
+							value="#{serviceConsumptionBean.serviceConsumptionDto.marketingProjectName}" />
+						<p:commandButton id="searchBtn" value="搜索" action="#{serviceConsumptionBean.selectMarketingProject}" process=":form:manageGrids" 
+							styleClass="searchBtn" accesskey="s" update=":form:consumptionRegisterProjectDtos :form:pages"/>
+					</h:panelGrid>
+				</div>
+				<p:dataTable emptyMessage="暂无数据" var="model" id="consumptionRegisterProjectDtos"
+					value="#{serviceConsumptionBean.serviceConsumptionDto.marketingProjectList}">
+					<f:facet name="header" >
+						项目信息列表
+					</f:facet>
+					<p:column headerText="选择" width="40">
+						<p:commandButton value="选择" styleClass="saveBtn"
+							action="#{serviceConsumptionBean.findMarketingProjects(model)}"
+							update="consumptionRegisterProjectDtos"/>
+					</p:column>
+					<p:column headerText="项目名称">
+						<h:outputText value="#{model.project}" />
+					</p:column>
+					<p:column headerText="项目金额" width="220">
+						<h:outputText value="#{model.money} ￥" />
+					</p:column>
+				</p:dataTable>
+				<p:panelGrid id="pages" styleClass="dataTable"> 
+					<p:row>
+						<p:column styleClass="column4" style="text-align: center;">
+							<p:commandLink value="前一页" action="#{serviceConsumptionBean.upPage}" update=":form:consumptionRegisterProjectDtos :form:pages"
+								disabled="#{serviceConsumptionBean.serviceConsumptionDto.currentPage==1}" immediate="true" />
+							<p:commandLink value="后一页" action="#{serviceConsumptionBean.nextPage}" update=":form:consumptionRegisterProjectDtos :form:pages"
+								disabled="#{serviceConsumptionBean.serviceConsumptionDto.currentPage==serviceConsumptionBean.serviceConsumptionDto.pageCount}"
+								immediate="true" />
+							<h:outputFormat value="　　检索到 {0} 条数据。页 {1} / {2}">
+								<f:param value="#{serviceConsumptionBean.serviceConsumptionDto.dataCount}" />
+								<f:param value="#{serviceConsumptionBean.serviceConsumptionDto.currentPage}" />
+								<f:param value="#{serviceConsumptionBean.serviceConsumptionDto.pageCount}" />
+							</h:outputFormat>
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:dialog>
+			<p:dialog id="payType" header="付款方式" width="600" height="500"
+				widgetVar="payType" modal="true" position="center">
+				<p:dataTable emptyMessage="暂无数据" var="model" 
+					value="#{serviceConsumptionBean.serviceConsumptionDto.consumptionRegisterDetailList}"
+					widgetVar="viewTable" id="viewTables">
+					<f:facet name="header" >
+						需要付款的服务项目列表
+					</f:facet>
+					<p:column headerText="项目名称">
+						<h:outputText value="#{model.marketingProject.project}" />
+					</p:column>
+					<p:column headerText="项目金额" width="80">
+						<h:outputText value="#{model.marketingProject.money}" />
+					</p:column>
+					<p:column headerText="此次折扣" width="80">
+						<h:outputText value="#{model.rebate} 折" />
+					</p:column>
+					<p:column headerText="消费数量" width="80">
+						<h:outputText value="#{model.number}" />
+					</p:column>
+					<p:column headerText="已扣次数" width="80">
+						<h:outputText value="#{model.consumptionNumber}" />
+					</p:column>
+					<p:column headerText="消费金额" width="80">
+						<h:outputText value="#{model.sumMoney}" />
+					</p:column>
+				</p:dataTable>
+				<p:dataTable emptyMessage="暂无数据" var="dto" id="consumptionRegisterProjectDto"
+					value="#{serviceConsumptionBean.serviceConsumptionDto.consumptionRegisterProjectDtoList}">
+					<f:facet name="header" >
+						客户已拥有服务项目
+					</f:facet>
+					<p:column headerText="项目类型" width="100">
+						<h:outputText value="#{dto.typeLabel}" />
+					</p:column>
+					<p:column headerText="项目名称">
+						<h:outputText value="#{dto.marketingProject.project}" />
+					</p:column>
+					<p:column headerText="拥有次数" width="100">
+						<h:outputText value="#{dto.number}" />
+					</p:column>
+					<p:column headerText="扣除" width="40">
+						<p:commandButton value="扣除" styleClass="saveBtn"
+							action="#{serviceConsumptionBean.deductionMarketingProject(dto)}"
+							update="consumptionRegisterProjectDto :form:messages :form:viewTables :form:realityMoney :form:surplusMoneys :form:rebateMoney"/>
+					</p:column>
+				</p:dataTable>
+				<p:panelGrid styleClass="dataTable" id="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="实收金额" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText id="realityMoney" value="#{serviceConsumptionBean.serviceConsumptionDto.realityMoney}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="充值卡付款" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText value="充值卡余额：#{serviceConsumptionBean.serviceConsumptionDto.money}" />
+							<pe:inputNumber maxlength="10" size="12" value="#{serviceConsumptionBean.serviceConsumptionDto.balance}" 
+								minValue="0.00" maxValue="#{serviceConsumptionBean.serviceConsumptionDto.money}" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{serviceConsumptionBean.getSurplusMoney}" update=":form:surplusMoneys :form:sumPayMoney" />
+							</pe:inputNumber>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<p:selectOneMenu value="#{serviceConsumptionBean.serviceConsumptionDto.customLeaguerDetailId}">
+								<p:ajax listener="#{serviceConsumptionBean.getLeaguerMoney}" update=":form:leaguerReadyMoney :form:rebateMoney :form:surplusMoneys :form:viewTables" />
+								<f:selectItems value="#{serviceConsumptionBean.serviceConsumptionDto.customLeaguerDetailItems}" />
+							</p:selectOneMenu>
+						</p:column>
+						<p:column styleClass="column4">
+							<pe:inputNumber id="leaguerReadyMoney" maxlength="10" size="12" value="#{serviceConsumptionBean.serviceConsumptionDto.leaguerReadyMoney}" style="margin-left: 10px;"
+								minValue="0.00" emptyValue="0" maxValue="#{serviceConsumptionBean.serviceConsumptionDto.leaguerMoney}" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{serviceConsumptionBean.getSurplusMoney}" update=":form:surplusMoneys :form:sumPayMoney" />
+							</pe:inputNumber>
+							<h:outputText id="rebateMoney" value="折后需付款：#{serviceConsumptionBean.serviceConsumptionDto.rebateMoney}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="现金" />
+						</p:column>
+						<p:column styleClass="column4">
+							<pe:inputNumber maxlength="10" size="12" value="#{serviceConsumptionBean.serviceConsumptionDto.readyMoney}" 
+								minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{serviceConsumptionBean.getSurplusMoney}" update=":form:sumPayMoney :form:surplusMoneys" />
+							</pe:inputNumber>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="已经支付了：" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText id="sumPayMoney" value="#{serviceConsumptionBean.serviceConsumptionDto.sumPayMoney} ￥" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="还需支付：" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText id="surplusMoneys" value="#{serviceConsumptionBean.serviceConsumptionDto.surplusMoney} ￥" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<div>
+					<p:commandButton value="确认付款" styleClass="saveBtn"
+						action="#{serviceConsumptionBean.queryPay}"
+						update="@form" oncomplete="PF('payType').hide();"/>
+				</div>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

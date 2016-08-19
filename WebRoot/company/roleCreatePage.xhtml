@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="角色登录" />
+	<ui:define name="customcss">
+		<h:outputScript library="js/dtree" name="dtree.js" />
+		
+		<h:outputScript library="dhtmlxtree" name="dhtmlxtree.js" />
+		<h:outputScript library="dhtmlxtree" name="dhtmlxtree_deprecated.js" />
+		<h:outputStylesheet library="dhtmlxtree" name="dhtmlxtree.css" />
+		
+		
+	</ui:define>
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{roleCreateBean.roleCreateDto}" />
+		<t:saveState value="#{roleCreateBean.posts}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{roleCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{roleCreateBean.newRole}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('company_role', '添加')}"/>
+			<p:commandButton value="保存" action="#{roleCreateBean.saveRole}" ajax="false" onclick="checkbox();" update="@form" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('company_role', '添加') or userBean.isCheckPermission('company_role', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="roleName" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable"> 
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="roleName" value="角色名" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="roleName" size="20" maxlength="20"
+							value="#{roleCreateBean.roleCreateDto.roleName}" label="角色名必须输入" required="true" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="description" value="角色描述" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="description" size="50" maxlength="50"
+							value="#{roleCreateBean.roleCreateDto.description}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<h:outputText value="选择操作权限" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2">
+						<h:inputHidden id="check" value="#{roleCreateBean.roleCreateDto.check}" />
+						
+						
+						<div id="treeboxbox_trees" style="overflow: overflow;height: :500px;"></div>
+						<div style="width: 100%; height: auto; text-align: left; margin-top: 6px;">
+							<script type="text/javascript">
+								/**
+								#{roleCreateBean.posts}
+								function checkbox() {
+									var checked = [];
+									$("input:checkbox:checked").each(function() {
+							            checked.push($(this).val());
+							        });
+									document.getElementById("form:check").value = checked;
+									
+								}
+								**/
+								
+								var myTree = new dhtmlXTreeObject("treeboxbox_trees","100%","500px",0);
+								myTree.setImagePath("../resources/dhtmlxtree/imgs/dhxtree_skyblue/");
+								myTree.enableCheckBoxes(1);
+								myTree.enableThreeStateCheckboxes(true);
+								myTree.enableTreeLines(false);//设置是否显示树线
+								//myTree.enableSmartXMLParsing(true);
+								// "../resources/dhtmlxtree/tree_cl.xml"
+								myTree.loadXMLString(#{roleCreateBean.posts});
+								//myTree.loadXML("../resources/dhtmlxtree/tree_cl.xml");
+								function checkbox() {
+									document.getElementById("form:check").value = myTree.getAllCheckedBranches();
+									
+								}
+							</script>
+						</div>
+						
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

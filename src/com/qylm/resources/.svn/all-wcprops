@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/XDXS/!svn/ver/55/src/com/qylm/resources
+END
+applicationContext-timer.xml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/applicationContext-timer.xml
+END
+systemConfig.properties
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/systemConfig.properties
+END
+applicationContext-qylm.xml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/applicationContext-qylm.xml
+END
+jdbc.properties
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/55/src/com/qylm/resources/jdbc.properties
+END
+log4j.properties
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/log4j.properties
+END
+mailConfig.properties
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/mailConfig.properties
+END
+messages_zh_CN.properties
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/messages_zh_CN.properties
+END
+applicationContext.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/applicationContext.xml
+END
+applicationContext-apacheCXF.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/src/com/qylm/resources/applicationContext-apacheCXF.xml
+END

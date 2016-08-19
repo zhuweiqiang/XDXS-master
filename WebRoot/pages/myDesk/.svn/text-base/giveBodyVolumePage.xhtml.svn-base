@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="赠送身体卷登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{giveBodyVolumeBean.giveBodyVolumeDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{giveBodyVolumeBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续赠送身体卷" action="#{giveBodyVolumeBean.newGiveBodyVolume}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="选择赠送的身体卷" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:selectManyCheckbox layout="grid" columns="8" value="#{giveBodyVolumeBean.giveBodyVolumeDto.experienceCardId}">
+							<f:selectItems value="#{giveBodyVolumeBean.giveBodyVolumeDto.experienceCardItem}" />
+						</p:selectManyCheckbox>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{giveBodyVolumeBean.giveBodyVolumeDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{giveBodyVolumeBean.clearMarketingProject}" />
+							<p:column width="220">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{giveBodyVolumeBean.giveBodyVolumeDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{giveBodyVolumeBean.giveBodyVolumeDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="登记日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{giveBodyVolumeBean.giveBodyVolumeDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户已有身体卷" />
+					</p:column>
+					<p:column styleClass="column4">
+						<ui:repeat var="customLeaguerDetail" value="#{giveBodyVolumeBean.giveBodyVolumeDto.customLeaguerDetailList}">
+							<h:outputText value="#{customLeaguerDetail.giveInfo.title}：" style="margin-left: 30px;"/>
+							<h:outputText value="余额：#{customLeaguerDetail.money} ￥" />
+						</ui:repeat>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText id="arrearage" value="#{giveBodyVolumeBean.giveBodyVolumeDto.customInfo.arrearage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="2" style="text-align: center;">
+						<p:commandButton value="确认赠送" action="#{giveBodyVolumeBean.save}"
+							 update="@form" styleClass="singleDelBtn" ajax="false"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

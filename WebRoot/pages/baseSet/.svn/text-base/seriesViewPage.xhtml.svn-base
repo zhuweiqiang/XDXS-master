@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="系列信息详细" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{seriesViewBean.seriesViewDto}" />
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="品牌名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{seriesViewBean.seriesViewDto.brand.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="系列名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{seriesViewBean.seriesViewDto.name}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="备注" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{seriesViewBean.seriesViewDto.remark}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

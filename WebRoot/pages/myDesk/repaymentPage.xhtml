@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="还款登陆" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{repaymentBean.repaymentDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{repaymentBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="继续还款" action="#{repaymentBean.newRepayment}" immediate="true" update="@form" styleClass="createBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="customInfo" value="#{repaymentBean.repaymentDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfo}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{repaymentBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="personnelInfo" value="美容师" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="personnelInfo" value="#{repaymentBean.repaymentDto.personnelInfo}"
+							completeMethod="#{selectBean.selectPersonnelInfo1}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true" label="美容师必须选择" required="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="adviser" value="顾问" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="adviser" value="#{repaymentBean.repaymentDto.adviser}"
+							completeMethod="#{selectBean.selectPersonnelInfo2}" size="10" maxlength="20"
+							var="personnelInfo" itemLabel="#{personnelInfo.name}" dropdown="true"
+							itemValue="#{personnelInfo}" converter="personnelInfoConverter" forceSelection="true">
+							<h:outputText value="#{personnelInfo.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="date" value="还款日期" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:calendar navigator="true" id="date" size="10" maxlength="10"
+							locale="tr" value="#{repaymentBean.repaymentDto.date}"
+							pattern="yyyy-MM-dd"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="卡项余额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="充值卡余额：#{repaymentBean.repaymentDto.customInfo.money} ￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{repaymentBean.repaymentDto.customInfo.arrearage}"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="money" value="还款金额" />
+					</p:column>
+					<p:column styleClass="column4">
+						<pe:inputNumber id="money" maxlength="10" size="12" value="#{repaymentBean.repaymentDto.money}" 
+							minValue="0.00" emptyValue="0" symbol="￥ " decimalPlaces="2"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="4" style="text-align: center;">
+						<p:commandButton value="选择付款" action="#{repaymentBean.findPay}"
+							update="@form" styleClass="singleDelBtn" oncomplete="PF('payType').show();"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:dialog id="payType" header="付款方式" width="600" height="500"
+				widgetVar="payType" modal="true" position="center">
+				<p:panelGrid styleClass="dataTable">
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="实收金额" />
+						</p:column>
+						<p:column styleClass="column4">
+							#{repaymentBean.repaymentDto.money}￥
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="充值卡付款" />
+						</p:column>
+						<p:column styleClass="column4">
+							<h:outputText value="充值卡余额：#{repaymentBean.repaymentDto.customInfo.money}" />
+							<pe:inputNumber maxlength="10" size="12" value="#{repaymentBean.repaymentDto.balance}" 
+								minValue="0.00" maxValue="#{repaymentBean.repaymentDto.customInfo.money}" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{repaymentBean.balanceSurplus}" update=":form:balanceSurplus" />
+							</pe:inputNumber>
+							<h:outputText id="balanceSurplus" value="还需支付：#{repaymentBean.repaymentDto.balanceSurplus}" />
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column styleClass="column1">
+							<h:outputText value="现金" />
+						</p:column>
+						<p:column styleClass="column4">
+							<pe:inputNumber maxlength="10" size="12" value="#{repaymentBean.repaymentDto.readyMoney}" 
+								minValue="0.00" maxValue="#{repaymentBean.repaymentDto.money}" emptyValue="0" symbol="￥ " decimalPlaces="2">
+								<p:ajax event="keyup" listener="#{repaymentBean.readyMoneySurplus}" update=":form:readyMoneySurplus" />
+							</pe:inputNumber>
+							<h:outputText id="readyMoneySurplus" value="还需支付：#{repaymentBean.repaymentDto.readyMoneySurplus}" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+				<div>
+					<p:commandButton value="确认付款" styleClass="saveBtn"
+						action="#{repaymentBean.queryPay}"
+						update="@form" oncomplete="PF('payType').hide();"/>
+				</div>
+			</p:dialog>
+		</div>
+	</ui:define>
+</ui:composition>

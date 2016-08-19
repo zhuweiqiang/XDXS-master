@@ -1,0 +1,323 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/XDXS/!svn/ver/47/src/com/qylm/entity
+END
+LargessRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/LargessRecord.java
+END
+CustomLeaguerDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/47/src/com/qylm/entity/CustomLeaguerDetail.java
+END
+EntityClass.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/EntityClass.java
+END
+AuditingSetDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/AuditingSetDetail.java
+END
+GiveInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/GiveInfo.java
+END
+BaseEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/BaseEntity.java
+END
+ProductStockDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ProductStockDetail.java
+END
+MarketingProject.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/MarketingProject.java
+END
+ProductDepotAllot.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ProductDepotAllot.java
+END
+ProjectOperationDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ProjectOperationDetail.java
+END
+FileEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/FileEntity.java
+END
+User.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/User.java
+END
+MealBuyRecordDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/XDXS/!svn/ver/8/src/com/qylm/entity/MealBuyRecordDetail.java
+END
+MarketingRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/8/src/com/qylm/entity/MarketingRecord.java
+END
+FileControl.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/FileControl.java
+END
+PersonnelInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/PersonnelInfo.java
+END
+ConsumptionRegister.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/10/src/com/qylm/entity/ConsumptionRegister.java
+END
+FeedbackRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/FeedbackRecord.java
+END
+Leaguer.java
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Leaguer.java
+END
+ProjectBuy.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/8/src/com/qylm/entity/ProjectBuy.java
+END
+Brand.java
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Brand.java
+END
+GiveInfoDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/GiveInfoDetail.java
+END
+Series.java
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Series.java
+END
+ShopApple.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ShopApple.java
+END
+ShopAuditing.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ShopAuditing.java
+END
+TemporaryActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/TemporaryActivity.java
+END
+UserRole.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/UserRole.java
+END
+CustomLeaguerOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/CustomLeaguerOperation.java
+END
+Role.java
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Role.java
+END
+ConsumptionDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ConsumptionDetail.java
+END
+RepaymentRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/RepaymentRecord.java
+END
+MarketingRecordDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/XDXS/!svn/ver/22/src/com/qylm/entity/MarketingRecordDetail.java
+END
+ConsumptionRegisterDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/14/src/com/qylm/entity/ConsumptionRegisterDetail.java
+END
+LeaguerDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/LeaguerDetail.java
+END
+ConversionTreatment.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/11/src/com/qylm/entity/ConversionTreatment.java
+END
+ProjectBuyDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/XDXS/!svn/ver/16/src/com/qylm/entity/ProjectBuyDetail.java
+END
+UserDepot.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/UserDepot.java
+END
+ShopAppleDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ShopAppleDetail.java
+END
+TreeItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/TreeItem.java
+END
+AuditingSet.java
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/AuditingSet.java
+END
+Recharge.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Recharge.java
+END
+FileExport.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/FileExport.java
+END
+AddressEntity.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/AddressEntity.java
+END
+TemporaryActivityDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/TemporaryActivityDetail.java
+END
+ConsumptionDetails.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/XDXS/!svn/ver/8/src/com/qylm/entity/ConsumptionDetails.java
+END
+ProductStock.java
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ProductStock.java
+END
+RoleDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/RoleDetail.java
+END
+Function.java
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/Function.java
+END
+CustomInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/CustomInfo.java
+END
+DepotInfo.java
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/DepotInfo.java
+END
+ProjectOperation.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/XDXS/!svn/ver/1/src/com/qylm/entity/ProjectOperation.java
+END
+ConversionTreatmentDetail.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/8/src/com/qylm/entity/ConversionTreatmentDetail.java
+END
+MealBuyRecord.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/XDXS/!svn/ver/15/src/com/qylm/entity/MealBuyRecord.java
+END

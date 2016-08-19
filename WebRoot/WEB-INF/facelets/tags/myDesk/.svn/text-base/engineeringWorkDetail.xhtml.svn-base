@@ -1,0 +1,118 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com">
+	<div class="tableCenter">
+		<p:panelGrid id="manageGrid" styleClass="dataTable">
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="客户" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.customer.name}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="工程项目负责人" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.employee.name}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="工作地址" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.workAddress}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="工程开始日期" />
+				</p:column>
+				<p:column styleClass="column2">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.beginDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+				<p:column styleClass="column1">
+					<h:outputText value="工程结束日期" />
+				</p:column>
+				<p:column styleClass="column4">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.endDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="预算方量" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.actualVolume}" />
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="工作内容" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.remark}" escape="false"/>
+				</p:column>
+			</p:row>
+			<p:row>
+				<p:column styleClass="column1">
+					<h:outputText value="创建人" />
+				</p:column>
+				<p:column styleClass="column4" colspan="3">
+					<h:outputText value="#{myDeskBean.myDeskDto.engineeringProject.creater.userName}" />
+				</p:column>
+			</p:row>
+		</p:panelGrid>
+		<p:dataTable var="model" value="#{myDeskBean.myDeskDto.engineeringProject.engineeringProjectDetailList}">
+			<f:facet name="header" >
+				工作车辆安排列表
+			</f:facet>
+			<p:column headerText="车辆编号" width="120px;">
+				<h:outputText value="#{model.vehicleNumber}" />
+			</p:column>
+			<p:column headerText="泵送部位" width="120px;">
+				<h:outputText value="#{model.pumpParts}" />
+			</p:column>
+			<p:column headerText="预计工作方量" width="120px;">
+				<h:outputText value="#{model.workVolume}"/>
+			</p:column>
+			<p:column headerText="开始&amp;结束时间" width="120px;">
+				<h:outputText value="#{model.startPumpDate}">
+					<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai" />
+				</h:outputText>
+				<br />
+				~
+				<br />
+				<h:outputText value="#{model.endPumpDate}">
+					<f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" timeZone="Asia/Shanghai" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="开机人">
+				<table>
+					<tr>
+						<ui:repeat var="projectEmployeeDetail" value="#{model.projectEmployeeDetailList}">
+							<td>
+							<h:outputText value="#{projectEmployeeDetail.name}：" />
+							<h:outputText value="工作状态：" />
+							<h:outputText value="#{myDeskBean.selectCodeLabel(genericCodeBean.c0502,projectEmployeeDetail.type)}" style="color:#{projectEmployeeDetail.typeColor};"/>
+							</td>
+						</ui:repeat>
+					</tr>
+				</table>
+			</p:column>
+		</p:dataTable>
+	</div>
+</div>

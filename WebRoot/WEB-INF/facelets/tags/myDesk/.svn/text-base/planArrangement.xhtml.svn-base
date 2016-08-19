@@ -1,0 +1,50 @@
+<div class="tableCenter"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:p="http://primefaces.org/ui" 
+	xmlns:pe="http://primefaces.org/ui/extensions">
+	<p:panel id="planArrangement" header="您的日常计划提醒" toggleable="true"
+		closable="true" toggleSpeed="500" closeSpeed="500" widgetVar="planArrangement"
+		style="margin-bottom:20px">
+		<p:ajax event="close" update="messages" />
+		<p:ajax event="toggle" update="messages" />
+		<h:panelGrid columns="1" cellpadding="10">
+			<p:dataTable emptyMessage="暂无数据" var="model" value="#{myDeskBean.myDeskDto.planArrangementList}" rowIndexVar="rowIndex"
+				widgetVar="viewTable" rowKey="#{model.id}" paginatorAlwaysVisible="true" id="planArrangementTable">
+				<f:facet name="header" >
+					采购配件信息列表
+				</f:facet>
+				<p:column headerText="标题" width="200px;">
+					<h:outputText value="#{model.title}" />
+				</p:column>
+				<p:column headerText="提醒日期" width="100px;">
+					<h:outputText value="#{model.beginDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+					<br />
+					~
+					<br />
+					<h:outputText value="#{model.endDate}">
+						<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+					</h:outputText>
+				</p:column>
+				<p:column headerText="采购内容">
+					<h:outputText value="#{model.remark}" />
+				</p:column>
+			</p:dataTable>
+		</h:panelGrid>
+		<f:facet name="options">
+			<p:menu>
+				<p:submenu label="Settings">
+					<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+						onclick="PF('planArrangement').toggle()" />
+					<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+						onclick="PF('planArrangement').close()" />
+				</p:submenu>
+			</p:menu>
+		</f:facet>
+	</p:panel>
+</div>

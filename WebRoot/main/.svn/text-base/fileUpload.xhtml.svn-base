@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="文件上传"/>
+	<ui:param name="enctype" value="multipart/form-data"/>
+	<ui:define name="tableCenter">
+		<rw:saveState value="#{fileUploadBean.fileUploadDto}"/>
+		<div class="buttonNorth">
+			<p:commandButton value="返回" styleClass="backBtn"  action="#{fileUploadBean.back}"  immediate="true"  ajax="false"/>
+			<ui:fragment rendered="#{fileUploadBean.hasIE}">
+				<p:commandButton value="保存" styleClass="saveBtn" ajax="false" action="#{fileUploadBean.handleFileUpload}"/> 
+			</ui:fragment>
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid tyle="width:100%;" id="subPanel" rendered="#{fileUploadBean.hasIE}">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="file" value="上传文件"/>
+					</p:column>
+					<p:column styleClass="column4">
+						<p:fileUpload value="#{fileUploadBean.uploadedFile}" mode="simple" id="file" required="true" requiredMessage="文件不能为空" validator="#{fileUploadBean.validateFile}" />
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+			<p:fileUpload fileUploadListener="#{fileUploadBean.handleFileUpload}" 
+					update=":form:messages :form:fileControl" label="浏览" uploadLabel="上传" cancelLabel="清空"  
+					multiple="true"  mode="advanced" showButtons="true"  rendered="#{!fileUploadBean.hasIE}" 
+					sizeLimit="10240000" >
+			</p:fileUpload>
+			<ui:include src="/WEB-INF/facelets/tags/showFile.xhtml">
+				<ui:param name="fileControlList" value="#{fileUploadBean.fileUploadDto.fileControlList}" />
+				<ui:param name="bean" value="#{fileUploadBean}" />
+			</ui:include>
+		</div>
+	</ui:define>
+</ui:composition>

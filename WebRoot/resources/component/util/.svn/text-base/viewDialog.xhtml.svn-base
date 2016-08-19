@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:composite="http://java.sun.com/jsf/composite">
+    
+  <!-- INTERFACE -->
+  <composite:interface>
+  	<composite:attribute name="modelId" />
+    <composite:attribute name="actionMethod" method-signature="java.lang.String action()"/>        
+  </composite:interface>
+
+  <!-- IMPLEMENTATION #{cc.clientId}-->          
+  <composite:implementation>
+  	<p:fragment>
+  		<h:outputScript library="component/util" name="js/viewDialog.js" target="head" />
+  		<h:inputHidden id="viewCompHid" value="#{cc.attrs.modelId}" />
+  		<h:commandLink id="viewCompBtn" action="#{cc.attrs.actionMethod}" style="display: none;" target="viewiframe"/>
+  	</p:fragment>
+ 		<p:dialog id="viewCompDialog" header="视图" widgetVar="viewCompDialog" modal="true" width="800" height="500" position="center" >
+			<!--<iframe id="viewiframe" name="viewiframe" src="workBench.jsf" width="100%" height="99.5%"  noresize="noresize" scrolling="yes" frameborder="0" ></iframe>-->
+		</p:dialog>
+  </composite:implementation>
+</html>

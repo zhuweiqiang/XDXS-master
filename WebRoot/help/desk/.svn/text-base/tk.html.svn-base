@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>立盛会员消费智能管理系统1.0用户手册</title>
+		<link rel="stylesheet" type="text/css" href="../css/css.css"/>
+	</head>
+	<body>
+		<div class="mainDiv" style="text-align:center;">
+			<table class="table" align="center">
+				<tr>
+					<td style="text-align:center;">
+						<h1>退卡</h1>
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:center;">
+						<img src="../files/tk.jpg" width="1000"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="divText" align="left">
+							<li>
+								<span style="font-weight:bold;">功能说明：</span>用于根据客户进行退款操作，将卡内的金额退至充值卡或者退现金
+							</li>
+							<li>
+								<span style="font-weight:bold;">充值卡充值操作步骤：</span>
+								<li>A：下拉选择或者输入客户卡号、客户姓名获取客户当前信息，如图
+                               		<br />
+									<img src="../files/tk1.jpg" width="587" />
+                                </li>
+                                <li>B：下拉选择或者输入美容师和顾问姓名，如图
+                               		<br />
+									<img src="../files/tk2.jpg" width="587" />
+                                </li>
+                                <li>C：可选择退卡类型，只可选择退至充值卡和退现金
+                                	<br />
+									<img src="../files/tk3.jpg"/>
+                                </li>
+                                <li>D：可选择卡项，退卡的卡项是当前客户所拥有的卡
+                                	<br />
+									<img src="../files/tk4.jpg"/>
+                                </li>
+                                <li>E：填写退款金额
+                                	<br />
+									<img src="../files/tk5.jpg"/>
+                                </li>
+                                <li>F：确认无误后单击“确认退卡”按钮，系统会提示操作信息。如果要继续退卡请重复以上操作
+                                	<br />
+									<img src="../files/tk6.jpg"/>
+                                </li>
+							</li>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="系列信息登录" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{seriesCreateBean.seriesCreateDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{seriesCreateBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+			<p:commandButton value="添加" action="#{seriesCreateBean.newSeries}" immediate="true" update="@form" styleClass="createBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_series', '添加')}"/>
+			<p:commandButton value="保存" action="#{seriesCreateBean.saveSeries}" ajax="false" styleClass="saveBtn" 
+				rendered="#{userBean.isCheckPermission('baseSet_series', '添加') or userBean.isCheckPermission('baseSet_series', '修改')}"/>
+		</div>
+		<div class="tableCenter">
+			<p:focus for="brand" />
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="brand" value="品牌名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:autoComplete id="brand" value="#{seriesCreateBean.seriesCreateDto.brand}"
+							completeMethod="#{selectBean.selectBrand}" size="20" maxlength="20"
+							var="brand" itemLabel="#{brand.name}" dropdown="true" label="品牌名称必须输入" required="true"
+							itemValue="#{brand}" converter="brandConverter" forceSelection="true">
+							<h:outputText value="#{brand.name}" />
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="name" value="系列名称" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputText styleClass="inputText" id="name" size="30" maxlength="30"
+							value="#{seriesCreateBean.seriesCreateDto.name}" label="系列名称必须输入" required="true"/>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="remark" value="备注" />
+					</p:column>
+					<p:column styleClass="column4">
+						<p:inputTextarea id="remark" value="#{seriesCreateBean.seriesCreateDto.remark}" 
+							cols="80" rows="5" maxlength="200"/>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

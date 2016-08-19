@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates
+END
+pageHeader.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/pageHeader.xhtml
+END
+pageBody.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/pageBody.xhtml
+END
+pageFooter.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/pageFooter.xhtml
+END
+template.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/template.xhtml
+END
+page.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/page.xhtml
+END
+mobileTemplate.xhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/XDXS/!svn/ver/1/WebRoot/WEB-INF/facelets/templates/mobileTemplate.xhtml
+END

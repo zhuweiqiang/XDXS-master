@@ -1,0 +1,212 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:rw="http://www.qylm.com"
+	template="/WEB-INF/facelets/templates/template.xhtml">
+	<ui:param name="title" value="客户档案" />
+	<ui:define name="tableCenter" >
+		<t:saveState value="#{consumeBean.consumeDto}" />
+		<div class="buttonNorth">
+			<p:commandButton value="返回" action="#{consumeBean.back}" immediate="true" ajax="false" styleClass="backBtn" />
+		</div>
+		<div class="tableCenter">
+			<p:panelGrid id="manageGrid" styleClass="dataTable">
+				<p:row>
+					<p:column styleClass="column1">
+						<p:outputLabel for="customInfo" value="客户档案" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<p:autoComplete id="customInfo" value="#{consumeBean.consumeDto.customInfo}"
+							completeMethod="#{selectBean.selectCustomInfoNumber}" size="10" maxlength="20"
+							var="customInfo" itemLabel="#{customInfo.name}" dropdown="true" label="客户档案必须选择" required="true"
+							itemValue="#{customInfo}" converter="customInfoConverter" forceSelection="true">
+							<p:ajax event="itemSelect" update="@form" listener="#{consumeBean.clearMarketingProject}" />
+							<p:column width="120">
+								<h:outputText value="卡号：#{customInfo.leaguerNumber}" />
+							</p:column>
+							<p:column width="120">
+								<h:outputText value="客户名：#{customInfo.name}" />
+							</p:column>
+						</p:autoComplete>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="姓名" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.name}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="卡号" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.leaguerNumber}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="出生年月" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.birthday}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="电话" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.mobile}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="地址" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{rw:displayAddress(consumeBean.consumeDto.customInfo.addressEntity)}" />
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.addressDetail}" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="婚否" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{rw:label(genericCodeBean.c0104, consumeBean.consumeDto.customInfo.maritalStatus)}" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="结婚纪念日" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.maritalDeta}">
+							<f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Shanghai" />
+						</h:outputText>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="客户充值卡余额" />
+					</p:column>
+					<p:column styleClass="column4" colspan="3">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.money} ￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column1">
+						<h:outputText value="年度消费" />
+					</p:column>
+					<p:column styleClass="column2">
+						<h:outputText value="#{consumeBean.consumeDto.yearSumMoney} ￥" />
+					</p:column>
+					<p:column styleClass="column1">
+						<h:outputText value="欠款" />
+					</p:column>
+					<p:column styleClass="column4">
+						<h:outputText value="#{consumeBean.consumeDto.customInfo.arrearage} ￥" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="4">
+						<table border="0" cellpadding="1" cellspacing="2"
+							style="text-align:left; width:auto;">
+							<tr>
+								<td width="49%" valign="top">
+									<p:dataTable emptyMessage="暂无数据" var="customLeaguerDetail" 
+										value="#{consumeBean.consumeDto.customLeaguerDetailList}"
+										widgetVar="viewTable">
+										<f:facet name="header" >
+											当前客户的卡项
+										</f:facet>
+										<p:column headerText="卡项名称">
+											<ui:fragment rendered="#{customLeaguerDetail.leaguer != null}">
+												<h:outputText value="#{customLeaguerDetail.leaguer.level}" />
+											</ui:fragment>
+											<ui:fragment rendered="#{customLeaguerDetail.giveInfo != null}">
+												<h:outputText value="#{customLeaguerDetail.giveInfo.title}" />
+											</ui:fragment>
+										</p:column>
+										<p:column headerText="折扣" width="100">
+											<ui:fragment rendered="#{customLeaguerDetail.rebate == null}">
+												<h:outputText value="10.0 折" />
+											</ui:fragment>
+											<ui:fragment rendered="#{customLeaguerDetail.rebate != null}">
+												<h:outputText value="#{customLeaguerDetail.rebate} 折" />
+											</ui:fragment>
+											
+										</p:column>
+										<p:column headerText="余额" width="100">
+											<h:outputText value="#{customLeaguerDetail.money} ￥" />
+										</p:column>
+									</p:dataTable>
+								</td>
+								<td width="49%" valign="top">
+									<p:dataTable emptyMessage="暂无数据" var="dto" 
+										value="#{consumeBean.consumeDto.consumptionRegisterProjectDtoList}"
+										widgetVar="viewTable">
+										<f:facet name="header" >
+											当前客户已拥有的项目
+										</f:facet>
+										<p:column headerText="项目类型" width="200">
+											<h:outputText value="#{dto.typeLabel}" />
+										</p:column>
+										<p:column headerText="项目名称">
+											<h:outputText value="#{dto.marketingProject.project}" />
+										</p:column>
+										<p:column headerText="剩余次数" width="200">
+											<h:outputText value="#{dto.number}" />
+										</p:column>
+									</p:dataTable>
+								</td>
+							</tr>
+						</table>
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column styleClass="column4" colspan="4">
+						<p:dataTable emptyMessage="客户反馈列表" var="model" 
+							value="#{consumeBean.consumeDto.feedbackRecordList}"
+							widgetVar="viewTable">
+							<f:facet name="header" >
+								当前客户的反馈信息
+							</f:facet>
+							<p:column headerText="反馈日期" sortBy="#{model.date}" width="100">
+								<h:outputText value="#{model.date}" >
+									<f:convertDateTime pattern="yyyy-MM-dd"/>
+								</h:outputText>
+							</p:column>
+							<p:column headerText="反馈内容">
+								<h:outputText value="#{model.remark}" />
+							</p:column>
+							<p:column headerText="已推荐的项目/产品" width="300">
+								<div style="width: 100%; text-align: left;">
+									<ui:fragment rendered="#{model.marketingProject != null}">
+										<h:outputText value="项目：#{model.marketingProject.project}" />
+										<br />
+									</ui:fragment>
+									<ui:fragment rendered="#{model.productStock != null}">
+										<h:outputText value="产品：#{model.productStock.name}" />
+										<br />
+									</ui:fragment>
+								</div>
+							</p:column>
+							<p:column headerText="美容师" sortBy="#{model.personnelInfo.name}" width="80">
+								<h:outputText value="#{model.personnelInfo.name}" />
+							</p:column>
+							<p:column headerText="顾问" width="100">
+								<h:outputText value="#{model.adviser.name}" />
+							</p:column>
+						</p:dataTable>
+					</p:column>
+				</p:row>
+			</p:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing
+END
+AuditingSetManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing/AuditingSetManageDto.java
+END
+ShopAuditingViewDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing/ShopAuditingViewDto.java
+END
+ShopAuditingCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing/ShopAuditingCreateDto.java
+END
+AuditingSetCreateDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing/AuditingSetCreateDto.java
+END
+ShopAuditingManageDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/XDXS/!svn/ver/1/src/com/qylm/dto/auditing/ShopAuditingManageDto.java
+END

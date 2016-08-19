@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rw="http://www.chouchou.com">
+	<tr>
+		<td width="10" height="30" align="left"
+			background="../images/main-8.gif">
+		</td>
+		<td height="30" align="left" valign="middle"
+			background="../images/main-19.gif">
+			<img src="../images/main-12.gif" width="20" height="18"
+				align="absmiddle" />
+			<span class="pageName"><ui:insert name="title"></ui:insert>
+			</span>
+		</td>
+		<td width="10" height="30" align="left"
+			background="../images/main-11.gif">
+		</td>
+	</tr>
+</ui:composition>
